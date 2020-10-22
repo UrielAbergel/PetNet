@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1070293598589",
+    "firebase_url": "https://petnet-6167c.firebaseio.com",
+    "project_id": "petnet-6167c",
+    "storage_bucket": "petnet-6167c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070293598589:android:fb751f08e14501adf6cc14",
+        "android_client_info": {
+          "package_name": "com.example.netpet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070293598589-hb40ophgjefmgk03dsuq3o3jg80tr52h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkMQJG7Q2pVyJMDRgPjAtCbKz2-UwekVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070293598589-hb40ophgjefmgk03dsuq3o3jg80tr52h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
