@@ -1,4 +1,4 @@
-package com.example.netpet;
+package com.example.petnet;
 
 import org.junit.Test;
 
