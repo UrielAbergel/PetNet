@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:67255598290:android:5833f716d8ecd656ad010b",
+        "mobilesdk_app_id": "1:67255598290:android:afaeac730eafc322ad010b",
         "android_client_info": {
-          "package_name": "com.android.petnet"
+          "package_name": "com.example.flutter_app"
         }
       },
       "oauth_client": [
@@ -37,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:67255598290:android:afaeac730eafc322ad010b",
+        "mobilesdk_app_id": "1:67255598290:android:ef4c7652ca72eccbad010b",
         "android_client_info": {
-          "package_name": "com.example.flutter_app"
+          "package_name": "com.example.petnet"
         }
       },
       "oauth_client": [
