@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        User_Name_input = (EditText) findViewById(R.id.UserNameInput);
-        Password_input = (EditText) findViewById(R.id.PasswordInput);
+        User_Name_input = (EditText) findViewById(R.id.TI_username);
+        Password_input = (EditText) findViewById(R.id.TI_password);
 
-        
+
 
     }
 
