@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         Sign_up_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpPage.class);
-                startActivity(intent);
+              go_sign_up_page();
             }
         });
+
 
         //if
         login_button = (Button) findViewById(R.id.B_login);
@@ -84,11 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
-
+    public void go_sign_up_page(){
+        Intent intent = new Intent(this, SignUpPage.class);
+        startActivity(intent);
+    }
 
 }
