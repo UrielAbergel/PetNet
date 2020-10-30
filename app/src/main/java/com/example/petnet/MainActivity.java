@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         Sign_up_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(this,SignUpPage.class);
-                startActivity(intent);
+                go_to_signup();
+
             }
         });
 
         //if
-        login_button = (Button) findViewById(R.id.B_login);
+        login_button = (Button) findViewById(R.id.B_signup);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void go_to_signup(){
+        Intent intent = new Intent(this,SignUpPage.class);
+        startActivity(intent);
 
     }
 
