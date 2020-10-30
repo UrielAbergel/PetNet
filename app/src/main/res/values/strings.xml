@@ -18,4 +18,8 @@
     <string name="TI_username_txt">Username</string>
     <string name="TV_signup_hint_txt">Dont have a user?</string>
     <string name="TV_signup_txt">Sign-up</string>
+    <string name="pet_name">Pet Name</string>
+    <string name="pet_color">Pet Color</string>
+    <string name="uniqe_signs">Uniqe Signs</string>
+    <string name="pet_gender">Pet Gender</string>
 </resources>

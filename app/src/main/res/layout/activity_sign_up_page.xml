@@ -116,8 +116,49 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/ET_pet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/pet_name"
+                />
+
+            <EditText
+                android:id="@+id/ET_pet_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/pet_color"
+                />
+
+            <EditText
+                android:id="@+id/ET_pet_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/pet_gender"
+                 />
+
+            <EditText
+                android:id="@+id/ET_uniqe_signs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/uniqe_signs"  />
+
 
         </LinearLayout>
+
+
 
 
     </ScrollView>
