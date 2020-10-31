@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-
     >
 
     <ImageView
@@ -35,7 +34,7 @@
         android:ems="10"
         android:inputType="textPersonName|text"
         android:paddingLeft="10dp"
-        android:text="@string/TI_username_txt"
+        android:hint="@string/TI_username_txt"
 
         app:layout_constraintBottom_toTopOf="@+id/TI_password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +52,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
-        android:text="@string/TI_password_txt"
+        android:hint="@string/TI_password_txt"
+        android:password="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -80,29 +80,34 @@
         android:layout_height="wrap_content"
         android:text="@string/TV_signup_hint_txt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.386"
+        app:layout_constraintEnd_toStartOf="@+id/TV_signup"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TI_password"
-        app:layout_constraintVertical_bias="0.612" />
+        app:layout_constraintVertical_bias="0.609" />
 
     <TextView
         android:id="@+id/TV_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="0dp"
         android:text="@string/TV_signup_txt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/TV_signup_hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toEndOf="@+id/TV_signup_hint"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TV_signup_hint"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckBox
         android:id="@+id/CB_remember_me"
         android:layout_width="136dp"
         android:layout_height="38dp"
         android:text="Remember me?"
+        android:textColorHighlight="#170404"
+        android:textColorLink="#0E0000"
+        android:textCursorDrawable="@android:drawable/checkbox_on_background"
         app:layout_constraintBottom_toTopOf="@+id/TV_signup_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.363"
