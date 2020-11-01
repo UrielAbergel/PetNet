@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dedded"
     >
 
 
@@ -13,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="154dp"
         android:layout_below="@+id/Mail_email"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/text_input"
         android:gravity="center_horizontal"
         android:hint="Enter Your Messege"
@@ -33,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Mail_subject"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/text_input"
         android:gravity="center_horizontal"
         android:hint="Email"

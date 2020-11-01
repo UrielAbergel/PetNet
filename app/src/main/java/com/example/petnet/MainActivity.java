@@ -24,14 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String User_Name , Password;
     private Button getResult;
-
     private EditText User_Name_input;
     private EditText Password_input;
     private TextView Sign_up_input;
     private ImageView FAB_mail_input;
-
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
     private Button login_button;
 
 
@@ -47,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         Password_input = (EditText) findViewById(R.id.TI_password);
         Sign_up_input =  (TextView)  findViewById(R.id.TV_signup);
         FAB_mail_input = (ImageView) findViewById(R.id.FAB_mail);
+        login_button = (Button) findViewById(R.id.B_login);
+
 
         //take instant to sign up page
         Sign_up_input.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //check log in button and log in into the app
-        login_button = (Button) findViewById(R.id.B_login);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

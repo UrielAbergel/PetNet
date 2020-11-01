@@ -24,6 +24,7 @@ public class Mail_Active extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle saveInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        //open dialog for mail send
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.mail_active,null);
         get_text_msg = view.findViewById(R.id.Mail_getText);
@@ -31,9 +32,11 @@ public class Mail_Active extends AppCompatDialogFragment {
         get_text_mail = view.findViewById(R.id.Mail_email);
         builder.setView(view).setTitle("Contact Us!").setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
+            //cancel button
             public void onClick(DialogInterface dialog, int which) {
 
             }
+            //send mail
         }).setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
