@@ -15,9 +15,11 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 public class Mail_Active extends AppCompatDialogFragment {
 
     private EditText get_text_msg;
+    private EditText get_text_mail;
     private EditText get_subject;
     private String text_subject;
     private String text_msg;
+    private String text_email;
 
     public Dialog onCreateDialog(Bundle saveInstanceState){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -26,6 +28,7 @@ public class Mail_Active extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.mail_active,null);
         get_text_msg = view.findViewById(R.id.Mail_getText);
         get_subject = view.findViewById(R.id.Mail_subject);
+        get_text_mail = view.findViewById(R.id.Mail_email);
         builder.setView(view).setTitle("Contact Us!").setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -34,8 +37,8 @@ public class Mail_Active extends AppCompatDialogFragment {
         }).setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                text_msg = get_text_msg.getText().toString();
+                text_email = get_text_mail.getText().toString();
+                text_msg = "Email: " + text_email + "\n\n" + get_text_msg.getText().toString();
                 text_subject = get_subject.getText().toString();
 
                 sendEmail();

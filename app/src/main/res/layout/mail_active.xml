@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dedded"
     >
-
-
-
-
-
 
 
     <EditText
         android:id="@+id/Mail_getText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Mail_subject"
-        android:background="@drawable/custom_button"
+        android:layout_height="154dp"
+        android:layout_below="@+id/Mail_email"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/text_input"
         android:gravity="center_horizontal"
         android:hint="Enter Your Messege"
         android:textSize="15sp" />
@@ -26,8 +23,19 @@
         android:id="@+id/Mail_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
+        android:background="@drawable/text_input"
         android:gravity="center_horizontal"
-        android:hint="UserName"
+        android:hint="Subject"
         android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/Mail_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Mail_subject"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/text_input"
+        android:gravity="center_horizontal"
+        android:hint="Email"
+        android:textSize="15sp" />
 </RelativeLayout>

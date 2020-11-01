@@ -30,8 +30,8 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
     private String mEmail;
     private String mSubject;
     private String mMessage;
-    public static final String EMAIL = "petnetcontact@gmail.com";
-    public static final String PASSWORD = "turhtk0102";
+    private static final String EMAIL = "petnetcontact@gmail.com";
+    private static final String PASSWORD = "turhtk0102";
     private ProgressDialog mProgressDialog;
 
     //Constructor
