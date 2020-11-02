@@ -21,7 +21,7 @@ public class SignUpPage extends AppCompatActivity {
     EditText last_name;
     EditText email;
     EditText password;
-    EditText confirm_passwrod;
+    EditText confirm_password;
     ImageButton hide_pass;
     ImageButton hide_confirm_pass;
     androidx.appcompat.widget.Toolbar toolbar;
@@ -44,41 +44,41 @@ public class SignUpPage extends AppCompatActivity {
 
         password = findViewById(R.id.PT_register_password);
         hide_pass = findViewById(R.id.IV_hide_pass);
-        confirm_passwrod = findViewById(R.id.PT_register_confirm_password);
+        confirm_password = findViewById(R.id.PT_register_confirm_password);
         hide_confirm_pass = findViewById(R.id.IV_hide_confirm_pass);
-        sign_up_button = findViewById(R.id.B_signup);
+       // sign_up_button = findViewById(R.id.B_signup);
         email=findViewById(R.id.PT_register_email);
 
 
 
-        sign_up_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(password.getText().toString()!=confirm_passwrod.getText().toString()) {
-
-                    Toast.makeText(getApplicationContext(), "Password does not equals.", Toast.LENGTH_LONG).show();
-                    password.setError("Passwords dont match");
-                    password.requestFocus();
-                    return;
-                }
-                String mail = email.getText().toString();
-                String pass = password.getText().toString();
-             try{
-                 mAuth.createUserWithEmailAndPassword(mail,pass); // need to add oncompelte listener and check the exceptions.
-
-             }catch (Exception e){
-
-                }
-             }
-
-
-        });
+//        sign_up_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(password.getText().toString()!=confirm_password.getText().toString()) {
+//
+//                    Toast.makeText(getApplicationContext(), "Password does not equals.", Toast.LENGTH_LONG).show();
+//                    password.setError("Passwords dont match");
+//                    password.requestFocus();
+//                    return;
+//                }
+//                String mail = email.getText().toString();
+//                String pass = password.getText().toString();
+//             try{
+//                 mAuth.createUserWithEmailAndPassword(mail,pass); // need to add oncompelte listener and check the exceptions.
+//
+//             }catch (Exception e){
+//
+//                }
+//             }
+//
+//
+//        });
 
 
         hide_confirm_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                togglePass(confirm_passwrod,confirm_passwrod.getInputType());
+                togglePass(confirm_password,confirm_password.getInputType());
             }
         });
 

@@ -5,14 +5,33 @@
     android:id="@+id/SV_register_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".SignUpPage">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center_horizontal"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="center"
+        android:theme="?attr/actionBarTheme"
+        android:tooltipText="Sign-up"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="2dp" />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="2dp">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.024"
+        tools:layout_editor_absoluteX="-16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +51,10 @@
                 android:id="@+id/PT_register_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/first_name"
@@ -42,7 +64,9 @@
                 android:id="@+id/PT_register_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/last_name"
@@ -52,7 +76,9 @@
                 android:id="@+id/PT_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/e_mail"
@@ -68,7 +94,9 @@
                     android:id="@+id/PT_register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
                     android:ems="10"
                     android:hint="@string/password"
@@ -82,7 +110,7 @@
                     android:layout_marginStart="-60dp"
                     android:layout_marginLeft="-60dp"
                     android:layout_marginTop="24dp"
-                    android:background="@color/white"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_baseline_remove_red_eye_24" />
 
 
@@ -97,7 +125,9 @@
                     android:id="@+id/PT_register_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
                     android:ems="10"
                     android:hint="@string/confirm_password"
@@ -110,7 +140,7 @@
                     android:layout_marginStart="-60dp"
                     android:layout_marginLeft="-60dp"
                     android:layout_marginTop="24dp"
-                    android:background="@color/white"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_baseline_remove_red_eye_24" />
 
 
@@ -120,68 +150,90 @@
                 android:id="@+id/ET_pet_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
-                android:hint="@string/pet_name"
-                />
+                android:hint="@string/pet_name" />
+
+            <EditText
+                android:id="@+id/ET_pet_race"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/pet_race" />
 
             <EditText
                 android:id="@+id/ET_pet_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
-                android:hint="@string/pet_color"
-                />
+                android:hint="@string/pet_color" />
 
             <EditText
                 android:id="@+id/ET_pet_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
-                android:hint="@string/pet_gender"
-                 />
+                android:hint="@string/pet_gender" />
 
             <EditText
                 android:id="@+id/ET_uniqe_signs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
-                android:hint="@string/uniqe_signs"  />
+                android:hint="@string/uniqe_signs" />
 
 
         </LinearLayout>
 
-
-
-
     </ScrollView>
 
-    <Button
-        android:id="@+id/B_signup"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="MissingConstraints" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/TV_Business_signup_hint_txt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="2dp"
-        tools:ignore="MissingConstraints" />
+        android:text="@string/TV_Business_signup_hint_txt"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.809" />
+
+    <TextView
+        android:id="@+id/TV_Business_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="@string/TV_Business_signup_txt"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintLeft_toRightOf="@id/TV_Business_signup_hint_txt"
+        app:layout_constraintStart_toEndOf="@+id/TV_Business_signup_hint_txt"
+        app:layout_constraintTop_toTopOf="@+id/TV_Business_signup_hint_txt"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

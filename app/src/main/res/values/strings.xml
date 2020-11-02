@@ -22,4 +22,7 @@
     <string name="pet_color">Pet Color</string>
     <string name="uniqe_signs">Uniqe Signs</string>
     <string name="pet_gender">Pet Gender</string>
+    <string name="pet_race">Pet race</string>
+    <string name="TV_Business_signup_hint_txt">Business Profile?</string>
+    <string name="TV_Business_signup_txt">Click Here!</string>
 </resources>
