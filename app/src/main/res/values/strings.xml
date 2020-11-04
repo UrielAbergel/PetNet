@@ -22,4 +22,11 @@
     <string name="pet_color">Pet Color</string>
     <string name="uniqe_signs">Uniqe Signs</string>
     <string name="pet_gender">Pet Gender</string>
+    <string name="found_a_dog">Found a dog</string>
+    <string name="dog_sitter">Dog sitter</string>
+    <string name="dog_walker">Dog Walker</string>
+    <string name="dog_trainer">Dog trainer</string>
+    <string name="veterinarian">Veterinarian</string>
+    <string name="pet_shops">Pet shops</string>
+    <string name="my_dashboard">My Dashboard</string>
 </resources>

@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     mAuth.signInWithEmailAndPassword(User_Name, Password)
                             .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        go_user_main_activity_page();
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         System.out.println(user.getEmail());
                                         // Sign in success, update UI with the signed-in user's information
@@ -106,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void go_sign_up_page(){
         Intent intent = new Intent(this, SignUpPage.class);
+        startActivity(intent);
+    }
+
+    public void go_user_main_activity_page(){
+        Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
     }
 
