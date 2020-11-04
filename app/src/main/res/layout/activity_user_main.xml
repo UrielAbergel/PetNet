@@ -46,7 +46,6 @@
                 android:src="@drawable/bel"
                 android:layout_width="82dp"
                 android:layout_height="82dp">
-
             </ImageView>
 
         </RelativeLayout>
