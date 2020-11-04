@@ -25,4 +25,6 @@
     <string name="pet_race">Pet race</string>
     <string name="TV_Business_signup_hint_txt">Business Profile?</string>
     <string name="TV_Business_signup_txt">Click Here!</string>
+    <string name="B_signup">Sign-Up</string>
+    <string name="attach_a_photo">Attach a photo:</string>
 </resources>

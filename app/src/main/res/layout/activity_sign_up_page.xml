@@ -201,6 +201,55 @@
                 android:ems="10"
                 android:hint="@string/uniqe_signs" />
 
+            <ImageView
+                android:id="@+id/pet_pic"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left"
+              >
+            </ImageView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attach_a_photo"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/gallery_photo"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_add_photo_alternate_24"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:background="@android:color/transparent"
+                    android:id="@+id/camera_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_add_a_photo_24"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/B_signup"
+                android:layout_width="148dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/B_signup"
+                android:layout_gravity="center"
+                />
 
         </LinearLayout>
 
