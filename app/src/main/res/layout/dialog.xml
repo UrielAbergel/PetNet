@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/dialogbackground"
     android:radius="5dp"
     >
 
@@ -23,7 +23,9 @@
     <EditText
         android:id="@+id/Mail_subject"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ContactUS"
+        android:layout_marginTop="10dp"
         android:background="@drawable/text_input"
         android:gravity="center_horizontal"
         android:hint="Subject"
@@ -64,5 +66,16 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/ContactUS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Contact Us!" />
 
 </RelativeLayout>
