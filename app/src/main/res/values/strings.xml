@@ -22,6 +22,11 @@
     <string name="pet_color">Pet Color</string>
     <string name="uniqe_signs">Uniqe Signs</string>
     <string name="pet_gender">Pet Gender</string>
+    <string name="pet_race">Pet race</string>
+    <string name="TV_Business_signup_hint_txt">Business Profile?</string>
+    <string name="TV_Business_signup_txt">Click Here!</string>
+    <string name="B_signup">Sign-Up</string>
+    <string name="attach_a_photo">Attach a photo:</string>
     <string name="found_a_dog">Found a dog</string>
     <string name="dog_sitter">Dog sitter</string>
     <string name="dog_walker">Dog Walker</string>

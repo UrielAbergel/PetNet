@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -117,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void go_to_mail_send_screen(){
-        Mail_Active mail_active = new Mail_Active();
-        mail_active.show(getSupportFragmentManager(),"Text Us");
+        MailDiaglog alert = new MailDiaglog();
+        alert.showDialog(this, "Error de conexión al servidor");
     }
 
 

@@ -11,12 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
+
         <activity
             android:name=".UserMainActivity"
-            android:parentActivityName=".UserMainActivity" />
+            android:parentActivityName=".UserMainActivity">
+        </activity>
+
         <activity
             android:name=".SignUpPage"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity
+            android:name=".BSignUpPage">
+        </activity>
+
+        <activity
+            android:name=".SignUpPage"
+            android:label=""
+            android:parentActivityName=".MainActivity">
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -26,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
