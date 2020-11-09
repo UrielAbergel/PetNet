@@ -205,9 +205,9 @@
                 android:id="@+id/pet_pic"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="left"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
               >
             </ImageView>
 
