@@ -19,9 +19,9 @@
     <string name="TV_signup_hint_txt">Dont have a user?</string>
     <string name="TV_signup_txt">Sign-up</string>
     <string name="pet_name">Pet Name</string>
-    <string name="pet_color">Pet Color</string>
+    <string name="pet_color">Pet Color:</string>
     <string name="uniqe_signs">Uniqe Signs</string>
-    <string name="pet_gender">Pet Gender</string>
+    <string name="pet_gender">Pet Gender:</string>
     <string name="pet_race">Pet race</string>
     <string name="TV_Business_signup_hint_txt">Business Profile?</string>
     <string name="TV_Business_signup_txt">Click Here!</string>
@@ -34,4 +34,11 @@
     <string name="veterinarian">Veterinarian</string>
     <string name="pet_shops">Pet shops</string>
     <string name="my_dashboard">My Dashboard</string>
+    <string name="pet_gender_male">Male</string>
+    <string name="pet_gender_female">Female</string>
+    <string name="pet_color_white">White</string>
+    <string name="pet_color_black">Black</string>
+    <string name="pet_color_brown">Brown</string>
+    <string name="pet_color_gray">Gray</string>
+    <string name="pet_color_golden">Golden</string>
 </resources>
