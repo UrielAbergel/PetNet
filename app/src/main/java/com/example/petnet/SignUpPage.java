@@ -287,20 +287,22 @@ public class SignUpPage extends AppCompatActivity {
                 String pass = password.getText().toString();
                 userToAdd.setEmail(mail);
 
-                 mAuth.createUserWithEmailAndPassword(mail,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                     @Override
-                     public void onSuccess(AuthResult authResult) {
-                         FirebaseUser user = mAuth.getCurrentUser();
-                         System.out.println("User UID: "  +user.getUid());
-                         userToAdd.setUid(user.getEmail());
-                     }
-                 }).addOnFailureListener(new OnFailureListener() {
-                     @Override
-                     public void onFailure(@NonNull Exception e) {
-                         Toast.makeText(getApplicationContext(),"Sign-up failed, Try again",Toast.LENGTH_LONG).show();
-
-                     }
-                 });
+//                 mAuth.createUserWithEmailAndPassword(mail,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+//                     @Override
+//                     public void onSuccess(AuthResult authResult) {
+//                         FirebaseUser user = mAuth.getCurrentUser();
+//                         System.out.println("ITSOKIMLOGGED");
+//                         System.out.println("User UID: "  +user.getUid());
+//                         userToAdd.setUid(user.getEmail());
+//                     }
+//                 }).addOnFailureListener(new OnFailureListener() {
+//                     @Override
+//                     public void onFailure(@NonNull Exception e) {
+//                         System.out.println("ICANTDOIT :" + e.toString());
+//                         Toast.makeText(getApplicationContext(),"Sign-up failed, Try again",Toast.LENGTH_LONG).show();
+//
+//                     }
+//                 });
                  userToAdd.setFname(first_name.getText().toString());
                  userToAdd.setLname(last_name.getText().toString());
 //                 userToAdd.setAddress(adress.getText().toString()); check what about address
@@ -308,15 +310,15 @@ public class SignUpPage extends AppCompatActivity {
 
                 userToAdd.setPassword(password.getText().toString());
                 userToAdd.setPet_name(pet_name.getText().toString());
-                userToAdd.setColors(colors);
+              //  userToAdd.setColors(colors);
                 //userToAdd.setRace();
 
-
+                System.out.println(colors.toString());
                 System.out.println(userToAdd.toString());
 
 
 
-            myRef.child(userToAdd.getUid()).setValue(userToAdd);
+         //   myRef.child(userToAdd.getUid()).setValue(userToAdd);
 
             Intent intent = new Intent(getApplicationContext(),BSignUpPage.class);
             startActivity(intent);
