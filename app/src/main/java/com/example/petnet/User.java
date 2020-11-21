@@ -2,7 +2,11 @@ package com.example.petnet;
 
 import android.graphics.Bitmap;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User {
@@ -13,20 +17,25 @@ public class User {
     private String Password;
     private String Address;
     private int Gender;
-
     private String Uid;
     private String Pet_name;
     private String Pet_race;
     private int Pet_gender;
     private int Size; // split into categories 1-5
-    private Map<String,Integer> colors;
+    private List<Integer> colors;
     private String Uniqe_signs;
 
-    public Map<String, Integer> getColors() {
+
+    public User(){
+
+    }
+
+
+    public List<Integer> getColors() {
         return colors;
     }
 
-    public void setColors(Map<String, Integer> colors) {
+    public void setColors(List<Integer> colors) {
         this.colors = colors;
     }
 
@@ -148,5 +157,24 @@ public class User {
                 ", colors=" + colors +
                 ", Uniqe_signs='" + Uniqe_signs + '\'' +
                 '}';
+    }
+
+
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("Fname", this.getFname());
+        result.put("Lname", this.getLname());
+        result.put("Email", this.getEmail());
+        result.put("Password", this.getPassword());
+        result.put("Gender", this.getGender());
+        result.put("Pet_gender", this.getPet_gender());
+        result.put("Uid", this.getUid());
+        result.put("Pet_name", this.getPet_name());
+        result.put("Pet_race", this.getPet_race());
+        result.put("Size", this.getSize());
+        result.put("Uniqe_signs", this.getUniqe_signs());
+        result.put("Adress", this.getAddress());
+        return result;
     }
 }
