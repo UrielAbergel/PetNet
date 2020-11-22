@@ -90,7 +90,7 @@ public class SignUpPage extends AppCompatActivity {
     User userToAdd;
     Bitmap imageBitmap;
     Uri Imageuri;
-
+    int check;
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
@@ -149,6 +149,7 @@ public class SignUpPage extends AppCompatActivity {
         userToAdd = new User();
         cb_colors = new CheckBox[9];
         colors=  new ArrayList<>();
+        check = -1;
 
         for (int i =0 ; i<9 ;i++){
             colors.add(0);
@@ -371,8 +372,8 @@ public class SignUpPage extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
                         System.out.println("after auth,:" + userToAdd.getUid());
 
-                        uploadImage(REQUEST_IMAGE_FROM_GALLERY,userToAdd.getUid());
-
+                        if(check == 0) uploadImage(REQUEST_IMAGE_FROM_GALLERY,userToAdd.getUid());
+                        else if(check == 1) uploadImage(REQUEST_IMAGE_CAPTURE,userToAdd.getUid());
                         Intent intent = new Intent(getApplicationContext(),BSignUpPage.class);
                         startActivity(intent);
                     }
@@ -405,6 +406,7 @@ public class SignUpPage extends AppCompatActivity {
         take_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                check = 1;
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,REQUEST_IMAGE_CAPTURE);
             }
@@ -413,6 +415,7 @@ public class SignUpPage extends AppCompatActivity {
         take_photo_from_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                check =0;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -470,12 +473,11 @@ public class SignUpPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE ) {
-            if (resultCode == RESULT_OK && data!=null && data.getData()!=null) {
+            if (resultCode == RESULT_OK && data!=null) {
 
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
                 Bitmap check = imageBitmap;
-
 
                 pet_photo.setImageBitmap(imageBitmap);
 
