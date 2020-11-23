@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Log_in_activity extends AppCompatActivity {
 
     private String User_Name , Password;
     private Button getResult;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.log_in_activity);
 
         // get input from the user
         User_Name_input = (EditText) findViewById(R.id.TI_username);
@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     mAuth.signInWithEmailAndPassword(User_Name, Password)
-                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(Log_in_activity.this, new OnCompleteListener<AuthResult>() {
 
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        go_user_main_activity_page();
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        System.out.println(user.getEmail());
+                                        go_bus_main_activity_page();
+//                                        go_user_main_activity_page();
                                         // Sign in success, update UI with the signed-in user's information
 
 
@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void go_bus_main_activity_page() {
+        Intent intent = new Intent(this, Bmain_activity.class);
+        startActivity(intent);
+    }
+
     public void go_sign_up_page(){
         Intent intent = new Intent(this, SignUpPage.class);
         startActivity(intent);
