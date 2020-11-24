@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -56,9 +57,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SignUpPage extends AppCompatActivity implements OnMapReadyCallback {
+public class SignUpPage extends AppCompatActivity {
 
 
+    private static final String TAG = "SignUpPage";
     final int PET_COLOR_BLACK = 0;
     final int PET_COLOR_WHITE = 1;
     final int PET_COLOR_GRAY = 2;
@@ -121,28 +123,28 @@ public class SignUpPage extends AppCompatActivity implements OnMapReadyCallback 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChildren()) {
-
-                    Iterable<DataSnapshot> childer = snapshot.getChildren();
-                    for (DataSnapshot snapshot1 : childer) {
-
-                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ORIAN");
-                        User temp = snapshot1.getValue(User.class);
-
-                        System.out.println(temp + "FROM FIREBASE!!!!!!!!!!!!!!");
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.hasChildren()) {
+//
+//                    Iterable<DataSnapshot> childer = snapshot.getChildren();
+//                    for (DataSnapshot snapshot1 : childer) {
+//
+//                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ORIAN");
+//                        User temp = snapshot1.getValue(User.class);
+//
+//                        System.out.println(temp + "FROM FIREBASE!!!!!!!!!!!!!!");
+//
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 
 
@@ -315,9 +317,12 @@ public class SignUpPage extends AppCompatActivity implements OnMapReadyCallback 
         pet_gender_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean checked = pet_gender_male.isChecked();
-                if (checked) pet_gender_male.setChecked(false);
-                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
+
+                  Intent intent = new Intent(getApplicationContext(),GoogleMapAPI.class);
+                  startActivity(intent);
+//                boolean checked = pet_gender_male.isChecked();
+//                if (checked) pet_gender_male.setChecked(false);
+//                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
             }
         });
 
@@ -525,9 +530,12 @@ public class SignUpPage extends AppCompatActivity implements OnMapReadyCallback 
 
     }
 
+    private boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK: Checking google services version");
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
+        return false;
     }
+
+
+
 }
