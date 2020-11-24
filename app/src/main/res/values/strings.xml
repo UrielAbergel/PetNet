@@ -42,4 +42,5 @@
     <string name="pet_color_gray">Gray</string>
     <string name="pet_color_golden">Golden</string>
     <string name="gender">Gender:</string>
+    <string name="gmap_search_hint">Please write your address</string>
 </resources>

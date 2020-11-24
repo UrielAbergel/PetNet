@@ -15,13 +15,38 @@
 
 
     <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sv_location"
-        android:queryHint="Enter Address."
-        android:iconifiedByDefault="false"
-        android:layout_margin="10dp"
-        android:elevation="5dp"
-        android:background="@drawable/bg_background"/>
+        android:id="@+id/SV_searchmap"
+        android:layout_width="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_background"
+        android:queryHint="@string/gmap_search_hint"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/SV_searchmap"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/IV_gps"
+        android:src="@drawable/ic_baseline_gps_fixed_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_save_alt_24"
+        android:layout_centerInParent="true"
+        android:id="@+id/FAB_save_address"/>
+
 
 </RelativeLayout>

@@ -1,11 +1,14 @@
 package com.example.petnet;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -25,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -70,6 +75,7 @@ public class SignUpPage extends AppCompatActivity {
     final int PET_COLOR = 6;
     final int PET_COLOR_GAY = 7;
     final int PET_COLOR_GOLEN = 8;
+    private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
     List<Integer> colors;
@@ -317,9 +323,11 @@ public class SignUpPage extends AppCompatActivity {
         pet_gender_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                    if(isServicesOK()){
+                        Intent intent = new Intent(getApplicationContext(),GoogleMapAPI.class);
+                        startActivity(intent);
+                    }
 
-                  Intent intent = new Intent(getApplicationContext(),GoogleMapAPI.class);
-                  startActivity(intent);
 //                boolean checked = pet_gender_male.isChecked();
 //                if (checked) pet_gender_male.setChecked(false);
 //                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
@@ -532,6 +540,22 @@ public class SignUpPage extends AppCompatActivity {
 
     private boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: Checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+
+        if(available == ConnectionResult.SUCCESS) {
+            //Every thing is fine and the user have can make map request
+            Log.d(TAG, "isServicesOK: Google play services is working");
+            return true;
+        }
+         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            Log.d(TAG, "isServicesOK: There is a problem we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(this,available,ERROR_DIALOG_REQUEST);
+            dialog.show();
+            }
+         else{
+            Log.d(TAG, "isServicesOK: You cant make request map");
+        }
 
         return false;
     }
