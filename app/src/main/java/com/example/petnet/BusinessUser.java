@@ -8,7 +8,7 @@ public interface BusinessUser {
 
     public int get_store_type();
 
-    public Address get_address();
+    public String get_address();
 
     public String get_phone_number();
 

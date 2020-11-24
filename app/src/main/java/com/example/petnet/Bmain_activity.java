@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class Bmain_activity extends AppCompatActivity {
 
     LinearLayout my_store;
+
 
 
     @Override

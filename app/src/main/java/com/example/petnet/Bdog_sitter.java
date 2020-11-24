@@ -12,10 +12,12 @@ public class Bdog_sitter implements BusinessUser{
 
 
 
-    private Address address;
+    private String address;
     private int price;
 
-    public Bdog_sitter(String name , String phone_number , String description , Address address , int price){
+    public Bdog_sitter(){}
+
+    public Bdog_sitter(String name , String phone_number , String description , String address , int price){
         this.name = name;
         this.phone_number = phone_number;
         this.description = description;
@@ -34,7 +36,7 @@ public class Bdog_sitter implements BusinessUser{
     }
 
     @Override
-    public Address get_address() {
+    public String get_address() {
         return this.address;
     }
 
@@ -73,7 +75,7 @@ public class Bdog_sitter implements BusinessUser{
         this.store_rate = store_rate;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

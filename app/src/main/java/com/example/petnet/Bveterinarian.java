@@ -9,10 +9,11 @@ public class Bveterinarian implements BusinessUser{
     private String description;
     private final int store_type = 4;
     private double store_rate;
-    private Address address;
+    private String address;
 
+    public Bveterinarian(){}
 
-    public Bveterinarian(String name , String phone_number , String description , Address address){
+    public Bveterinarian(String name , String phone_number , String description , String address){
         this.name = name;
         this.phone_number = phone_number;
         this.description = description;
@@ -30,7 +31,7 @@ public class Bveterinarian implements BusinessUser{
     }
 
     @Override
-    public Address get_address() {
+    public String get_address() {
         return this.address;
     }
 
@@ -66,7 +67,7 @@ public class Bveterinarian implements BusinessUser{
         this.store_rate = store_rate;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
