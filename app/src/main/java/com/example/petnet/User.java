@@ -2,8 +2,6 @@ package com.example.petnet;
 
 import android.graphics.Bitmap;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +15,7 @@ public class User {
     private String Lname;
     private String Email;
     private String Password;
-    private LatLng Address;
+    private String Address;
     private int Gender;
     private String Uid;
     private String Pet_name;
@@ -73,11 +71,11 @@ public class User {
         Password = password;
     }
 
-    public LatLng getAddress() {
+    public String getAddress() {
         return Address;
     }
 
-    public void setAddress(LatLng address) {
+    public void setAddress(String address) {
         Address = address;
     }
 
@@ -163,5 +161,20 @@ public class User {
 
 
 
-
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("Fname", this.getFname());
+        result.put("Lname", this.getLname());
+        result.put("Email", this.getEmail());
+        result.put("Password", this.getPassword());
+        result.put("Gender", this.getGender());
+        result.put("Pet_gender", this.getPet_gender());
+        result.put("Uid", this.getUid());
+        result.put("Pet_name", this.getPet_name());
+        result.put("Pet_race", this.getPet_race());
+        result.put("Size", this.getSize());
+        result.put("Uniqe_signs", this.getUniqe_signs());
+        result.put("Adress", this.getAddress());
+        return result;
+    }
 }
