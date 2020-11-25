@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -84,11 +85,15 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Send Coordinate");
                 if(homeCordintae!=null){
-                    //send homeCordinate to SignUpPage.
+                    Log.d(TAG, "onClick: send coordinate to signup");
+                    Intent intet = new Intent(getApplicationContext(),SignUpPage.class);
+                    intet.putExtra("coordinate",homeCordintae);
+                    startActivity(intet);
+
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Try again.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Failed to get location,Try again.",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -115,7 +120,6 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
             }
         });
@@ -306,6 +310,7 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
                 }
         }
     }
+
 
 
 }

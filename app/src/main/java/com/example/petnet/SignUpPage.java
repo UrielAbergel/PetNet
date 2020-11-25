@@ -19,6 +19,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -66,52 +69,58 @@ public class SignUpPage extends AppCompatActivity {
 
 
     private static final String TAG = "SignUpPage";
-    final int PET_COLOR_BLACK = 0;
-    final int PET_COLOR_WHITE = 1;
-    final int PET_COLOR_GRAY = 2;
-    final int PET_COLOR_GOLDEN = 3;
-    final int PET_COLOR_BROWN = 4;
-    final int PET_COLOR_ = 5;
-    final int PET_COLOR = 6;
-    final int PET_COLOR_GAY = 7;
-    final int PET_COLOR_GOLEN = 8;
+    private final int PET_COLOR_BLACK = 0;
+    private final int PET_COLOR_WHITE = 1;
+    private final int PET_COLOR_GRAY = 2;
+    private final int PET_COLOR_GOLDEN = 3;
+    private final int PET_COLOR_BROWN = 4;
+    private final int PET_COLOR_ = 5;
+    private final int PET_COLOR = 6;
+    private final int PET_COLOR_GAY = 7;
+    private final int PET_COLOR_GOLEN = 8;
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
-
-    List<Integer> colors;
-
-
-    final int REQUEST_IMAGE_CAPTURE = 0;
-    final int REQUEST_IMAGE_FROM_GALLERY = 1;
+    private String races[] = {"Pitbull", "Golden-Retriver", "Pincher", "Malinoa", "a", "a", "a", "a", "a", "a"};
 
 
-    GoogleMapAPI map;
-    Button sign_up_button;
-    EditText first_name;
-    EditText last_name;
-    EditText email;
-    EditText password;
-    EditText confirm_password;
-    EditText pet_name;
-    EditText pet_race;
-    CheckBox gender_male;
-    CheckBox gender_female;
-    CheckBox cb_colors[];
-    CheckBox pet_gender_male;
-    CheckBox pet_gender_female;
-    EditText uniqe_signs;
-    ImageButton hide_pass;
-    ImageButton hide_confirm_pass;
-    androidx.appcompat.widget.Toolbar toolbar;
-    TextView business_sign_up;
-    ImageButton take_photo;
-    ImageButton take_photo_from_gallery;
-    ImageView pet_photo;
-    User userToAdd;
-    Bitmap imageBitmap;
-    Uri Imageuri;
+    private List<Integer> colors;
+
+
+    private final int REQUEST_IMAGE_CAPTURE = 0;
+    private final int REQUEST_IMAGE_FROM_GALLERY = 1;
+    private int check;
+
+    private LatLng coordinate;
+    private GoogleMapAPI map;
+    private Button sign_up_button;
+    private EditText first_name;
+    private EditText last_name;
+    private EditText email;
+    private EditText password;
+    private EditText confirm_password;
+    private EditText pet_name;
+    private AutoCompleteTextView pet_race;
+    private CheckBox gender_male;
+    private CheckBox gender_female;
+    private CheckBox cb_colors[];
+    private CheckBox pet_gender_male;
+    private CheckBox pet_gender_female;
+    private EditText uniqe_signs;
+    private ImageButton hide_pass;
+    private ImageButton hide_confirm_pass;
+    private androidx.appcompat.widget.Toolbar toolbar;
+    private TextView business_sign_up;
+    private ImageButton take_photo;
+    private ImageButton take_photo_from_gallery;
+    private ImageView pet_photo;
+    private User userToAdd;
+    private Bitmap imageBitmap;
+    private Uri Imageuri;
+    private Button addAdress;
     private MapView gmap;
-    int check;
+
+
+
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
@@ -124,9 +133,12 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
 
 
+
+
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference().child("users");
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
 
 
 //        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -151,10 +163,6 @@ public class SignUpPage extends AppCompatActivity {
 //
 //            }
 //        });
-
-
-
-
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -182,6 +190,7 @@ public class SignUpPage extends AppCompatActivity {
         hide_pass = findViewById(R.id.IV_hide_pass);
         hide_confirm_pass = findViewById(R.id.IV_hide_confirm_pass);
         business_sign_up = findViewById(R.id.TV_Business_signup);
+        addAdress = findViewById(R.id.add_address);
 
 
         //EditTexts
@@ -192,7 +201,7 @@ public class SignUpPage extends AppCompatActivity {
         confirm_password = findViewById(R.id.PT_register_confirm_password);
         pet_photo = findViewById(R.id.pet_pic);
         pet_name = findViewById(R.id.ET_pet_name);
-        pet_race = findViewById(R.id.ET_pet_race);
+        pet_race = findViewById(R.id.ACTV_pet_race);
         uniqe_signs = findViewById(R.id.ET_uniqe_signs);
 
         //CheckBoxs
@@ -209,6 +218,35 @@ public class SignUpPage extends AppCompatActivity {
         cb_colors[6] = findViewById(R.id.CB_pet_color);
         cb_colors[7] = findViewById(R.id.CB_pet_color_gay);
         cb_colors[8] = findViewById(R.id.CB_pet_color_golen);
+
+
+        pet_race.setAdapter(new ArrayAdapter<>(SignUpPage.this, android.R.layout.simple_list_item_1, races));
+        pet_race.setDropDownAnchor(R.id.ACTV_pet_race);
+        pet_race.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.d(TAG, "onFocusChange: Change Focus on petrace setmax lines to 5" + hasFocus);
+                if (hasFocus) {
+                    pet_race.showDropDown();
+                }
+
+
+            }
+        });
+
+
+        addAdress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // need to check how to get the Coordinates from the MapActivity.
+                if (isServicesOK()) {
+                    Intent intent = new Intent(getApplicationContext(), GoogleMapAPI.class);
+                    startActivityForResult(intent,444);
+                }
+                //after get the Latlng of the user update the usertoadd object.
+
+            }
+        });
 
 
 //        // if color[i] == 1 the user choosed the color else didnt choose.
@@ -323,14 +361,9 @@ public class SignUpPage extends AppCompatActivity {
         pet_gender_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    if(isServicesOK()){
-                        Intent intent = new Intent(getApplicationContext(),GoogleMapAPI.class);
-                        startActivity(intent);
-                    }
-
-//                boolean checked = pet_gender_male.isChecked();
-//                if (checked) pet_gender_male.setChecked(false);
-//                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
+                boolean checked = pet_gender_male.isChecked();
+                if (checked) pet_gender_male.setChecked(false);
+                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
             }
         });
 
@@ -379,7 +412,7 @@ public class SignUpPage extends AppCompatActivity {
 
                         if (check == 0) uploadImage(REQUEST_IMAGE_FROM_GALLERY, userToAdd.getUid());
                         else if (check == 1) uploadImage(REQUEST_IMAGE_CAPTURE, userToAdd.getUid());
-                        Intent intent = new Intent(getApplicationContext(), BSignUpPage.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -392,12 +425,9 @@ public class SignUpPage extends AppCompatActivity {
                     }
                 });
 
-//                userToAdd.setAddress(adress.getText().toString()); check what about address
-
 
             }
-//
-//
+
         });
 
         take_photo.setOnClickListener(new View.OnClickListener() {
@@ -450,8 +480,9 @@ public class SignUpPage extends AppCompatActivity {
 
     /**
      * function to change InputType.
+     *
      * @param toChange Which EditText need to be change.
-     * @param check represent the inputType.
+     * @param check    represent the inputType.
      */
     public void togglePass(EditText toChange, int check) {
         switch (check) {
@@ -538,28 +569,24 @@ public class SignUpPage extends AppCompatActivity {
 
     }
 
-    private boolean isServicesOK(){
+    private boolean isServicesOK() {
         Log.d(TAG, "isServicesOK: Checking google services version");
 
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
 
-        if(available == ConnectionResult.SUCCESS) {
+        if (available == ConnectionResult.SUCCESS) {
             //Every thing is fine and the user have can make map request
             Log.d(TAG, "isServicesOK: Google play services is working");
             return true;
-        }
-         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
             Log.d(TAG, "isServicesOK: There is a problem we can fix it");
-            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(this,available,ERROR_DIALOG_REQUEST);
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-            }
-         else{
+        } else {
             Log.d(TAG, "isServicesOK: You cant make request map");
         }
 
         return false;
+
     }
-
-
-
 }
