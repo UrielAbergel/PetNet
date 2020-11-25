@@ -69,25 +69,26 @@
                 >
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@drawable/text_input"
-                    android:padding="12dp"
-                    android:gravity="center"
+                    android:id="@+id/my_store"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
                     <ImageView
-                        android:src="@drawable/found_dog"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"/>
+                        android:layout_height="100dp"
+                        android:src="@drawable/store" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:text="@string/found_a_dog"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="My Store"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
