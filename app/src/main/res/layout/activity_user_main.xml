@@ -70,16 +70,15 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:background="@drawable/text_input"
-                    android:padding="12dp"
+                    android:padding="16dp"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
                         android:src="@drawable/found_dog"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                     <TextView
                         android:layout_marginTop="12dp"
@@ -105,7 +104,6 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center"
@@ -144,7 +142,6 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center"
@@ -180,7 +177,6 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center"
@@ -219,7 +215,6 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center"
@@ -255,7 +250,6 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
                     android:gravity="center"

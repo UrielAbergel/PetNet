@@ -412,7 +412,7 @@ public class SignUpPage extends AppCompatActivity {
 
                         if (check == 0) uploadImage(REQUEST_IMAGE_FROM_GALLERY, userToAdd.getUid());
                         else if (check == 1) uploadImage(REQUEST_IMAGE_CAPTURE, userToAdd.getUid());
-                        Intent intent = new Intent(getApplicationContext(), Log_in_activity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
