@@ -69,6 +69,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/LL_found_a_dog"
                     android:orientation="vertical"
                     android:background="@drawable/text_input"
                     android:padding="12dp"

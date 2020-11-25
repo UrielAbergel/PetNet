@@ -43,4 +43,13 @@
     <string name="pet_color_gray">Gray</string>
     <string name="pet_color_golden">Golden</string>
     <string name="gender">Gender:</string>
+    <string name="what_is_the_dog_size">What is the dog size?</string>
+    <string name="huge">Huge</string>
+    <string name="big">Big</string>
+    <string name="medium">Medium</string>
+    <string name="small">Small</string>
+    <string name="tiny">Tiny</string>
+    <string name="what_is_the_dog_colors">what is the dog colors?</string>
+    <string name="not_sure">Not sure</string>
+    <string name="what_is_the_dog_gender">What is the dog gender?</string>
 </resources>
