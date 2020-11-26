@@ -52,4 +52,8 @@
     <string name="what_is_the_dog_colors">what is the dog colors?</string>
     <string name="not_sure">Not sure</string>
     <string name="what_is_the_dog_gender">What is the dog gender?</string>
+    <string name="gmap_search_hint">Enter your address..</string>
+    <string name="sign_up_page_address">"Address: "</string>
+    <string name="go_to_map">Go to map</string>
+    <string name="map_key">AIzaSyDD9N5MMtd03qlr15Sw2RkbhhEXaXDzXFM</string>
 </resources>

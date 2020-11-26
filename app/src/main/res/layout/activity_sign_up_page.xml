@@ -62,19 +62,6 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/PT_register_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:hint="@string/e_mail"
-                android:inputType="textPersonName"
-                android:text="" />
-
-            <EditText
                 android:id="@+id/PT_register_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,6 +114,19 @@
 
 
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/PT_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/e_mail"
+                android:inputType="textPersonName"
+                android:text="" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -186,17 +186,51 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_baseline_remove_red_eye_24" />
 
-                <ImageView
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up_page_address"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="22dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <Button
+                    android:id="@+id/add_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/pet_details" />
+                    android:background="@drawable/custom_button"
+                    android:text="@string/go_to_map" />
+
 
 
             </LinearLayout>
 
+
+
+
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pet_details"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"/>
 
             <EditText
                 android:id="@+id/ET_pet_name"
@@ -209,16 +243,18 @@
                 android:ems="10"
                 android:hint="@string/pet_name" />
 
-            <EditText
-                android:id="@+id/ET_pet_race"
+
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:hint="@string/pet_race" />
+                android:completionThreshold="1"
+                android:maxLines="5"
+                android:hint="Pet Race"
+                android:id="@+id/ACTV_pet_race"/>
 
 
             <LinearLayout
@@ -435,6 +471,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -470,9 +507,12 @@
                 android:layout_gravity="center"
                 />
 
+
         </LinearLayout>
 
     </ScrollView>
+
+
 
     <TextView
         android:id="@+id/TV_Business_signup_hint_txt"
