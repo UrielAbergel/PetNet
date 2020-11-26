@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class Bmy_stores extends AppCompatActivity {
+
+
+    private static final String TAG = "Bmy_stores";
 
     private ImageView new_store_button;
     static int store_count ;
@@ -56,9 +60,11 @@ public class Bmy_stores extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d(TAG, "onDataChange: Start take data from firebase");
 
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ORIAN");
                 current_user = snapshot.getValue(Buser.class);
+                Log.d(TAG, "onDataChange: " + current_user);
                 store_count = current_user.getStore_count();
 
                 for (int i = 0; i < store_count; i++) {
@@ -88,6 +94,7 @@ public class Bmy_stores extends AppCompatActivity {
                     }
                     write_store_name[i].setText(store_array[i].get_store_name());
                     System.out.println("helllo !!!!!!!!!!!!!!!!!  " + store_array[i].get_store_name());
+                    Log.d(TAG, "onDataChange: got data from firebase " + store_array[i]);
                 }
 
 

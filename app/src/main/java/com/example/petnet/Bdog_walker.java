@@ -4,7 +4,7 @@ import android.location.Address;
 
 public class Bdog_walker implements BusinessUser{
 
-    private String _name;
+    private String _store_name;
     private String _phone_number;
     private String _description;
     private final int _store_type = 2;
@@ -16,7 +16,7 @@ public class Bdog_walker implements BusinessUser{
 
 
     public Bdog_walker(String name , String phone_number , String description , String address , int price){
-        this._name = name;
+        this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
@@ -26,7 +26,7 @@ public class Bdog_walker implements BusinessUser{
 
     @Override
     public String get_store_name() {
-        return this._name;
+        return this._store_name;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Bdog_walker implements BusinessUser{
 
 
     public void setName(String name) {
-        this._name = name;
+        this._store_name = name;
     }
 
     public void setPhone_number(String phone_number) {

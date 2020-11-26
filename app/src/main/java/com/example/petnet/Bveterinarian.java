@@ -4,7 +4,7 @@ import android.location.Address;
 
 public class Bveterinarian implements BusinessUser{
 
-    private String _name;
+    private String _store_name;
     private String _phone_number;
     private String _description;
     private final int _store_type = 4;
@@ -14,7 +14,7 @@ public class Bveterinarian implements BusinessUser{
     public Bveterinarian(){}
 
     public Bveterinarian(String name , String phone_number , String description , String address){
-        this._name = name;
+        this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
@@ -22,7 +22,7 @@ public class Bveterinarian implements BusinessUser{
 
     @Override
     public String get_store_name() {
-        return this._name;
+        return this._store_name;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Bveterinarian implements BusinessUser{
 
 
     public void setName(String name) {
-        this._name = name;
+        this._store_name = name;
     }
 
     public void setPhone_number(String phone_number) {
@@ -71,6 +71,16 @@ public class Bveterinarian implements BusinessUser{
         this._address = address;
     }
 
-
+    @Override
+    public String toString() {
+        return "Bveterinarian{" +
+                "_name='" + _store_name + '\'' +
+                ", _phone_number='" + _phone_number + '\'' +
+                ", _description='" + _description + '\'' +
+                ", _store_type=" + _store_type +
+                ", _store_rate=" + _store_rate +
+                ", _address='" + _address + '\'' +
+                '}';
+    }
 }
 
