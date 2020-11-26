@@ -11,11 +11,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -33,8 +37,10 @@ public class New_store_dialog {
     private boolean check = false;
     private BusinessUser store;
     private int type = -1;
+    private int store_count;
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
+    private Buser current_user;
 
 
 
@@ -60,6 +66,22 @@ public class New_store_dialog {
         get_type[4] = dialog.findViewById(R.id.type_vet);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         myRef = FirebaseDatabase.getInstance().getReference().child("Busers").child(currentFirebaseUser.getUid());
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        current_user = snapshot.getValue(Buser.class);
+                        store_count = current_user.getStore_count();
+
+                    }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
@@ -117,27 +139,33 @@ public class New_store_dialog {
 
                     case 0:
                         store = new Bdog_sitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s1").setValue(store);
+                        myRef.child("s" + store_count).setValue(store);
+                        myRef.child("store_count").setValue(store_count+1);
+
                         break;
 
                     case 1:
                         store = new Bdog_trainer(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s1").setValue(store);
+                        myRef.child("s" + store_count).setValue(store);
+                        myRef.child("store_count").setValue(store_count+1);
                         break;
 
                     case 2:
                         store = new Bdog_walker(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s1").setValue(store);
+                        myRef.child("s" + store_count).setValue(store);
+                        myRef.child("store_count").setValue(store_count+1);
                         break;
 
                     case 3:
                         store = new Bpet_shop(name,phone_num,store_des,address);
-                        myRef.child("s1").setValue(store);
+                        myRef.child("s" + store_count).setValue(store);
+                        myRef.child("store_count").setValue(store_count+1);
                         break;
 
                     case 4:
                         store = new Bveterinarian(name,phone_num,store_des,address);
-                        myRef.child("s1").setValue(store);
+                        myRef.child("s" + store_count).setValue(store);
+                        myRef.child("store_count").setValue(store_count+1);
                         break;
 
                 }

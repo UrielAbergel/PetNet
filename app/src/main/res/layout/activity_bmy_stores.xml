@@ -42,6 +42,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l1name"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:layout_width="310dp"
@@ -67,6 +68,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l2name"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -90,6 +92,8 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l3name"
+
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -113,6 +117,8 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l4name"
+
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -136,6 +142,8 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l5name"
+
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -159,6 +167,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l6name"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -182,6 +191,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l7name"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -205,6 +215,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l8name"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -228,6 +239,7 @@
                 app:srcCompat="@drawable/store" />
 
             <TextView
+                android:id="@+id/l9name"
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
