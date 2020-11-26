@@ -264,7 +264,7 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
                 //check homeCordinat not null. if null do nothing close the dialog.
 
                 Log.d(TAG, "onClick: From Dialog , the Cordinate is:" + homeCordintae);
-                dialog.cancel();
+                dialog.dismiss();
 
                 if(homeCordintae!= null){
                     //return homeCordinate to signuppage and close activity.
@@ -279,7 +279,7 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View v) {
                 //do nothing only close the alert diialog.
                 Log.d(TAG, "onClick: Close dialog and get address from user.");
-                dialog.cancel();
+                dialog.dismiss();
 
             }
         });
