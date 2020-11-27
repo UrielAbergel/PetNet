@@ -57,4 +57,16 @@ public class Dog {
     public void setUniqe_signs(String uniqe_signs) {
         Uniqe_signs = uniqe_signs;
     }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "Pet_name='" + Pet_name + '\'' +
+                ", Pet_race='" + Pet_race + '\'' +
+                ", Pet_gender=" + Pet_gender +
+                ", Size=" + Size +
+                ", colors=" + colors +
+                ", Uniqe_signs='" + Uniqe_signs + '\'' +
+                '}';
+    }
 }

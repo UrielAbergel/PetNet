@@ -56,7 +56,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private final int PET_COLOR_GAY = 7;
     private final int PET_COLOR_GOLEN = 8;
     private static final int ERROR_DIALOG_REQUEST = 9001;
-    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+
     private String races[] = {"Pitbull", "Golden-Retriver", "Pincher", "Malinoa", "a", "a", "a", "a", "a", "a"};
 
 
@@ -94,6 +94,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private ImageButton take_photo_from_gallery;
     private ImageView pet_photo;
     private User userToAdd;
+    private Dog dogToAdd;
     private Bitmap imageBitmap;
     private Uri Imageuri;
     private Fragment gMap;
@@ -117,7 +118,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
 
         mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference().child("users");
+        myRef = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
         gMap = new GoogleMapAPI();
 
@@ -156,6 +157,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
 
         userToAdd = new User();
+        dogToAdd = new Dog();
         cb_colors = new CheckBox[9];
         colors = new ArrayList<>();
         check = -1;
@@ -337,7 +339,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             public void onClick(View view) {
                 boolean checked = pet_gender_male.isChecked();
                 if (checked) pet_gender_male.setChecked(false);
-                userToAdd.setPet_gender(0);            // 0 means the pet is a female.
+                dogToAdd.setPet_gender(0);            // 0 means the pet is a female.
             }
         });
 
@@ -347,7 +349,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             public void onClick(View view) {
                 boolean checked = pet_gender_female.isChecked();
                 if (checked) pet_gender_female.setChecked(false);
-                userToAdd.setPet_gender(1);  // 1 means the pet is a male.
+                dogToAdd.setPet_gender(1);  // 1 means the pet is a male.
             }
         });
 
@@ -378,9 +380,13 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
                         userToAdd.setFname(first_name.getText().toString());
                         userToAdd.setLname(last_name.getText().toString());
                         userToAdd.setPassword(password.getText().toString());
-                        userToAdd.setPet_name(pet_name.getText().toString());
-                        userToAdd.setColors(colors);
-                        myRef.child(userToAdd.getUid()).setValue(userToAdd);
+                        dogToAdd.setPet_name(pet_name.getText().toString());
+                        dogToAdd.setColors(colors);
+                        dogToAdd.setPet_race(pet_race.getText().toString());
+                        dogToAdd.setUniqe_signs(uniqe_signs.getText().toString());
+                        userToAdd.setDog(dogToAdd);
+                        myRef.child("users").child(userToAdd.getUid()).setValue(userToAdd);
+                        myRef.child("dogs").child(userToAdd.getUid()).setValue(dogToAdd);
                         Toast.makeText(getApplicationContext(), user.getUid(), Toast.LENGTH_LONG).show();
                         System.out.println("after auth,:" + userToAdd.getUid());
 

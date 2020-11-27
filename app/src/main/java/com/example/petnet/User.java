@@ -19,12 +19,7 @@ public class User {
     private List<Double> Address;
     private int Gender;
     private String Uid;
-    private String Pet_name;
-    private String Pet_race;
-    private int Pet_gender;
-    private int Size; // split into categories 1-5
-    private List<Integer> colors;
-    private String Uniqe_signs;
+    Dog dog;
 
     public List<Double> getAddress() {
         return Address;
@@ -34,17 +29,19 @@ public class User {
         Address = address;
     }
 
+
     public User(){
 
     }
 
 
-    public List<Integer> getColors() {
-        return colors;
+
+    public Dog getDog() {
+        return dog;
     }
 
-    public void setColors(List<Integer> colors) {
-        this.colors = colors;
+    public void setDog(Dog dog) {
+        this.dog = dog;
     }
 
     public String getFname() {
@@ -99,48 +96,13 @@ public class User {
         Uid = uid;
     }
 
-    public String getPet_name() {
-        return Pet_name;
-    }
-
-    public void setPet_name(String pet_name) {
-        Pet_name = pet_name;
-    }
-
-    public String getPet_race() {
-        return Pet_race;
-    }
-
-    public void setPet_race(String pet_race) {
-        Pet_race = pet_race;
-    }
-
-    public int getPet_gender() {
-        return Pet_gender;
-    }
-
-    public void setPet_gender(int pet_gender) {
-        Pet_gender = pet_gender;
-    }
-
-    public int getSize() {
-        return Size;
-    }
-
-    public void setSize(int size) {
-        Size = size;
-    }
 
 
 
 
-    public String getUniqe_signs() {
-        return Uniqe_signs;
-    }
 
-    public void setUniqe_signs(String uniqe_signs) {
-        Uniqe_signs = uniqe_signs;
-    }
+
+
 
     @Override
     public String toString() {
@@ -152,31 +114,9 @@ public class User {
                 ", Address='" + Address + '\'' +
                 ", Gender=" + Gender +
                 ", Uid='" + Uid + '\'' +
-                ", Pet_name='" + Pet_name + '\'' +
-                ", Pet_race='" + Pet_race + '\'' +
-                ", Pet_gender=" + Pet_gender +
-                ", Size=" + Size +
-                ", colors=" + colors +
-                ", Uniqe_signs='" + Uniqe_signs + '\'' +
                 '}';
     }
 
 
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("Fname", this.getFname());
-        result.put("Lname", this.getLname());
-        result.put("Email", this.getEmail());
-        result.put("Password", this.getPassword());
-        result.put("Gender", this.getGender());
-        result.put("Pet_gender", this.getPet_gender());
-        result.put("Uid", this.getUid());
-        result.put("Pet_name", this.getPet_name());
-        result.put("Pet_race", this.getPet_race());
-        result.put("Size", this.getSize());
-        result.put("Uniqe_signs", this.getUniqe_signs());
-        result.put("Adress", this.getAddress());
-        return result;
-    }
 }
