@@ -1,6 +1,7 @@
 package com.example.petnet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,10 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +27,16 @@ public class Bmy_stores extends AppCompatActivity {
     private static final String TAG = "Bmy_stores";
 
     private ImageView new_store_button;
-    static int store_count ;
+    static Long store_count ;
     private BusinessUser[] store_array = new BusinessUser[9];
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
-    private Buser current_user;
-    private TextView[] write_store_name = new TextView[9];
-//    private BusinessUser[] store_array = new BusinessUser[9];
+    private TextView[] store_name = new TextView[9];
+    private TextView[] store_type = new TextView[9];
+    private TextView[] store_phone = new TextView[9];
+    private TextView[] store_rate = new TextView[9];
+    private TextView[] store_address = new TextView[9];
+    private TextView[] store_descre = new TextView[9];
 
 
     @Override
@@ -42,32 +46,78 @@ public class Bmy_stores extends AppCompatActivity {
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
 
-        myRef = FirebaseDatabase.getInstance().getReference().child("Busers").child(currentFirebaseUser.getUid());
+        myRef = FirebaseDatabase.getInstance().getReference().child("Stores").child(currentFirebaseUser.getUid());
+
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
         new_store_button = (ImageView) findViewById(R.id.s1);
 
-        write_store_name[0] = findViewById(R.id.l1name);
-        write_store_name[1] = findViewById(R.id.l2name);
-        write_store_name[2] = findViewById(R.id.l3name);
-        write_store_name[3] = findViewById(R.id.l4name);
-        write_store_name[4] = findViewById(R.id.l5name);
-        write_store_name[5] = findViewById(R.id.l6name);
-        write_store_name[6] = findViewById(R.id.l7name);
-        write_store_name[7] = findViewById(R.id.l8name);
-        write_store_name[8] = findViewById(R.id.l9name);
+        start_all_array();
+        refresh();
+
+
+
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                refresh();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                refresh();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                refresh();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        new_store_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                go_to_my_store_bar();
+
+
+            }
+        });
+
+
+    }
+
+
+
+
+    private void go_to_my_store_bar() {
+        New_store_dialog dialog = new New_store_dialog();
+        dialog.showDialog(this);
+    }
+
+    private void refresh() {
 
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d(TAG, "onDataChange: Start take data from firebase");
+                store_count = snapshot.getChildrenCount();
 
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ORIAN");
-                current_user = snapshot.getValue(Buser.class);
-                Log.d(TAG, "onDataChange: " + current_user);
-                store_count = current_user.getStore_count();
 
                 for (int i = 0; i < store_count; i++) {
+                    Log.d(TAG, "onDataChange: read all stores");
                     int type = Integer.parseInt(snapshot.child("s" + i).child("_store_type").getValue().toString());
                     switch (type)
                     {
@@ -92,8 +142,14 @@ public class Bmy_stores extends AppCompatActivity {
                             break;
 
                     }
-                    write_store_name[i].setText(store_array[i].get_store_name());
-                    System.out.println("helllo !!!!!!!!!!!!!!!!!  " + store_array[i].get_store_name());
+                    Log.d(TAG, "onDataChange: got data from firebase " + store_array[i].get_store_name());
+
+                    store_name[i].setText(store_array[i].get_store_name());
+                    store_address[i].setText("Address: "+store_array[i].get_address());
+                    store_descre[i].setText(store_array[i].get_description());
+                    store_rate[i].setText("Rate: "+store_array[i].get_store_rate());
+                    store_phone[i].setText("Phone: "+store_array[i].get_phone_number());
+                    store_type[i].setText("Type: "+return_type_as_string(store_array[i].get_store_type()));
                     Log.d(TAG, "onDataChange: got data from firebase " + store_array[i]);
                 }
 
@@ -107,30 +163,90 @@ public class Bmy_stores extends AppCompatActivity {
 
             }
         });
+    }
 
 
 
+    public void start_all_array()
+    {
+        store_name[0] = findViewById(R.id.l1_name);
+        store_name[1] = findViewById(R.id.l2_name);
+        store_name[2] = findViewById(R.id.l3_name);
+        store_name[3] = findViewById(R.id.l4_name);
+        store_name[4] = findViewById(R.id.l5_name);
+        store_name[5] = findViewById(R.id.l6_name);
+        store_name[6] = findViewById(R.id.l7_name);
+        store_name[7] = findViewById(R.id.l8_name);
+        store_name[8] = findViewById(R.id.l9_name);
+
+        store_type[0] = findViewById(R.id.l1_type);
+        store_type[1] = findViewById(R.id.l2_type);
+        store_type[2] = findViewById(R.id.l3_type);
+        store_type[3] = findViewById(R.id.l4_type);
+        store_type[4] = findViewById(R.id.l5_type);
+        store_type[5] = findViewById(R.id.l6_type);
+        store_type[6] = findViewById(R.id.l7_type);
+        store_type[7] = findViewById(R.id.l8_type);
+        store_type[8] = findViewById(R.id.l9_type);
+
+        store_phone[0] = findViewById(R.id.l1_phone);
+        store_phone[1] = findViewById(R.id.l2_phone);
+        store_phone[2] = findViewById(R.id.l3_phone);
+        store_phone[3] = findViewById(R.id.l4_phone);
+        store_phone[4] = findViewById(R.id.l5_phone);
+        store_phone[5] = findViewById(R.id.l6_phone);
+        store_phone[6] = findViewById(R.id.l7_phone);
+        store_phone[7] = findViewById(R.id.l8_phone);
+        store_phone[8] = findViewById(R.id.l9_phone);
+
+        store_address[0] = findViewById(R.id.l1_address);
+        store_address[1] = findViewById(R.id.l2_address);
+        store_address[2] = findViewById(R.id.l3_address);
+        store_address[3] = findViewById(R.id.l4_address);
+        store_address[4] = findViewById(R.id.l5_address);
+        store_address[5] = findViewById(R.id.l6_address);
+        store_address[6] = findViewById(R.id.l7_address);
+        store_address[7] = findViewById(R.id.l8_address);
+        store_address[8] = findViewById(R.id.l9_address);
 
 
-        new_store_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                go_to_my_store_bar();
-            }
-        });
+        store_descre[0] = findViewById(R.id.l1_descre);
+        store_descre[1] = findViewById(R.id.l2_descre);
+        store_descre[2] = findViewById(R.id.l3_descre);
+        store_descre[3] = findViewById(R.id.l4_descre);
+        store_descre[4] = findViewById(R.id.l5_descre);
+        store_descre[5] = findViewById(R.id.l6_descre);
+        store_descre[6] = findViewById(R.id.l7_descre);
+        store_descre[7] = findViewById(R.id.l8_descre);
+        store_descre[8] = findViewById(R.id.l9_descre);
+
+
+        store_rate[0] = findViewById(R.id.l1_rate);
+        store_rate[1] = findViewById(R.id.l2_rate);
+        store_rate[2] = findViewById(R.id.l3_rate);
+        store_rate[3] = findViewById(R.id.l4_rate);
+        store_rate[4] = findViewById(R.id.l5_rate);
+        store_rate[5] = findViewById(R.id.l6_rate);
+        store_rate[6] = findViewById(R.id.l7_rate);
+        store_rate[7] = findViewById(R.id.l8_rate);
+        store_rate[8] = findViewById(R.id.l9_rate);
+
 
 
     }
 
-    private void go_to_my_store_bar() {
-        New_store_dialog dialog = new New_store_dialog();
-        dialog.showDialog(this);
-        refresh();
 
+    public String return_type_as_string(int type)
+    {
+        switch (type)
+        {
+            case 0: return "Dog Sitter";
+            case 1: return "Dog Trainer";
+            case 2: return "Dog Walker";
+            case 3: return "Pet Shop";
+            case 4: return "Pet Vet";
+        }
 
-    }
-
-    private void refresh() {
-
+        return "";
     }
 }
