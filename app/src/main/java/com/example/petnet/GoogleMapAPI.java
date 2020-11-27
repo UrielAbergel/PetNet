@@ -1,23 +1,25 @@
 package com.example.petnet;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -25,7 +27,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,17 +34,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final String TAG = "GoogleMapAPI";
+public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
+    private MapListener listener;
+    private static final String TAG = "mapfrag";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUESR_CODE = 1234;
@@ -63,45 +65,39 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
     private AlertDialog dialog;
     private FloatingActionButton sendCoordinates;
 
+    public interface MapListener{
+        void onInputMapSend(List<Double> coordiantes);
+    }
 
 
-
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_map_a_p_i);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_google_map_a_p_i,container, false);
 
         homeCordintae = null;
-
-        mSerach = findViewById(R.id.SV_searchmap);
-        mGps = findViewById(R.id.IV_gps);
-        sendCoordinates = findViewById(R.id.FAB_save_address);
-
+        mSerach = v.findViewById(R.id.SV_searchmap);
+        mGps = v.findViewById(R.id.IV_gps);
+        sendCoordinates = v.findViewById(R.id.FAB_save_address);
 
 
         sendCoordinates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: Send Coordinate");
+                Log.d(TAG, "onClick: Send Coordinates button");
                 if(homeCordintae!=null){
-                    Log.d(TAG, "onClick: send coordinate to signup");
-                    Intent intet = new Intent(getApplicationContext(),SignUpPage.class);
-                    intet.putExtra("coordinate",homeCordintae);
-                    startActivity(intet);
-
+                    List<Double> addr = new ArrayList<>();
+                    addr.add(homeCordintae.latitude);
+                    addr.add(homeCordintae.longitude);
+                    listener.onInputMapSend(addr);
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Failed to get location,Try again.",Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onClick: Failed to send Coordinates");
+                     Toast.makeText(getContext(),"Failed to get location,Try again.",Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
-
-
-
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,8 +122,18 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
 
 
         getLocationPermission();
+        return v;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        Log.d(TAG, "onAttach: Attching parent activity of the fragment.");
+        super.onAttach(context);
+        if(context instanceof MapListener){
+            listener = (SignUpPage)context;
+
+        }
+    }
 
     /**
      * in this function we will get the Latlng of the user and save it into out database.
@@ -135,11 +141,12 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
     private void geolocate(){
         Log.d(TAG, "geolocate: looking for the position");
         String location = mSerach.getQuery().toString();
-        Geocoder geocoder = new Geocoder(this);
+        Geocoder geocoder = new Geocoder(getContext());
 
         List<Address> addressList = new ArrayList<>();
 
         try {
+            Log.d(TAG, "geolocate: Got location, location is:  " + location);
             addressList = geocoder.getFromLocationName(location,1);
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,20 +176,20 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(getApplicationContext(),"Map is ready", Toast.LENGTH_LONG).show();
+        //  Toast.makeText(getApplicationContext(),"Map is ready", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
 
         if(mLocationPermissionGraunted) getDeviceLocation();
 
-        isAtHome();
+
 
     }
 
 
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: Getting Devices current location");
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         try {
             if(mLocationPermissionGraunted){
@@ -195,8 +202,9 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
                             Location currLocation = (Location)task.getResult();
                             LatLng curr=null;
                             if(currLocation!=null){
-                                 curr = new LatLng(currLocation.getLatitude(),currLocation.getLongitude());
+                                curr = new LatLng(currLocation.getLatitude(),currLocation.getLongitude());
                                 moveCamera(curr,DEAFULT_ZOOM);
+                                mMap.clear();
                                 mMap.addMarker(new MarkerOptions().position(curr).title("home"));
                             }
 
@@ -225,7 +233,7 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
 
     private void initMap(){
         Log.d(TAG, "initMap: Initialize map");
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
         supportMapFragment.getMapAsync(this);
     }
 
@@ -234,64 +242,69 @@ public class GoogleMapAPI extends AppCompatActivity implements OnMapReadyCallbac
         Log.d(TAG, "getLocationPermission: Getting location permission");
         String[] permissions = {FINE_LOCATION, COARSE_LOCATION};
 
-        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this.getApplicationContext(), COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(getContext(), COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGraunted = true;
             initMap();
 
         }
         else{
-            ActivityCompat.requestPermissions(this,permissions,LOCATION_PERMISSION_REQUESR_CODE);
+            ActivityCompat.requestPermissions(getActivity(),permissions,LOCATION_PERMISSION_REQUESR_CODE);
         }
     }
 
-    public void isAtHome(){
-        Log.d(TAG, "isAtHome: Check if user is at home to take coordinates");
-         dialog = new AlertDialog.Builder(this)
-                .setTitle("Verify address")
-                .setMessage("Are you at home?")
-                .setPositiveButton("Yes",null )
-                .setNegativeButton("No",null)
-                .show();
+//    public void isAtHome(){
+//        Log.d(TAG, "isAtHome: Check if user is at home to take coordinates");
+//        dialog = new AlertDialog.Builder(getContext())
+//                .setTitle("Verify address")
+//                .setMessage("Are you at home?")
+//                .setPositiveButton("Yes",null )
+//                .setNegativeButton("No",null)
+//                .show();
+//
+//        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+//        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+//
+//        positiveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // At this point if the user choosed yes we have the address save in homeCordinate variable, need to send it back to SignUpPage.
+//                //check homeCordinat not null. if null do nothing close the dialog.
+//
+//                Log.d(TAG, "onClick: From Dialog , the Cordinate is:" + homeCordintae);
+//                dialog.dismiss();
+//
+//                if(homeCordintae!= null){
+//                    List<Double> addr = new ArrayList<>();
+//                    addr.add(homeCordintae.latitude);
+//                    addr.add(homeCordintae.longitude);
+//                    listener.onInputMapSend(addr);
+//
+//                }
+//
+//            }
+//        });
+//
+//        negativeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //do nothing only close the alert diialog.
+//                Log.d(TAG, "onClick: Close dialog and get address from user.");
+//                dialog.dismiss();
+//
+//            }
+//        });
 
-        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
 
-        positiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // At this point if the user choosed yes we have the address save in homeCordinate variable, need to send it back to SignUpPage.
-                //check homeCordinat not null. if null do nothing close the dialog.
-
-                Log.d(TAG, "onClick: From Dialog , the Cordinate is:" + homeCordintae);
-                dialog.dismiss();
-
-                if(homeCordintae!= null){
-                    //return homeCordinate to signuppage and close activity.
-
-                }
-
-            }
-        });
-
-        negativeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //do nothing only close the alert diialog.
-                Log.d(TAG, "onClick: Close dialog and get address from user.");
-                dialog.dismiss();
-
-            }
-        });
-
-
-    }
+//    }
 
 
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        Log.d(TAG, "onRequestPermissionsResult: request permission for gps.");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode){
             case LOCATION_PERMISSION_REQUESR_CODE:

@@ -1,25 +1,19 @@
 package com.example.petnet;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
+import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,43 +23,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class SignUpPage extends AppCompatActivity {
+public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener {
 
 
     private static final String TAG = "SignUpPage";
@@ -81,6 +58,9 @@ public class SignUpPage extends AppCompatActivity {
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     private String races[] = {"Pitbull", "Golden-Retriver", "Pincher", "Malinoa", "a", "a", "a", "a", "a", "a"};
+
+
+
 
 
     private List<Integer> colors;
@@ -116,7 +96,8 @@ public class SignUpPage extends AppCompatActivity {
     private User userToAdd;
     private Bitmap imageBitmap;
     private Uri Imageuri;
-    private Button addAdress;
+    private Fragment gMap;
+
 
 
 
@@ -138,6 +119,7 @@ public class SignUpPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference().child("users");
         mStorageRef = FirebaseStorage.getInstance().getReference();
+        gMap = new GoogleMapAPI();
 
 
 
@@ -190,7 +172,6 @@ public class SignUpPage extends AppCompatActivity {
         hide_pass = findViewById(R.id.IV_hide_pass);
         hide_confirm_pass = findViewById(R.id.IV_hide_confirm_pass);
         business_sign_up = findViewById(R.id.TV_Business_signup);
-        addAdress = findViewById(R.id.add_address);
 
 
         //EditTexts
@@ -218,6 +199,9 @@ public class SignUpPage extends AppCompatActivity {
         cb_colors[6] = findViewById(R.id.CB_pet_color);
         cb_colors[7] = findViewById(R.id.CB_pet_color_gay);
         cb_colors[8] = findViewById(R.id.CB_pet_color_golen);
+        if (isServicesOK()) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,gMap).commit();
+        }
 
 
         pet_race.setAdapter(new ArrayAdapter<>(SignUpPage.this, android.R.layout.simple_list_item_1, races));
@@ -235,18 +219,7 @@ public class SignUpPage extends AppCompatActivity {
         });
 
 
-        addAdress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // need to check how to get the Coordinates from the MapActivity.
-                if (isServicesOK()) {
-                    Intent intent = new Intent(getApplicationContext(), GoogleMapAPI.class);
-                    startActivityForResult(intent,444);
-                }
-                //after get the Latlng of the user update the usertoadd object.
 
-            }
-        });
 
 
 //        // if color[i] == 1 the user choosed the color else didnt choose.
@@ -341,6 +314,7 @@ public class SignUpPage extends AppCompatActivity {
         gender_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: Coordinate is:" + userToAdd.getAddress());
                 boolean checked = gender_male.isChecked();
                 if (checked) gender_male.setChecked(false);
                 userToAdd.setGender(0);             // 0 means the user is a female.
@@ -587,6 +561,12 @@ public class SignUpPage extends AppCompatActivity {
         }
 
         return false;
+
+    }
+
+    @Override
+    public void onInputMapSend(List<Double> coordiantes) {
+        userToAdd.setAddress(coordiantes);
 
     }
 }

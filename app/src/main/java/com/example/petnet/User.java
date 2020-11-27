@@ -1,6 +1,7 @@
 package com.example.petnet;
 
 import android.graphics.Bitmap;
+import android.location.Address;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class User {
     private String Lname;
     private String Email;
     private String Password;
-    private String Address;
+    private List<Double> Address;
     private int Gender;
     private String Uid;
     private String Pet_name;
@@ -25,6 +26,13 @@ public class User {
     private List<Integer> colors;
     private String Uniqe_signs;
 
+    public List<Double> getAddress() {
+        return Address;
+    }
+
+    public void setAddress(List<Double> address) {
+        Address = address;
+    }
 
     public User(){
 
@@ -71,13 +79,7 @@ public class User {
         Password = password;
     }
 
-    public String getAddress() {
-        return Address;
-    }
 
-    public void setAddress(String address) {
-        Address = address;
-    }
 
     public int getGender() {
         return Gender;

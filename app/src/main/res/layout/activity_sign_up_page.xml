@@ -25,9 +25,10 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-
+        android:layout_width="424dp"
+        android:layout_height="566dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.024"
@@ -39,14 +40,12 @@
             android:orientation="vertical">
 
 
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/person_details"
-                android:background="@android:color/transparent"
                 android:layout_marginBottom="15dp"
-                />
+                android:background="@android:color/transparent"
+                android:src="@drawable/person_details" />
 
             <EditText
                 android:id="@+id/PT_register_first_name"
@@ -83,34 +82,32 @@
                     android:id="@+id/TV_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/gender"
-                    android:layout_marginTop="15dp"
-                    android:textSize="17dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:text="@string/gender"
+                    android:textSize="17dp" />
 
                 <CheckBox
                     android:id="@+id/CB_gender_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pet_gender_male"
-                    android:buttonTint="@color/black"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"/>
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:buttonTint="@color/black"
+                    android:hint="@string/pet_gender_male" />
 
                 <CheckBox
                     android:id="@+id/CB_gender_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pet_gender_female"
-                    android:buttonTint="@color/black"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"/>
-
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:buttonTint="@color/black"
+                    android:hint="@string/pet_gender_female" />
 
 
             </LinearLayout>
@@ -190,47 +187,29 @@
             </LinearLayout>
 
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/sign_up_page_address"
+                android:textSize="22dp" />
+
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sign_up_page_address"
-                    android:layout_marginBottom="15dp"
-                    android:textSize="22dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"/>
-
-                <Button
-                    android:id="@+id/add_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/custom_button"
-                    android:text="@string/go_to_map" />
-
-
-
-            </LinearLayout>
-
-
-
-
-
-
+                android:layout_height="500dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pet_details"
-                android:background="@android:color/transparent"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/pet_details" />
 
             <EditText
                 android:id="@+id/ET_pet_name"
@@ -245,16 +224,17 @@
 
 
             <AutoCompleteTextView
+                android:id="@+id/ACTV_pet_race"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:completionThreshold="1"
-                android:maxLines="5"
+                android:dropDownHeight="100dp"
                 android:hint="Pet Race"
-                android:id="@+id/ACTV_pet_race"/>
+                android:maxLines="1" />
 
 
             <LinearLayout
@@ -266,48 +246,47 @@
                     android:id="@+id/TV_pet_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pet_color"
-                    android:layout_marginTop="15dp"
-                    android:textSize="17dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:text="@string/pet_color"
+                    android:textSize="17dp" />
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
 
                     <CheckBox
                         android:id="@+id/CB_pet_color_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_color_white"
-                        android:buttonTint="@color/white"
+                        android:layout_marginRight="15dp"
                         android:layout_marginBottom="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:buttonTint="@color/white"
+                        android:hint="@string/pet_color_white" />
 
                     <CheckBox
                         android:id="@+id/CB_pet_color_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_color_black"
-                        android:buttonTint="@color/black"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="@color/black"
+                        android:hint="@string/pet_color_black" />
 
                     <CheckBox
                         android:id="@+id/CB_pet_color_brown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_color_brown"
-                        android:buttonTint="#5D6139"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="#5D6139"
+                        android:hint="@string/pet_color_brown" />
 
                 </LinearLayout>
 
@@ -331,30 +310,29 @@
                         android:id="@+id/CB_pet_color_golden"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_color_golden"
-                        android:buttonTint="#B1BD48"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="#B1BD48"
+                        android:hint="@string/pet_color_golden" />
+
                     <CheckBox
                         android:id="@+id/CB_pet_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_gender_male"
-                        android:buttonTint="#8A8A8A"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="#8A8A8A"
+                        android:hint="@string/pet_gender_male" />
                 </LinearLayout>
-
-
-
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/CB_pet_color_gay"
                         android:layout_width="wrap_content"
@@ -368,37 +346,28 @@
                         android:id="@+id/CB_pet_color_golen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_gender_female"
-                        android:buttonTint="@color/white"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="@color/white"
+                        android:hint="@string/pet_gender_female" />
 
 
                     <CheckBox
                         android:id="@+id/CB_pet_color_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_gender_male"
-                        android:buttonTint="#8A8A8A"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
-
-
-
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="#8A8A8A"
+                        android:hint="@string/pet_gender_male" />
 
 
                 </LinearLayout>
 
 
-
-
             </LinearLayout>
-
-
-
-
 
 
             <LinearLayout
@@ -410,38 +379,35 @@
                     android:id="@+id/TV_pet_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pet_gender"
-                    android:layout_marginTop="15dp"
-                    android:textSize="17dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    />
+                    android:text="@string/pet_gender"
+                    android:textSize="17dp" />
 
                 <CheckBox
                     android:id="@+id/CB_pet_gender_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pet_gender_male"
-                    android:buttonTint="@color/black"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"/>
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:buttonTint="@color/black"
+                    android:hint="@string/pet_gender_male" />
 
                 <CheckBox
                     android:id="@+id/CB_pet_gender_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pet_gender_female"
-                    android:buttonTint="@color/black"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"/>
-
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:buttonTint="@color/black"
+                    android:hint="@string/pet_gender_female" />
 
 
             </LinearLayout>
-
 
 
             <EditText
@@ -457,14 +423,12 @@
 
             <ImageView
                 android:id="@+id/pet_pic"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:src="@drawable/main_logo"
-                >
-            </ImageView>
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/main_logo"></ImageView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -475,24 +439,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:text="@string/attach_a_photo"
-                    android:textStyle="bold"
-                    android:layout_marginRight="10dp"/>
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/gallery_photo"
-                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_add_photo_alternate_24"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_add_photo_alternate_24" />
 
                 <ImageButton
-                    android:background="@android:color/transparent"
                     android:id="@+id/camera_photo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_add_a_photo_24"/>
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_add_a_photo_24" />
 
             </LinearLayout>
 
@@ -500,12 +464,11 @@
                 android:id="@+id/B_signup"
                 android:layout_width="148dp"
                 android:layout_height="46dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/custom_button"
-                android:text="@string/B_signup"
-                android:layout_gravity="center"
-                />
+                android:text="@string/B_signup" />
 
 
         </LinearLayout>
