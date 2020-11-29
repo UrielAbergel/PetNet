@@ -70,8 +70,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private final int REQUEST_IMAGE_FROM_GALLERY = 1;
     private int check;
 
-    private LatLng coordinate;
-    private GoogleMapAPI map;
+
     private Button sign_up_button;
     private EditText first_name;
     private EditText last_name;
@@ -479,13 +478,14 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Log.d(TAG, "onActivityResult: Back from gallery/camera.");
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == RESULT_OK && data != null) {
-
+                
                 Bundle extras = data.getExtras();
                 imageBitmap = (Bitmap) extras.get("data");
-                Bitmap check = imageBitmap;
 
                 pet_photo.setImageBitmap(imageBitmap);
 
@@ -505,6 +505,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
 
     protected void uploadImage(int request, String uid) {
+        Log.d(TAG, "uploadImage: uploading image to firebase storage.");
         String path = "pics/" + uid;
         mStorageRef = mStorageRef.child(path);
 
@@ -572,6 +573,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
     @Override
     public void onInputMapSend(List<Double> coordiantes) {
+        Log.d(TAG, "onInputMapSend: Save coordinates from GoogleMap.");
         userToAdd.setAddress(coordiantes);
 
     }
