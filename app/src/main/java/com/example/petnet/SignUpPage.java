@@ -43,7 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener {
+public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener,DogSize.dogSizeForSign {
 
 
     private static final String TAG = "SignUpPage";
@@ -91,6 +91,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private Bitmap imageBitmap;
     private Uri Imageuri;
     private Fragment gMap;
+    private Fragment dogSize;
 
 
 
@@ -114,6 +115,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         myRef = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
         gMap = new GoogleMapAPI();
+        dogSize = new DogSize();
 
 
 
@@ -498,6 +500,9 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
      * initialize all the variables and widgets in the class.
      */
     private void initializeVariables(){
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.dogSize_frame_layout,dogSize).commit();
+
         toolbar = findViewById(R.id.toolbar);
         userToAdd = new User();
         dogToAdd = new Dog();
@@ -684,5 +689,11 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         Log.d(TAG, "onInputMapSend: Save coordinates from GoogleMap.");
         userToAdd.setAddress(coordiantes);
 
+    }
+
+    @Override
+    public void getDogSize(int size) {
+        Log.d(TAG, "getDogSize: set Dogsize for signup");
+        dogToAdd.setSize(size);
     }
 }
