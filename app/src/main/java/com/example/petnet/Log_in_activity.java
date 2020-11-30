@@ -107,7 +107,7 @@ public class Log_in_activity extends AppCompatActivity {
     }
 
     private void go_bus_main_activity_page() {
-        Intent intent = new Intent(this, Bmain_activity.class);
+        Intent intent = new Intent(this, B_main_activity.class);
         startActivity(intent);
     }
 

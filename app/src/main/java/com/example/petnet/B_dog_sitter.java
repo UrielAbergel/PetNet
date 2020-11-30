@@ -1,8 +1,6 @@
 package com.example.petnet;
 
-import android.location.Address;
-
-public class Bdog_sitter implements BusinessUser{
+public class B_dog_sitter implements B_store {
 
     private String _store_name;
     private String _phone_number;
@@ -12,9 +10,9 @@ public class Bdog_sitter implements BusinessUser{
     private String _address;
     private int _price;
 
-    public Bdog_sitter(){}
+    public B_dog_sitter(){}
 
-    public Bdog_sitter(String name , String phone_number , String description , String address , int price){
+    public B_dog_sitter(String name , String phone_number , String description , String address , int price){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;

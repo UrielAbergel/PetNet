@@ -1,27 +1,25 @@
 package com.example.petnet;
 
-import android.location.Address;
-
-public class Bpet_shop implements BusinessUser{
+public class B_dog_walker implements B_store {
 
     private String _store_name;
     private String _phone_number;
     private String _description;
-    private final int _store_type = 3;
+    private final int _store_type = 2;
     private double _store_rate;
     private String _address;
+    private int _price;
+
+    public B_dog_walker(){}
 
 
-    public Bpet_shop(){}
-
-
-    public Bpet_shop(String name , String phone_number , String description , String address){
+    public B_dog_walker(String name , String phone_number , String description , String address , int price){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
+        this._price = price;
     }
-
 
 
     @Override
@@ -54,6 +52,10 @@ public class Bpet_shop implements BusinessUser{
         return this._description;
     }
 
+    public int get_price(){
+        return this._price;
+    }
+
 
     public void setName(String name) {
         this._store_name = name;
@@ -75,7 +77,8 @@ public class Bpet_shop implements BusinessUser{
         this._address = address;
     }
 
-
-
+    public void setPrice(int price) {
+        this._price = price;
+    }
 }
 

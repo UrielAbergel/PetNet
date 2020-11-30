@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.petnet">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,12 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
+        <activity android:name=".B_store_adapter"/>
         <activity
             android:name=".UserMainActivity"
-            android:parentActivityName=".UserMainActivity"></activity>
-        <activity android:name=".Bmy_stores" />
-        <activity android:name=".Bmain_activity" />
-        <activity android:name=".BSignUpPage" />
+            android:parentActivityName=".UserMainActivity" />
+        <activity android:name=".B_main_activity" />
+        <activity android:name=".B_sign_up_page" />
+
+
         <activity
             android:name=".SignUpPage"
             android:label=""

@@ -2,7 +2,7 @@ package com.example.petnet;
 
 import android.location.Address;
 
-public interface BusinessUser {
+public interface B_store {
 
     public String get_store_name();
 
@@ -15,6 +15,8 @@ public interface BusinessUser {
     public double get_store_rate();
 
     public String get_description();
+
+
 
 
 

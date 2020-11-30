@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class BSignUpPage extends AppCompatActivity {
+public class B_sign_up_page extends AppCompatActivity {
 
 
     Button sign_up_button;
@@ -32,7 +32,7 @@ public class BSignUpPage extends AppCompatActivity {
     EditText confirm_password;
     CheckBox gender_male;
     CheckBox gender_female;
-    Buser userToAdd;
+    B_user userToAdd;
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
@@ -41,7 +41,7 @@ public class BSignUpPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_b_sign_up_page);
+        setContentView(R.layout.b_sign_up_page);
 
         sign_up_button = findViewById(R.id.BS_signup);
         first_name = findViewById(R.id.BS_register_first_name);
@@ -56,7 +56,7 @@ public class BSignUpPage extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference().child("Busers");
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        userToAdd = new Buser();
+        userToAdd = new B_user();
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

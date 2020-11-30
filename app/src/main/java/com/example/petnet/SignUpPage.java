@@ -18,14 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,12 +34,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SignUpPage extends AppCompatActivity {
 
@@ -373,7 +366,7 @@ public class SignUpPage extends AppCompatActivity {
 
                         uploadImage(REQUEST_IMAGE_FROM_GALLERY,userToAdd.getUid());
 
-                        Intent intent = new Intent(getApplicationContext(),BSignUpPage.class);
+                        Intent intent = new Intent(getApplicationContext(), B_sign_up_page.class);
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -424,7 +417,7 @@ public class SignUpPage extends AppCompatActivity {
         business_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),BSignUpPage.class);
+                Intent intent = new Intent(getApplicationContext(), B_sign_up_page.class);
                 startActivity(intent);
 
             }

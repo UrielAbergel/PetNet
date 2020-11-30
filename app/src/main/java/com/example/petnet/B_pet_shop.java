@@ -1,24 +1,26 @@
 package com.example.petnet;
 
-import android.location.Address;
-
-public class Bveterinarian implements BusinessUser{
+public class B_pet_shop implements B_store {
 
     private String _store_name;
     private String _phone_number;
     private String _description;
-    private final int _store_type = 4;
+    private final int _store_type = 3;
     private double _store_rate;
     private String _address;
 
-    public Bveterinarian(){}
 
-    public Bveterinarian(String name , String phone_number , String description , String address){
+    public B_pet_shop(){}
+
+
+    public B_pet_shop(String name , String phone_number , String description , String address){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
     }
+
+
 
     @Override
     public String get_store_name() {
@@ -71,16 +73,7 @@ public class Bveterinarian implements BusinessUser{
         this._address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Bveterinarian{" +
-                "_name='" + _store_name + '\'' +
-                ", _phone_number='" + _phone_number + '\'' +
-                ", _description='" + _description + '\'' +
-                ", _store_type=" + _store_type +
-                ", _store_rate=" + _store_rate +
-                ", _address='" + _address + '\'' +
-                '}';
-    }
+
+
 }
 

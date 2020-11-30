@@ -3,7 +3,7 @@ package com.example.petnet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Buser {
+public class B_user {
 
     private String Fname;
     private String Lname;
