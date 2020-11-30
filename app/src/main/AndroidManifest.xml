@@ -12,14 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
-        <activity android:name=".B_store_adapter"/>
+        <activity android:name=".Store_vet"></activity>
+        <activity android:name=".Store_dog_pet_shop" />
+        <activity android:name=".Store_dog_walker" />
+        <activity android:name=".Store_dog_trainer" />
+        <activity android:name=".Store_dog_sitter" />
+        <activity android:name=".B_my_store" />
         <activity
             android:name=".UserMainActivity"
             android:parentActivityName=".UserMainActivity" />
         <activity android:name=".B_main_activity" />
         <activity android:name=".B_sign_up_page" />
-
-
         <activity
             android:name=".SignUpPage"
             android:label=""

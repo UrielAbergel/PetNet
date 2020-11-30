@@ -106,6 +106,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/dog_sitter_but"
                     android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
@@ -145,6 +146,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/store_dog_walker"
                     android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
@@ -181,6 +183,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/store_dog_trainer"
                     android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
@@ -220,6 +223,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/store_vet"
                     android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"
@@ -256,6 +260,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/store_pet_shop"
                     android:background="@drawable/text_input"
                     android:orientation="vertical"
                     android:padding="16dp"

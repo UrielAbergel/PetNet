@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class B_store_adapter extends AppCompatActivity {
+public class B_my_store extends AppCompatActivity {
 
     private static final String TAG = "Bmy_stores";
     private ImageView new_store_button;
@@ -49,6 +49,8 @@ public class B_store_adapter extends AppCompatActivity {
 
         refresh(this_con);
 
+        change_event_update(this_con);
+
         new_store_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +58,10 @@ public class B_store_adapter extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void change_event_update(Context this_con) {
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -85,10 +91,6 @@ public class B_store_adapter extends AppCompatActivity {
         });
 
     }
-
-
-
-
 
     private void refresh(Context this_con) {
 

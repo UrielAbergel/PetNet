@@ -17,7 +17,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="4dp"
         android:gravity="center_horizontal"
-        android:text="My Store!"
+        android:text="Pet Shop Store`s"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -39,16 +39,8 @@
         app:layout_constraintTop_toTopOf="@+id/my_store_text"
         app:layout_constraintVertical_bias="0.042" />
 
-    <ImageView
-        android:id="@+id/new_store_butt"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="100dp"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/add_button" />
-
     <ListView
-        android:id="@+id/list_view"
+        android:id="@+id/list_view_dog_pet_shop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/store_image"
