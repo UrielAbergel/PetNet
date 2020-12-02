@@ -93,8 +93,10 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                     List<Double> addr = new ArrayList<>();
                     addr.add(homeCordintae.latitude);
                     addr.add(homeCordintae.longitude);
-                    listener.onInputMapSend(addr);
-
+                    if(listener !=null)
+                        listener.onInputMapSend(addr);
+                    else
+                        listenerForFoundDog.onInputMapSend(addr);
                 }
                 else{
                     Log.d(TAG, "onClick: Failed to send Coordinates");
@@ -184,7 +186,6 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         //  Toast.makeText(getApplicationContext(),"Map is ready", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
-
         if(mLocationPermissionGraunted) getDeviceLocation();
 
 

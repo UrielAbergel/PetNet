@@ -209,13 +209,11 @@
                 </LinearLayout>
 
 
-
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/CB_pet_color_gay"
                         android:layout_width="wrap_content"
@@ -229,25 +227,34 @@
                         android:id="@+id/CB_pet_color_golen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_gender_female"
-                        android:buttonTint="@color/white"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="@color/white"
+                        android:hint="@string/pet_gender_female" />
 
 
                     <CheckBox
                         android:id="@+id/CB_pet_color_"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/pet_gender_male"
-                        android:buttonTint="#8A8A8A"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:buttonTint="#8A8A8A"
+                        android:hint="@string/pet_gender_male" />
 
                 </LinearLayout>
             </LinearLayout>
+
+            <AutoCompleteTextView
+                android:id="@+id/ACTV_pet_race"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:completionThreshold="1"
+                android:dropDownHeight="100dp"
+                android:hint="Dog race"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/TV_pet_gender"
@@ -283,7 +290,7 @@
 
 
                 <CheckBox
-                    android:id="@+id/CB_pet_gender_noy_sure"
+                    android:id="@+id/CB_pet_gender_not_sure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/not_sure"
@@ -293,10 +300,26 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="401dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borders"
+                android:text="@string/what_is_the_dog_location"
+                android:textSize="17dp" />
+
             <FrameLayout
                 android:id="@+id/found_dog_frame_layout"
                 android:layout_width="match_parent"
                 android:layout_height="500dp" />
+
+            <Button
+                android:id="@+id/B_search_owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="Search for owner!">
+
+            </Button>
         </LinearLayout>
     </ScrollView>
 
