@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.petnet.R;
+import com.example.petnet.SignUpPage;
 
 
 public class DogSize extends Fragment {

@@ -3,18 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DogSize">
+    tools:context=".Fragments.DogSize">
 
-    <TextView
-        android:id="@+id/TV_dog_size_Q"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/borders"
-        android:text="@string/what_is_the_dog_size"
-        android:textSize="20sp" />
+
     <LinearLayout
-        android:layout_marginTop="20dp"
+
         android:id="@+id/linear_buttons"
         android:layout_width="wrap_content"
         android:layout_height="50dp"

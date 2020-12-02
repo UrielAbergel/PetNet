@@ -25,9 +25,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petnet.Fragments.DogSize;
+import com.example.petnet.Firebase.DataBase;
+import com.example.petnet.Fragments.GoogleMapAPI;
+import com.example.petnet.Objects.Dog;
+import com.example.petnet.Objects.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -43,7 +47,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener,DogSize.dogSizeForSign {
+public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener, DogSize.dogSizeForSign {
 
 
     private static final String TAG = "SignUpPage";
@@ -218,9 +222,9 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
                         public void onSuccess(AuthResult authResult) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             userToAdd.setUid(user.getUid());
-                            myRef.child("users").child(userToAdd.getUid()).setValue(userToAdd);
-                            myRef.child("dogs").child(userToAdd.getUid()).setValue(dogToAdd);
-                            Log.d(TAG, "onSuccess: Sign up to firebase succeed");
+                            DataBase.insertDog(dogToAdd,userToAdd.getUid());
+                            DataBase.insertUser(userToAdd);
+
                             if (check == 0) uploadImage(REQUEST_IMAGE_FROM_GALLERY, userToAdd.getUid());
                             else if (check == 1) uploadImage(REQUEST_IMAGE_CAPTURE, userToAdd.getUid());
                             Intent intent = new Intent(getApplicationContext(), Log_in_activity.class);
@@ -285,10 +289,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             password.requestFocus();
             return false;
         }
-        if(userToAdd.getAddress() == null || userToAdd.getAddress().size() == 0){
-           Toast.makeText(this,"Please enter Address",Toast.LENGTH_LONG).show();
-           return false;
-        }
+
         if(pet_name.getText().toString().equals("")){
             pet_name.setError("Please fill Pet name");
             pet_name.requestFocus();
@@ -392,7 +393,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         gender_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: Coordinate is:" + userToAdd.getAddress());
                 boolean checked = gender_male.isChecked();
                 if (checked) gender_male.setChecked(false);
                 userToAdd.setGender(0);             // 0 means the user is a female.
@@ -605,9 +605,9 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
     }
 
-/**
- * This function upload the image to the firebase storage.
- */
+    /**
+     * This function upload the image to the firebase storage.
+     */
     protected void uploadImage(int request, String uid) {
         Log.d(TAG, "uploadImage: uploading image to firebase storage.");
         String path = "pics/" + uid;
@@ -687,7 +687,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     @Override
     public void onInputMapSend(List<Double> coordiantes) {
         Log.d(TAG, "onInputMapSend: Save coordinates from GoogleMap.");
-        userToAdd.setAddress(coordiantes);
+        dogToAdd.setAddress(coordiantes);
 
     }
 
