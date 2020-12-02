@@ -1,12 +1,6 @@
 package com.example.petnet;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Dialog;
-import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.example.petnet.Algorithms.FindDogOwner;
 import com.example.petnet.Fragments.GoogleMapAPI;
 import com.example.petnet.Objects.Dog;
 import com.google.android.gms.common.ConnectionResult;
@@ -25,10 +24,10 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.MapLisinterForFoundDog {
@@ -41,6 +40,8 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
     private static final String TAG = "FoundDogActivity";
     private int final_size;
 
+    private final String distance_type = "K";
+    private final double minimum_distance = 3;
 
     private Button B_dog_size_huge;
     private Button B_dog_size_big;
@@ -305,19 +306,13 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
         FirebaseFirestore FbFs = FirebaseFirestore.getInstance(); // get pointer to cloud storage root
         FbFs.collection("dogs").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful())
-                {
-                    for (QueryDocumentSnapshot dogDocument: task.getResult())
-                    {
-                        String UID = dogDocument.getId();
-                        Dog dogToCheck = dogDocument.toObject(Dog.class);
-                        Log.d(TAG, "onComplete: uid:" + UID + "\n Dog:" + dogToCheck.toString());
-                    }
-                }
+            public void onComplete(@NonNull Task<QuerySnapshot> task)
+            {
+                HashMap<String,Double> userCandidateList;
+
+                userCandidateList = FindDogOwner.find_dog_possible_owners(task, dogToFind); // get list of candidate owners
             }
         });
-
     }
 
     @Override

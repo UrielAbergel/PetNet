@@ -1,7 +1,5 @@
-package com.example.petnet.Alogrithms;
-import java.util.*;
+package com.example.petnet.Algorithms;
 import java.lang.*;
-import java.io.*;
 
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -30,19 +28,9 @@ import java.io.*;
 /*::           GeoDataSource.com (C) All Rights Reserved 2019                :*/
 /*::                                                                         :*/
 /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-class DistanceCalculator
+public class DistanceCalculator
 {
-    public static void main (String[] args) throws java.lang.Exception
-    {
-
-
-
-        //System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "M") + " Miles\n");
-        System.out.println(distance(32.105439499999996, 32.105439499999996, 32.104742, -35.176953999999995, "K") + " Kilometers\n");
-        //System.out.println(distance(32.9697, -96.80322, 29.46786, -98.53506, "N") + " Nautical Miles\n");
-    }
-
-    private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
+    public static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
         }
