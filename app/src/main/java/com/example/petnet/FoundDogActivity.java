@@ -18,6 +18,8 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.example.petnet.Fragments.GoogleMapAPI;
+import com.example.petnet.Objects.Dog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;

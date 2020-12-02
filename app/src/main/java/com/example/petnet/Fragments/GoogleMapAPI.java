@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.petnet.FoundDogActivity;
 import com.example.petnet.R;
 import com.example.petnet.SignUpPage;
 import com.google.android.gms.location.FusedLocationProviderClient;
