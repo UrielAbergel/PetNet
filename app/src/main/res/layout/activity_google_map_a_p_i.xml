@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GoogleMapAPI">
+    tools:context=".Fragments.GoogleMapAPI">
 
     <fragment
         android:layout_width="match_parent"
@@ -42,7 +42,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="40dp"
+        app:fabCustomSize="40dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_save_alt_24"
         android:layout_centerInParent="true"

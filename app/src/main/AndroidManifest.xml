@@ -22,7 +22,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".GoogleMapAPI" />
+        <activity android:name=".Fragments.GoogleMapAPI" />
         <activity
             android:name=".UserMainActivity"
             android:parentActivityName=".UserMainActivity" />

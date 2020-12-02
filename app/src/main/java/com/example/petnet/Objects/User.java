@@ -1,14 +1,8 @@
-package com.example.petnet;
+package com.example.petnet.Objects;
 
-import android.graphics.Bitmap;
-import android.location.Address;
+import com.example.petnet.Objects.Dog;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class User {
 
@@ -16,18 +10,10 @@ public class User {
     private String Lname;
     private String Email;
     private String Password;
-    private List<Double> Address;
     private int Gender;
     private String Uid;
-    Dog dog;
 
-    public List<Double> getAddress() {
-        return Address;
-    }
 
-    public void setAddress(List<Double> address) {
-        Address = address;
-    }
 
 
     public User(){
@@ -36,13 +22,7 @@ public class User {
 
 
 
-    public Dog getDog() {
-        return dog;
-    }
 
-    public void setDog(Dog dog) {
-        this.dog = dog;
-    }
 
     public String getFname() {
         return Fname;
@@ -111,7 +91,6 @@ public class User {
                 ", Lname='" + Lname + '\'' +
                 ", Email='" + Email + '\'' +
                 ", Password='" + Password + '\'' +
-                ", Address='" + Address + '\'' +
                 ", Gender=" + Gender +
                 ", Uid='" + Uid + '\'' +
                 '}';

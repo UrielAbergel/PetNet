@@ -1,5 +1,6 @@
-package com.example.petnet;
+package com.example.petnet.Objects;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Dog {
@@ -8,7 +9,28 @@ public class Dog {
     private int Pet_gender;
     private int Size; // split into categories 1-5
     private List<Integer> colors;
+    private List<Double> Address;
     private String Uniqe_signs;
+
+
+    public List<Double> getAddress() {
+        return Address;
+    }
+
+    public void setAddress(List<Double> address) {
+        Address = address;
+    }
+
+    public HashMap toHashmap(){
+        HashMap<String,Object> toReturn = new HashMap<>();
+        toReturn.put("Pet_name",Pet_name);
+        toReturn.put("Pet_race",Pet_race);
+        toReturn.put("Pet_gender",Pet_gender);
+        toReturn.put("Pet_size",Size);
+        toReturn.put("Colors",colors);
+        toReturn.put("Uniqe_signs",Uniqe_signs);
+        return toReturn;
+    }
 
     public String getPet_name() {
         return Pet_name;
@@ -69,4 +91,7 @@ public class Dog {
                 ", Uniqe_signs='" + Uniqe_signs + '\'' +
                 '}';
     }
+
+
+
 }

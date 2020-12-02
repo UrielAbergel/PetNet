@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.petnet.R;
+import com.example.petnet.SignUpPage;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -73,6 +75,8 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     public interface MapLisinterForFoundDog{
         void onInputMapSend(List<Double> coordiantes);
     }
+
+
 
     @Nullable
     @Override
@@ -168,6 +172,7 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                 // the curr variable is latlng that represnt the address that the user enter into the serach box.
                 curr = new LatLng(address.getLatitude(),address.getLongitude());
                 moveCamera(curr,DEAFULT_ZOOM);
+                mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(curr));
                 homeCordintae = curr;
             }
