@@ -69,8 +69,8 @@ public class Log_in_activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        go_bus_main_activity_page();
-//                                        go_user_main_activity_page();
+//                                        go_bus_main_activity_page();
+                                        go_user_main_activity_page();
                                         // Sign in success, update UI with the signed-in user's information
 
 

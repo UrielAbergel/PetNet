@@ -45,6 +45,7 @@ import java.util.Map;
 
 public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     private MapListener listener;
+    private MapLisinterForFoundDog listenerForFoundDog;
     private static final String TAG = "mapfrag";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -69,6 +70,9 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         void onInputMapSend(List<Double> coordiantes);
     }
 
+    public interface MapLisinterForFoundDog{
+        void onInputMapSend(List<Double> coordiantes);
+    }
 
     @Nullable
     @Override
@@ -129,10 +133,11 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     public void onAttach(@NonNull Context context) {
         Log.d(TAG, "onAttach: Attching parent activity of the fragment.");
         super.onAttach(context);
-        if(context instanceof MapListener){
-            listener = (SignUpPage)context;
+        if(context instanceof MapListener)
+                listener = (SignUpPage)context;
 
-        }
+        else if(context instanceof  MapLisinterForFoundDog)
+            listenerForFoundDog = (FoundDogActivity)context;
     }
 
     /**
