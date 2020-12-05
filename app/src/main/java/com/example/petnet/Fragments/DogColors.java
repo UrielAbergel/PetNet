@@ -1,8 +1,10 @@
 package com.example.petnet.Fragments;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
@@ -11,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
+import com.example.petnet.FoundDogActivity;
 import com.example.petnet.R;
+import com.example.petnet.SignUpPage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DogColors extends Fragment {
@@ -42,14 +47,21 @@ public class DogColors extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         v = inflater.inflate(R.layout.fragment_dog_colors, container, false);
 
         InitializeVariables();
+        setColorsClicks();
 
         return v;
     }
 
     private void InitializeVariables() {
+        colors = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            colors.add(0);
+        }
+        cb_colors =  new CheckBox[9];
         cb_colors[0] = v.findViewById(R.id.CB_pet_color_black);
         cb_colors[1] = v.findViewById(R.id.CB_pet_color_white);
         cb_colors[2] = v.findViewById(R.id.CB_pet_color_gray);
@@ -141,6 +153,12 @@ public class DogColors extends Fragment {
         });
     }
 
+
+    /**
+     * function that will send the activity who attach the fragment
+     * the position of the color and the value.
+     * @param position which color have been chosen.
+     */
     public void setColor(int position){
         if (colors.get(position) == 0) {
            if(signuplistener!= null){
@@ -159,6 +177,16 @@ public class DogColors extends Fragment {
             }
 
         }
+    }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof Signuplistener){
+            signuplistener = (SignUpPage) context;
+        }
+        else if(context instanceof FoundDoglistener){
+            foundDoglistener = (FoundDogActivity)context;
+        }
     }
 }

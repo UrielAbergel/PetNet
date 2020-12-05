@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class FoundDogActivity extends AppCompatActivity {
+import com.example.petnet.Fragments.DogColors;
+
+public class FoundDogActivity extends AppCompatActivity implements DogColors.FoundDoglistener {
 
     final float loc = 260, add_for_loc = 20;
     final short loc_huge = 0, loc_big = 1, loc_medium = 2, loc_small = 3, loc_tiny = 4;
@@ -79,5 +81,10 @@ public class FoundDogActivity extends AppCompatActivity {
                 IV_dog.setY(loc + add_for_loc* loc_tiny);
             }
         });
+    }
+
+    @Override
+    public void setColor(int position, int value) {
+
     }
 }
