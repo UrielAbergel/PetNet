@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
+        <activity android:name=".TinderSwipe"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -30,6 +31,7 @@
         <activity android:name=".Bmain_activity" />
         <activity android:name=".BSignUpPage" />
         <activity android:name=".FoundDogActivity" />
+
         <activity
             android:name=".SignUpPage"
             android:label=""

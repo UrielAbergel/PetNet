@@ -99,9 +99,15 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                     addr.add(homeCordintae.latitude);
                     addr.add(homeCordintae.longitude);
                     if(listener !=null)
+                    {
                         listener.onInputMapSend(addr);
-                    else
+                        Log.d(TAG, "onClick: coordinate sent to listener");
+                    }
+                    else{
                         listenerForFoundDog.onInputMapSend(addr);
+                        Log.d(TAG, "onClick: coordinate sent to doundgof");
+                    }
+                      
                 }
                 else{
                     Log.d(TAG, "onClick: Failed to send Coordinates");
@@ -218,11 +224,8 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                                 moveCamera(curr,DEAFULT_ZOOM);
                                 mMap.clear();
                                 mMap.addMarker(new MarkerOptions().position(curr).title("home"));
+                                homeCordintae = curr;
                             }
-
-                            homeCordintae = curr;
-
-
 
                         }
                         else{

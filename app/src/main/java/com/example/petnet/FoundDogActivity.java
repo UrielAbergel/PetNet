@@ -1,6 +1,7 @@
 package com.example.petnet;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -298,11 +299,6 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
     }
 
     private void look_for_optionals_owners() {
-        //get all dogs
-        //סינון לפי מרחק
-        //לפצע חתכים על גודל.צבע.גזע
-        //יצירת רשימה של 5 כלבים אפשריים לפי סדר יורד
-        //הצגה של הכלבים למשתמש לםי סדר יורד
         FirebaseFirestore FbFs = FirebaseFirestore.getInstance(); // get pointer to cloud storage root
         FbFs.collection("dogs").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -311,13 +307,30 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
                 HashMap<String,Double> userCandidateList;
 
                 userCandidateList = FindDogOwner.find_dog_possible_owners(task, dogToFind); // get list of candidate owners
+
+                if(userCandidateList.size() == 0)
+                {
+                    // dialog not found
+                }
+                else
+                {
+                    Intent intent = new Intent(FoundDogActivity.this, TinderSwipe.class);
+                    intent.putExtra("data",userCandidateList);
+                    startActivity(intent);
+                }
             }
         });
     }
 
+    private void show_possible_owners_activity()
+    {
+
+    }
+
     @Override
     public void onInputMapSend(List<Double> coordiantes) {
-        coordinators = coordiantes;
+        dogToFind.setAddress(coordiantes);
+        Log.d(TAG, "onInputMapSend: coordinates" + dogToFind.getAddress());
     }
 
     private boolean isServicesOK() {

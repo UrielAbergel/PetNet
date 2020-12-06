@@ -20,9 +20,9 @@
     <string name="TV_signup_txt">Sign-up</string>
     <string name="pet_name">Pet Name</string>
     <string name="pet_color">Pet Color:</string>
-    <string name="uniqe_signs">Uniqe Signs</string>
+    <string name="uniqe_signs">Uniqe signs:</string>
     <string name="pet_gender">Pet Gender:</string>
-    <string name="pet_race">Pet race</string>
+    <string name="pet_race">Pet race:</string>
     <string name="TV_Business_signup_hint_txt">Business Profile?</string>
     <string name="TV_Business_signup_txt">Click Here!</string>
     <string name="B_signup">Sign-Up</string>
@@ -61,4 +61,7 @@
     <string name="what_is_the_pet_gender">What is the pet gender?</string>
     <string name="what_is_the_dog_location">What is the dog location?</string>
     <string name="dog_size_txt">Dog Size:</string>
+    <string name="anonymous">Anonymous</string>
+    <string name="none">None</string>
+    <string name="unknown">Unknown</string>
 </resources>

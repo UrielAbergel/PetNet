@@ -1,5 +1,6 @@
 package com.example.petnet.Objects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class Dog {
     private int Pet_gender;
     private int Size; // split into categories 1-5
     private List<Integer> colors;
-    private List<Double> Address;
+    private List<Double> Address = new ArrayList<>();
     private String Uniqe_signs;
 
 
