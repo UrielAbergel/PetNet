@@ -43,7 +43,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:buttonTint="#5D6139"
+                android:buttonTint="#654321"
                 android:hint="@string/pet_color_brown" />
 
         </LinearLayout>
@@ -75,14 +75,14 @@
                 android:hint="@string/pet_color_golden" />
 
             <CheckBox
-                android:id="@+id/CB_pet_color"
+                android:id="@+id/CB_pet_color_light_brown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:buttonTint="#8A8A8A"
-                android:hint="@string/pet_gender_male" />
+                android:buttonTint="#b99c80"
+                android:hint="@string/pet_color_light_brown" />
         </LinearLayout>
 
 
@@ -92,34 +92,34 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/CB_pet_color_gay"
+                android:id="@+id/CB_pet_color_dark_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:buttonTint="#8A8A8A"
-                android:hint="@string/pet_gender_male" />
+                android:buttonTint="#585858"
+                android:hint="@string/pet_color_dark_gray" />
 
             <CheckBox
-                android:id="@+id/CB_pet_color_golen"
+                android:id="@+id/CB_pet_color_ginger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:buttonTint="@color/white"
-                android:hint="@string/pet_gender_female" />
+                android:buttonTint="#b06500"
+                android:hint="@string/pet_color_ginger" />
 
 
             <CheckBox
-                android:id="@+id/CB_pet_color_"
+                android:id="@+id/CB_pet_color_light_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:buttonTint="#8A8A8A"
-                android:hint="@string/pet_gender_male" />
+                android:buttonTint="#C8C8C8"
+                android:hint="@string/pet_color_light_gray" />
 
 
         </LinearLayout>

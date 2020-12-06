@@ -22,16 +22,16 @@ import java.util.List;
 
 public class DogColors extends Fragment {
     private CheckBox cb_colors[];
-    View v;
+    private View v;
     private final int PET_COLOR_BLACK = 0;
     private final int PET_COLOR_WHITE = 1;
     private final int PET_COLOR_GRAY = 2;
     private final int PET_COLOR_GOLDEN = 3;
     private final int PET_COLOR_BROWN = 4;
-    private final int PET_COLOR_ = 5;
-    private final int PET_COLOR = 6;
-    private final int PET_COLOR_GAY = 7;
-    private final int PET_COLOR_GOLEN = 8;
+    private final int PET_COLOR_LIGHT_GRAY = 5;
+    private final int PET_COLOR_LIGHT_BROWN = 6;
+    private final int PET_COLOR_DARK_GRAY = 7;
+    private final int PET_COLOR_GINGER= 8;
     private List<Integer> colors;
 
     Signuplistener signuplistener = null;
@@ -62,15 +62,15 @@ public class DogColors extends Fragment {
             colors.add(0);
         }
         cb_colors =  new CheckBox[9];
-        cb_colors[0] = v.findViewById(R.id.CB_pet_color_black);
-        cb_colors[1] = v.findViewById(R.id.CB_pet_color_white);
-        cb_colors[2] = v.findViewById(R.id.CB_pet_color_gray);
-        cb_colors[3] = v.findViewById(R.id.CB_pet_color_golden);
-        cb_colors[4] = v.findViewById(R.id.CB_pet_color_brown);
-        cb_colors[5] = v.findViewById(R.id.CB_pet_color_);
-        cb_colors[6] = v.findViewById(R.id.CB_pet_color);
-        cb_colors[7] = v.findViewById(R.id.CB_pet_color_gay);
-        cb_colors[8] = v.findViewById(R.id.CB_pet_color_golen);
+        cb_colors[PET_COLOR_BLACK] = v.findViewById(R.id.CB_pet_color_black);
+        cb_colors[PET_COLOR_WHITE] = v.findViewById(R.id.CB_pet_color_white);
+        cb_colors[PET_COLOR_GRAY] = v.findViewById(R.id.CB_pet_color_gray);
+        cb_colors[PET_COLOR_GOLDEN] = v.findViewById(R.id.CB_pet_color_golden);
+        cb_colors[PET_COLOR_BROWN] = v.findViewById(R.id.CB_pet_color_brown);
+        cb_colors[PET_COLOR_LIGHT_GRAY] = v.findViewById(R.id.CB_pet_color_light_gray);
+        cb_colors[PET_COLOR_LIGHT_BROWN] = v.findViewById(R.id.CB_pet_color_light_brown);
+        cb_colors[PET_COLOR_DARK_GRAY] = v.findViewById(R.id.CB_pet_color_dark_gray);
+        cb_colors[PET_COLOR_GINGER] = v.findViewById(R.id.CB_pet_color_ginger);
     }
     private void setColorsClicks() {
         // if color[i] == 1 the user choosed the color else didnt choose.
@@ -116,38 +116,38 @@ public class DogColors extends Fragment {
             }
         });
 
-        cb_colors[PET_COLOR_].setOnClickListener(new View.OnClickListener() {
+        cb_colors[PET_COLOR_LIGHT_GRAY].setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                setColor(PET_COLOR_);
+                setColor(PET_COLOR_LIGHT_GRAY);
 
             }
         });
 
 
-        cb_colors[PET_COLOR].setOnClickListener(new View.OnClickListener() {
+        cb_colors[PET_COLOR_LIGHT_BROWN].setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                setColor(PET_COLOR);
+                setColor(PET_COLOR_LIGHT_BROWN);
 
             }
         });
-        cb_colors[PET_COLOR_GAY].setOnClickListener(new View.OnClickListener() {
+        cb_colors[PET_COLOR_DARK_GRAY].setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                setColor(PET_COLOR_GAY);
+                setColor(PET_COLOR_DARK_GRAY);
 
             }
         });
 
-        cb_colors[PET_COLOR_GOLEN].setOnClickListener(new View.OnClickListener() {
+        cb_colors[PET_COLOR_GINGER].setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                setColor(PET_COLOR_GOLEN);
+                setColor(PET_COLOR_GINGER);
 
             }
         });

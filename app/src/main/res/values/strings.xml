@@ -59,4 +59,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dog_size_txt">Dog Size:</string>
+    <string name="pet_color_light_brown">Light brown</string>
+    <string name="pet_color_dark_gray">Dark gray</string>
+    <string name="pet_color_light_gray">Light gray</string>
+    <string name="pet_color_ginger">Ginger</string>
 </resources>
