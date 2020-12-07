@@ -44,6 +44,7 @@ import static java.lang.Thread.sleep;
 public class TinderSwipe extends AppCompatActivity {
 
 
+    private FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
     private final String dog_root = "dogs";
     static List<ItemModel> items;
     static ItemModel toReturn;
@@ -139,16 +140,24 @@ public class TinderSwipe extends AppCompatActivity {
         adapter.setItems(baru);
         hasil.dispatchUpdatesTo(adapter);
     }
-    private List<ItemModel> addList() {
 
-        FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
+
+    private void addList() {
+
+
         items = new ArrayList<>();
         userCandidateList = SortHashMap.sortByValue(userCandidateList);
-        mapToItemModel(FbFs);
+        for (Map.Entry<String, Double> en : userCandidateList.entrySet()) {
+            Log.d(TAG,  "Key = " + en.getKey() +
+                    ", Value = " + en.getValue());
+        }
+        mapToItemModel();
         Log.d(TAG, "addList: " + items);
-        return items;
+        return;
     }
-    private void mapToItemModel(FirebaseFirestore FbFs)
+
+
+    private void mapToItemModel()
     {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();

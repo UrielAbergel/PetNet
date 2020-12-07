@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     class  ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name, race, uniqe_signs, gender;
+        FloatingActionButton FAB_check,FAB_cancel;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.IV_dog_profile);
@@ -49,9 +51,11 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             race = itemView.findViewById(R.id.TV_race_info);
             uniqe_signs = itemView.findViewById(R.id.TV_uniqe_signs_info);
             gender = itemView.findViewById(R.id.TV_gender_info);
+            FAB_check = itemView.findViewById(R.id.FAB_check);
+            FAB_cancel = itemView.findViewById(R.id.FAB_cancel);
         }
 
-        public void setData(ItemModel data) {
+         void setData(ItemModel data) {
             Picasso.get()
                     .load(data.getImage())
                     .fit()
