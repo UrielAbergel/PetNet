@@ -36,8 +36,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -311,94 +313,19 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
             }
         });
     }
-
     private void look_for_optionals_owners() {
         FirebaseFirestore FbFs = FirebaseFirestore.getInstance(); // get pointer to cloud storage root
         FbFs.collection("dogs").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task)
             {
-                HashMap<String,Double> userCandidateList;
-
-                userCandidateList = FindDogOwner.find_dog_possible_owners(task, dogToFind); // get list of candidate owners
-
+                HashMap<String,Double> userCandidateList = FindDogOwner.find_dog_possible_owners(task, dogToFind); // get list of candidate owners;
                 userCandidateList = SortHashMap.sortByValue(userCandidateList);
-                List<ItemModel> items = getItemList(userCandidateList);
-                Log.d(TAG, "onComplete: Items size is" + items.size());
-
-
-                if(userCandidateList.size() == 0)
-                {
-                    // dialog not found
-                }
-                else if(items.size()!= 0)
-                {
-                    Intent intent = new Intent(FoundDogActivity.this, TinderSwipe.class);
-                    intent.putExtra("data",userCandidateList);
-                    intent.putExtra("items", (Parcelable) items);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(FoundDogActivity.this, TinderSwipe.class);
+                intent.putExtra("data",userCandidateList);
+                startActivity(intent);
             }
         });
-    }
-
-    private List<ItemModel> getItemList(HashMap<String, Double> userCandidateList) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        final List<ItemModel> items = new ArrayList<>();
-        for (Map.Entry<String,Double> current_dog: userCandidateList.entrySet()) {
-
-            String key = current_dog.getKey();
-            Log.d(TAG, "mapToItemModel:uid: " + key);
-
-            FbFs.collection("dogs").document(key).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    Log.d(TAG, "onComplete:  firestore task completed");
-                    if(task.isSuccessful()){
-                        ItemModel toReturn = new ItemModel();
-                        Log.d(TAG, "onComplete:  firestore task sucseccs");
-                        DocumentSnapshot DS = task.getResult();
-                        Dog tempDog = DS.toObject(Dog.class);
-                        toReturn.setDog_name(tempDog.getPet_name());
-                        if (tempDog.getPet_gender() == 0)
-                            toReturn.setGender("Male");
-                        else if (tempDog.getPet_gender() == 1)
-                            toReturn.setGender("Female");
-                        toReturn.setRace(tempDog.getPet_race());
-                        toReturn.setUniqe_signs(tempDog.getUniqe_signs());
-                        items.add(toReturn);
-                        Log.d(TAG, "onComplete: before storage");
-
-                        storageRef.child("pics/" + key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                toReturn.setImage(uri);
-                                Log.d(TAG, "onSuccess: !! IM HERE!!!" + items.toString());
-
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-
-                                Log.d(TAG, "onFailure: !!! BHHHHHHH");
-                            }
-                        });
-
-                    }
-
-
-                }
-            });
-
-        }
-        return items;
-
-    }
-
-    private void show_possible_owners_activity()
-    {
-
     }
 
     @Override
