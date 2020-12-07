@@ -1,9 +1,12 @@
 package com.example.petnet;
 
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,18 +21,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.petnet.Algorithms.FindDogOwner;
+import com.example.petnet.Algorithms.SortHashMap;
 import com.example.petnet.Fragments.GoogleMapAPI;
 import com.example.petnet.Objects.Dog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.MapLisinterForFoundDog {
 
@@ -56,6 +66,8 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
     private CheckBox cb_colors[];
     private List<Integer> colors;
     private Dog dogToFind;
+
+
     private AutoCompleteTextView pet_race;
 
     private final int PET_COLOR_BLACK = 0;
@@ -67,6 +79,8 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
     private final int PET_COLOR = 6;
     private final int PET_COLOR_GAY = 7;
     private final int PET_COLOR_GOLEN = 8;
+
+    FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
 
     private String races[] = {"Pitbull", "Golden-Retriver", "Pincher", "Malinoa", "a", "a", "a", "a", "a", "a"};
 
@@ -308,18 +322,78 @@ public class FoundDogActivity extends AppCompatActivity implements GoogleMapAPI.
 
                 userCandidateList = FindDogOwner.find_dog_possible_owners(task, dogToFind); // get list of candidate owners
 
+                userCandidateList = SortHashMap.sortByValue(userCandidateList);
+                List<ItemModel> items = getItemList(userCandidateList);
+                Log.d(TAG, "onComplete: Items size is" + items.size());
+
+
                 if(userCandidateList.size() == 0)
                 {
                     // dialog not found
                 }
-                else
+                else if(items.size()!= 0)
                 {
                     Intent intent = new Intent(FoundDogActivity.this, TinderSwipe.class);
                     intent.putExtra("data",userCandidateList);
+                    intent.putExtra("items", (Parcelable) items);
                     startActivity(intent);
                 }
             }
         });
+    }
+
+    private List<ItemModel> getItemList(HashMap<String, Double> userCandidateList) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        final List<ItemModel> items = new ArrayList<>();
+        for (Map.Entry<String,Double> current_dog: userCandidateList.entrySet()) {
+
+            String key = current_dog.getKey();
+            Log.d(TAG, "mapToItemModel:uid: " + key);
+
+            FbFs.collection("dogs").document(key).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    Log.d(TAG, "onComplete:  firestore task completed");
+                    if(task.isSuccessful()){
+                        ItemModel toReturn = new ItemModel();
+                        Log.d(TAG, "onComplete:  firestore task sucseccs");
+                        DocumentSnapshot DS = task.getResult();
+                        Dog tempDog = DS.toObject(Dog.class);
+                        toReturn.setDog_name(tempDog.getPet_name());
+                        if (tempDog.getPet_gender() == 0)
+                            toReturn.setGender("Male");
+                        else if (tempDog.getPet_gender() == 1)
+                            toReturn.setGender("Female");
+                        toReturn.setRace(tempDog.getPet_race());
+                        toReturn.setUniqe_signs(tempDog.getUniqe_signs());
+                        items.add(toReturn);
+                        Log.d(TAG, "onComplete: before storage");
+
+                        storageRef.child("pics/" + key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                toReturn.setImage(uri);
+                                Log.d(TAG, "onSuccess: !! IM HERE!!!" + items.toString());
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+
+                                Log.d(TAG, "onFailure: !!! BHHHHHHH");
+                            }
+                        });
+
+                    }
+
+
+                }
+            });
+
+        }
+        return items;
+
     }
 
     private void show_possible_owners_activity()

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +38,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
 
-public class TinderSwipe extends AppCompatActivity {
+public class TinderSwipe extends AppCompatActivity  {
 
 
     private FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
@@ -52,6 +55,8 @@ public class TinderSwipe extends AppCompatActivity {
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
     HashMap<String,Double> userCandidateList;
+
+    private int counterActivity,counterThread;
     private static final String TAG = "TinderSwipe";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,9 @@ public class TinderSwipe extends AppCompatActivity {
         setContentView(R.layout.activity_tinder_swipe);
         Bundle extras = getIntent().getExtras();
         userCandidateList = (HashMap<String, Double>)extras.get("data");
+        items = (List<ItemModel>)extras.get("items");
+        //addList();
+
 
 //        getDogsFromFirebase();
 //        getPicsFromStorage();
@@ -124,12 +132,13 @@ public class TinderSwipe extends AppCompatActivity {
         manager.setCanScrollHorizontal(true);
         manager.setSwipeableMethod(SwipeableMethod.Manual);
         manager.setOverlayInterpolator(new LinearInterpolator());
-        addList();
-        adapter = new CardStackAdapter(items);
+
+        adapter = new CardStackAdapter(items);//addList()
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
     }
+
 
     private void paginate(){
         List<ItemModel> old = adapter.getItems();
@@ -141,61 +150,97 @@ public class TinderSwipe extends AppCompatActivity {
         hasil.dispatchUpdatesTo(adapter);
     }
 
-
+ // after this function done items need to be initialize to dogs we found.
     private void addList() {
 
 
-        items = new ArrayList<>();
         userCandidateList = SortHashMap.sortByValue(userCandidateList);
+        counterActivity = userCandidateList.size();
+//        items.add(new ItemModel(null,"zipi","male","pitbull","Asf"));
+//        items.add(new ItemModel(null,"zipi1","male","pitbull","Asf"));
+//        items.add(new ItemModel(null,"zipi2","male","pitbull","Asf"));
+//        items.add(new ItemModel(null,"zipi3","male","pitbull","Asf"));
+        counterThread = 0;
         for (Map.Entry<String, Double> en : userCandidateList.entrySet()) {
             Log.d(TAG,  "Key = " + en.getKey() +
                     ", Value = " + en.getValue());
         }
-        mapToItemModel();
+       mapToItemModel();
+//        while(counterThread != counterActivity);
         Log.d(TAG, "addList: " + items);
-        return;
+        return ;
     }
 
 
     private void mapToItemModel()
     {
+        //for dog pics
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        for (Map.Entry<String,Double> current_dog: userCandidateList.entrySet()) {
-            String key = current_dog.getKey();
-            toReturn = new ItemModel();
-            FbFs.collection(dog_root).document(key).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
-                        DocumentSnapshot DS = task.getResult();
-                        Dog tempDog = DS.toObject(Dog.class);
-                        toReturn.setDog_name(tempDog.getPet_name());
-                        if (tempDog.getPet_gender() == 0)
-                            toReturn.setGender("Male");
-                        else if (tempDog.getPet_gender() == 1)
-                            toReturn.setGender("Female");
-                        toReturn.setRace(tempDog.getPet_race());
-                        toReturn.setUniqe_signs(tempDog.getUniqe_signs());
+        Log.d(TAG, "mapToItemModel: usercandidate size:" + userCandidateList.size());
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    for (Map.Entry<String,Double> current_dog: userCandidateList.entrySet()) {
 
-                        storageRef.child("pics/" + key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        String key = current_dog.getKey();
+                        Log.d(TAG, "mapToItemModel:uid: " + key);
+                        toReturn = new ItemModel();
+                        FbFs.collection(dog_root).document(key).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
-                            public void onSuccess(Uri uri) {
-                                my_uri = uri;
-                                toReturn.setImage(my_uri);
-                                items.add(toReturn);
-                                Log.d(TAG, "onSuccess: !! IM HERE!!!" + items.toString());
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                Log.d(TAG, "onFailure: !!! BHHHHHHH");
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                Log.d(TAG, "onComplete:  firestore task completed");
+                                if(task.isSuccessful()){
+                                    Log.d(TAG, "onComplete:  firestore task sucseccs");
+                                    DocumentSnapshot DS = task.getResult();
+                                    Dog tempDog = DS.toObject(Dog.class);
+                                    toReturn.setDog_name(tempDog.getPet_name());
+                                    if (tempDog.getPet_gender() == 0)
+                                        toReturn.setGender("Male");
+                                    else if (tempDog.getPet_gender() == 1)
+                                        toReturn.setGender("Female");
+                                    toReturn.setRace(tempDog.getPet_race());
+                                    toReturn.setUniqe_signs(tempDog.getUniqe_signs());
+
+                                    Log.d(TAG, "onComplete: before storage");
+
+                                    storageRef.child("pics/" + key).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            my_uri = uri;
+                                            toReturn.setImage(my_uri);
+
+                                            Log.d(TAG, "onSuccess: !! IM HERE!!!" + items.toString());
+                                            counterThread++;
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception exception) {
+                                            counterThread++;
+                                            Log.d(TAG, "onFailure: !!! BHHHHHHH");
+                                        }
+                                    });
+                                    items.add(toReturn);
+                                }
+
+
                             }
                         });
 
                     }
+
+                }catch (Exception e){
+                    Log.d(TAG, "run: runnable failed.");
                 }
-            });
-        }
+
+
+            }
+        };
+        Log.d(TAG, "mapToItemModel: after read all data from firestore");
+
+        Executor exec = Executors.newSingleThreadExecutor();
+        exec.execute(task);
+
     }
 }
