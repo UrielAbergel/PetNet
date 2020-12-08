@@ -28,6 +28,7 @@
         <activity android:name=".Bmy_stores" />
         <activity android:name=".Bmain_activity" />
         <activity android:name=".BSignUpPage" />
+        <activity android:name=".FoundDogActivity" />
         <activity
             android:name=".SignUpPage"
             android:label=""

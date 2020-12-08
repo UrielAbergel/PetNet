@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.petnet.FoundDogActivity;
 import com.example.petnet.R;
 import com.example.petnet.SignUpPage;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -47,6 +48,7 @@ import java.util.Map;
 
 public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     private MapListener listener;
+    private MapLisinterForFoundDog listenerForFoundDog;
     private static final String TAG = "mapfrag";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -71,6 +73,9 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         void onInputMapSend(List<Double> coordiantes);
     }
 
+    public interface MapLisinterForFoundDog{
+        void onInputMapSend(List<Double> coordiantes);
+    }
 
 
 
@@ -93,8 +98,10 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                     List<Double> addr = new ArrayList<>();
                     addr.add(homeCordintae.latitude);
                     addr.add(homeCordintae.longitude);
-                    listener.onInputMapSend(addr);
-
+                    if(listener !=null)
+                        listener.onInputMapSend(addr);
+                    else
+                        listenerForFoundDog.onInputMapSend(addr);
                 }
                 else{
                     Log.d(TAG, "onClick: Failed to send Coordinates");
@@ -133,10 +140,11 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     public void onAttach(@NonNull Context context) {
         Log.d(TAG, "onAttach: Attching parent activity of the fragment.");
         super.onAttach(context);
-        if(context instanceof MapListener){
-            listener = (SignUpPage)context;
+        if(context instanceof MapListener)
+                listener = (SignUpPage)context;
 
-        }
+        else if(context instanceof  MapLisinterForFoundDog)
+            listenerForFoundDog = (FoundDogActivity)context;
     }
 
     /**
@@ -184,7 +192,6 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         //  Toast.makeText(getApplicationContext(),"Map is ready", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
-
         if(mLocationPermissionGraunted) getDeviceLocation();
 
 
