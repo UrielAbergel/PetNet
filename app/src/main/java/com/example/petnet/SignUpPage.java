@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petnet.Fragments.DogColors;
 import com.example.petnet.Fragments.DogSize;
 import com.example.petnet.Firebase.DataBase;
 import com.example.petnet.Fragments.GoogleMapAPI;
@@ -47,19 +48,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener, DogSize.dogSizeForSign {
+public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener, DogSize.dogSizeForSign, DogColors.Signuplistener {
 
 
     private static final String TAG = "SignUpPage";
-    private final int PET_COLOR_BLACK = 0;
-    private final int PET_COLOR_WHITE = 1;
-    private final int PET_COLOR_GRAY = 2;
-    private final int PET_COLOR_GOLDEN = 3;
-    private final int PET_COLOR_BROWN = 4;
-    private final int PET_COLOR_ = 5;
-    private final int PET_COLOR = 6;
-    private final int PET_COLOR_GAY = 7;
-    private final int PET_COLOR_GOLEN = 8;
+
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private final int REQUEST_IMAGE_CAPTURE = 0;
     private final int REQUEST_IMAGE_FROM_GALLERY = 1;
@@ -68,7 +61,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private List<Integer> colors;
     private int check;
 
-
+  //Widgets.
     private Button sign_up_button;
     private EditText first_name;
     private EditText last_name;
@@ -79,7 +72,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private AutoCompleteTextView pet_race;
     private CheckBox gender_male;
     private CheckBox gender_female;
-    private CheckBox cb_colors[];
     private CheckBox pet_gender_male;
     private CheckBox pet_gender_female;
     private EditText uniqe_signs;
@@ -90,12 +82,18 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private ImageButton take_photo;
     private ImageButton take_photo_from_gallery;
     private ImageView pet_photo;
+
+
+    //Object.
     private User userToAdd;
     private Dog dogToAdd;
     private Bitmap imageBitmap;
     private Uri Imageuri;
+
+   //Fragments.
     private Fragment gMap;
     private Fragment dogSize;
+    private Fragment dogColors;
 
 
 
@@ -120,6 +118,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         mStorageRef = FirebaseStorage.getInstance().getReference();
         gMap = new GoogleMapAPI();
         dogSize = new DogSize();
+        dogColors = new DogColors();
 
 
 
@@ -179,7 +178,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             }
         });
 
-        setColorsClicks();
+
 
         setGenderClick();
 
@@ -300,13 +299,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             pet_race.requestFocus();
             return false;
         }
-        if(!cb_colors[0].isChecked() && !cb_colors[1].isChecked() && !cb_colors[2].isChecked()
-                && !cb_colors[3].isChecked() && !cb_colors[4].isChecked() && !cb_colors[5].isChecked()
-                && !cb_colors[6].isChecked() && !cb_colors[7].isChecked() && !cb_colors[8].isChecked()){
-            cb_colors[0].setError("Please choose pet color");
-            cb_colors[0].requestFocus();
-            return false;
-        }
 
         if(!pet_gender_male.isChecked() && !pet_gender_female.isChecked()){
             pet_gender_female.setError("Please choose pet gender");
@@ -410,90 +402,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         });
     }
 
-    /**
-     * set click listeners for checkboxes the represent which colors have been chosen.
-     */
 
-    private void setColorsClicks() {
-        // if color[i] == 1 the user choosed the color else didnt choose.
-        cb_colors[PET_COLOR_BLACK].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_BLACK);
-            }
-        });
-
-
-        cb_colors[PET_COLOR_WHITE].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_WHITE);
-            }
-        });
-
-        cb_colors[PET_COLOR_GRAY].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_GRAY);
-            }
-        });
-
-        cb_colors[PET_COLOR_GOLDEN].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_GOLDEN);
-
-            }
-        });
-
-        cb_colors[PET_COLOR_BROWN].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_BROWN);
-            }
-        });
-
-        cb_colors[PET_COLOR_].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_);
-
-            }
-        });
-
-
-        cb_colors[PET_COLOR].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR);
-
-            }
-        });
-        cb_colors[PET_COLOR_GAY].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_GAY);
-
-            }
-        });
-
-        cb_colors[PET_COLOR_GOLEN].setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View view) {
-                setColor(PET_COLOR_GOLEN);
-
-            }
-        });
-    }
 
 
     /**
@@ -503,10 +412,12 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
         getSupportFragmentManager().beginTransaction().replace(R.id.dogSize_frame_layout,dogSize).commit();
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.dog_color,dogColors).commit();
+
         toolbar = findViewById(R.id.toolbar);
         userToAdd = new User();
         dogToAdd = new Dog();
-        cb_colors = new CheckBox[9];
+
         colors = new ArrayList<>();
         check = -1;
 
@@ -540,28 +451,11 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         pet_gender_female = findViewById(R.id.CB_pet_gender_female);
         gender_female = findViewById(R.id.CB_gender_female);
         gender_male = findViewById(R.id.CB_gender_male);
-        cb_colors[0] = findViewById(R.id.CB_pet_color_black);
-        cb_colors[1] = findViewById(R.id.CB_pet_color_white);
-        cb_colors[2] = findViewById(R.id.CB_pet_color_gray);
-        cb_colors[3] = findViewById(R.id.CB_pet_color_golden);
-        cb_colors[4] = findViewById(R.id.CB_pet_color_brown);
-        cb_colors[5] = findViewById(R.id.CB_pet_color_);
-        cb_colors[6] = findViewById(R.id.CB_pet_color);
-        cb_colors[7] = findViewById(R.id.CB_pet_color_gay);
-        cb_colors[8] = findViewById(R.id.CB_pet_color_golen);
+
 
     }
 
 
-    /**
-     * function that set color of the pet.
-     * @param toCheck  which colors has been chosen.
-     */
-    private void setColor(int toCheck){
-        if (colors.get(toCheck) == 0) colors.set(toCheck, 1);
-        else colors.set(toCheck, 0);
-
-    }
 
 
     /**
@@ -695,5 +589,10 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     public void getDogSize(int size) {
         Log.d(TAG, "getDogSize: set Dogsize for signup");
         dogToAdd.setSize(size);
+    }
+
+    @Override
+    public void setColor(int position, int value) {
+        colors.set(position,value);
     }
 }
