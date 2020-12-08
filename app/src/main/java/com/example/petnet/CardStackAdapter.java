@@ -1,10 +1,12 @@
 package com.example.petnet;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +46,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         ImageView image;
         TextView name, race, uniqe_signs, gender;
         FloatingActionButton FAB_check,FAB_cancel;
+        private static final String TAG = "ViewHolder";
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.IV_dog_profile);
@@ -53,7 +56,16 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             gender = itemView.findViewById(R.id.TV_gender_info);
             FAB_check = itemView.findViewById(R.id.FAB_check);
             FAB_cancel = itemView.findViewById(R.id.FAB_cancel);
+            
+            FAB_check.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "onClick: Check has been clicked");
+                }
+            });
         }
+        
+        
 
          void setData(ItemModel data) {
             Picasso.get()
