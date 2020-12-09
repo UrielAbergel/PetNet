@@ -5,7 +5,7 @@
     android:id="@+id/SV_register_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BusinessActivities.B_my_store"
+    tools:context=".BusinessActivities.B_MyStoreActivity"
     android:background="@drawable/main_background">
     android:layout_width="match_parent"
     android:layout_height="match_parent"

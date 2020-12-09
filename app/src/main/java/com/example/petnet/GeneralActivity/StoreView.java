@@ -1,4 +1,4 @@
-package com.example.petnet.BusinessActivities;
+package com.example.petnet.GeneralActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,17 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.petnet.Adapters.B_store_list_adapter;
-import com.example.petnet.Bobjects.B_dog_sitter;
-import com.example.petnet.Bobjects.B_dog_trainer;
-import com.example.petnet.Bobjects.B_dog_walker;
-import com.example.petnet.Bobjects.B_pet_shop;
-import com.example.petnet.Bobjects.B_store;
-import com.example.petnet.Bobjects.B_veterinarian_store;
+import com.example.petnet.Adapters.B_StoreListAdapter;
+import com.example.petnet.BusinessObjects.B_DogSitter;
+import com.example.petnet.BusinessObjects.B_DogTrainer;
+import com.example.petnet.BusinessObjects.B_DogWalker;
+import com.example.petnet.BusinessObjects.B_PetShop;
+import com.example.petnet.BusinessObjects.B_Store;
+import com.example.petnet.BusinessObjects.B_VetStore;
 import com.example.petnet.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 public class StoreView extends AppCompatActivity {
 
     private static final String TAG = "Store_dog_sitter";
-    private ArrayList<B_store> store_array = new ArrayList<>();
+    private ArrayList<B_Store> store_array = new ArrayList<>();
     private DatabaseReference myRef;
     private ListView mListView;
     private TextView headText;
@@ -81,30 +80,30 @@ public class StoreView extends AppCompatActivity {
                             Log.d(TAG, "onDataChange: add store");
                             switch (typeOfStore) {
                                 case 0 :
-                                    store_array.add(store.getValue(B_dog_sitter.class));
+                                    store_array.add(store.getValue(B_DogSitter.class));
                                     break;
 
                                 case 1 :
-                                    store_array.add(store.getValue(B_dog_trainer.class));
+                                    store_array.add(store.getValue(B_DogTrainer.class));
                                     break;
 
                                 case 2 :
-                                    store_array.add(store.getValue(B_dog_walker.class));
+                                    store_array.add(store.getValue(B_DogWalker.class));
                                     break;
 
                                 case 3 :
-                                    store_array.add(store.getValue(B_pet_shop.class));
+                                    store_array.add(store.getValue(B_PetShop.class));
                                     break;
 
                                 case 4 :
-                                    store_array.add(store.getValue(B_veterinarian_store.class));
+                                    store_array.add(store.getValue(B_VetStore.class));
                                     break;
                             }
                         }
 
                     }
                 }
-                B_store_list_adapter adapter = new B_store_list_adapter(this_con, R.layout.b_store_view, store_array);
+                B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_store_view, store_array);
                 mListView.setAdapter(adapter);
             }
 

@@ -1,25 +1,26 @@
-package com.example.petnet.Bobjects;
+package com.example.petnet.BusinessObjects;
 
-public class B_dog_trainer implements B_store {
+public class B_PetShop implements B_Store {
 
     private String _store_name;
     private String _phone_number;
     private String _description;
-    private final int _store_type = 1;
+    private final int _store_type = 3;
     private double _store_rate;
     private String _address;
-    private int _price;
-
-    public B_dog_trainer(){}
 
 
-    public B_dog_trainer(String name , String phone_number , String description , String address , int price){
+    public B_PetShop(){}
+
+
+    public B_PetShop(String name , String phone_number , String description , String address){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
-        this._price = price;
     }
+
+
 
     @Override
     public String get_store_name() {
@@ -51,10 +52,6 @@ public class B_dog_trainer implements B_store {
         return this._description;
     }
 
-    public int get_price(){
-        return this._price;
-    }
-
 
     public void setName(String name) {
         this._store_name = name;
@@ -76,21 +73,7 @@ public class B_dog_trainer implements B_store {
         this._address = address;
     }
 
-    public void setPrice(int price) {
-        this._price = price;
-    }
 
-    @Override
-    public String toString() {
-        return "Bdog_trainer{" +
-                "_name='" + _store_name + '\'' +
-                ", _phone_number='" + _phone_number + '\'' +
-                ", _description='" + _description + '\'' +
-                ", _store_type=" + _store_type +
-                ", _store_rate=" + _store_rate +
-                ", _address='" + _address + '\'' +
-                ", _price=" + _price +
-                '}';
-    }
+
 }
 

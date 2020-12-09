@@ -6,6 +6,7 @@ import android.util.Pair;
 import com.example.petnet.Objects.Dog;
 import com.example.petnet.Objects.User;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -18,6 +19,7 @@ public class FindDogOwner {
     private static final String distance_type = "K";
     private static final double minimum_distance = 5;
     private static final double correct_race = 1, not_sure_race = 0.5, correct_size = 1, almost_correct_size = 0.5;
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static int num_of_correct_colors;
     private static double color_value;
 
@@ -74,7 +76,7 @@ public class FindDogOwner {
                     }
 
                     // make pair of user ID with the probability to be the owner
-                    if (final_sum_of_owner_probability > 0)
+                    if (final_sum_of_owner_probability > 0 && !mAuth.getCurrentUser().getUid().equals(UID))
                         possibles_owners_HM.put(UID,final_sum_of_owner_probability);
                 }
             }

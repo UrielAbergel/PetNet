@@ -65,15 +65,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             gender = itemView.findViewById(R.id.TV_gender_info);
             FAB_check = itemView.findViewById(R.id.FAB_check);
             owner_name = itemView.findViewById(R.id.TV_owner_name);
-
-            
             FAB_check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                   getPhoneNumber(uid,itemView);
-
-
-
                 }
             });
         }
@@ -97,8 +92,6 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                 }
             });
         }
-
-
 
         void setData(ItemModel data) {
             Picasso.get()

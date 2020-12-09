@@ -11,14 +11,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.petnet.Adapters.B_store_list_adapter;
-import com.example.petnet.Bobjects.B_new_store_dialog;
-import com.example.petnet.Bobjects.B_pet_shop;
-import com.example.petnet.Bobjects.B_store;
-import com.example.petnet.Bobjects.B_veterinarian_store;
-import com.example.petnet.Bobjects.B_dog_sitter;
-import com.example.petnet.Bobjects.B_dog_trainer;
-import com.example.petnet.Bobjects.B_dog_walker;
+import com.example.petnet.Adapters.B_StoreListAdapter;
+import com.example.petnet.BusinessObjects.B_DogSitter;
+import com.example.petnet.BusinessObjects.B_DogTrainer;
+import com.example.petnet.BusinessObjects.B_DogWalker;
+import com.example.petnet.BusinessObjects.B_NewStoreDialog;
+import com.example.petnet.BusinessObjects.B_PetShop;
+import com.example.petnet.BusinessObjects.B_Store;
+import com.example.petnet.BusinessObjects.B_VetStore;
 import com.example.petnet.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,27 +28,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class B_my_store extends AppCompatActivity {
+public class B_MyStoreActivity extends AppCompatActivity {
 
     private static final String TAG = "Bmy_stores";
     private ImageView new_store_button;
     static Long store_count ;
-    private ArrayList<B_store> store_array = new ArrayList<>();
+    private ArrayList<B_Store> store_array = new ArrayList<>();
     private DatabaseReference myRef;
     private ListView mListView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onDataChange: start1");
         setContentView(R.layout.b_my_store);
-
-
         Log.d(TAG, "onDataChange: start");
         mListView = (ListView) findViewById(R.id.list_view);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
@@ -68,8 +65,8 @@ public class B_my_store extends AppCompatActivity {
             }
         });
 
-
     }
+
 
     private void change_event_update(Context this_con) {
 
@@ -99,11 +96,10 @@ public class B_my_store extends AppCompatActivity {
 
             }
         });
-
     }
 
-    private void refresh(Context this_con) {
 
+    private void refresh(Context this_con) {
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,36 +115,32 @@ public class B_my_store extends AppCompatActivity {
                     switch (type)
                     {
                         case 0:
-                            store_array.add(snapshot.child("s" + i).getValue(B_dog_sitter.class));
+                            store_array.add(snapshot.child("s" + i).getValue(B_DogSitter.class));
                             break;
 
                         case 1:
-                            store_array.add(snapshot.child("s" + i).getValue(B_dog_trainer.class));
+                            store_array.add(snapshot.child("s" + i).getValue(B_DogTrainer.class));
                             break;
 
                         case 2:
-                            store_array.add(snapshot.child("s" + i).getValue(B_dog_walker.class));
+                            store_array.add(snapshot.child("s" + i).getValue(B_DogWalker.class));
                             break;
 
                         case 3:
-                            store_array.add(snapshot.child("s" + i).getValue(B_pet_shop.class));
+                            store_array.add(snapshot.child("s" + i).getValue(B_PetShop.class));
                             break;
 
                         case 4:
-                            store_array.add(snapshot.child("s" + i).getValue(B_veterinarian_store.class));
+                            store_array.add(snapshot.child("s" + i).getValue(B_VetStore.class));
                             break;
 
                     }
                     Log.d(TAG, "onDataChange: got data from firebase " + store_array.get(i).get_store_name());
                     Log.d(TAG, "onDataChange: got data from firebase " + store_array.get(i));
                 }
-                B_store_list_adapter adapter = new B_store_list_adapter(this_con, R.layout.b_store_view, store_array);
+                B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_store_view, store_array);
                 Log.d(TAG, "onDataChange: store_array" + store_array);
                 mListView.setAdapter(adapter);
-
-
-
-
             }
 
             @Override
@@ -158,14 +150,11 @@ public class B_my_store extends AppCompatActivity {
         });
     }
 
+
     private void go_to_my_store_bar() {
-        B_new_store_dialog dialog = new B_new_store_dialog();
+        B_NewStoreDialog dialog = new B_NewStoreDialog();
         dialog.showDialog(this);
     }
-
-
-
-
 
     public String return_type_as_string(int type)
     {

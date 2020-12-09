@@ -8,9 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.petnet.BusinessObjects.B_DogTrainer;
+import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
 
-public class B_main_activity extends AppCompatActivity {
+public class B_MainActivity extends AppCompatActivity {
 
     LinearLayout my_store;
     LinearLayout store_dog_sitter;
@@ -18,8 +20,6 @@ public class B_main_activity extends AppCompatActivity {
     LinearLayout store_dog_walker;
     LinearLayout store_dog_vet;
     LinearLayout store_dog_pet_shop;
-
-
 
 
     @Override
@@ -76,8 +76,6 @@ public class B_main_activity extends AppCompatActivity {
             }
         });
 
-
-
         my_store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,10 +83,6 @@ public class B_main_activity extends AppCompatActivity {
                 go_to_my_store_activity();
             }
         });
-
-
-
-
     }
 
     private void go_to_my_pet_vet_activity() {
@@ -110,14 +104,11 @@ public class B_main_activity extends AppCompatActivity {
         Log.d("start my store", "onDataChange: start");
         intent.putExtra("type_number" ,2 );
         startActivity(intent);
-
-
     }
 
     private void go_to_dog_trainer_activity() {
-        Intent intent = new Intent(this, StoreView.class);
+        Intent intent = new Intent(this, B_DogTrainer.class);
         Log.d("start my store", "onDataChange: start");
-        intent.putExtra("type_number" ,1 );
         startActivity(intent);
 
     }
@@ -132,7 +123,7 @@ public class B_main_activity extends AppCompatActivity {
     private void go_to_my_store_activity() {
         Log.d("start my store", "onDataChange: start1");
 
-        Intent intent = new Intent(this, B_my_store.class);
+        Intent intent = new Intent(this, B_MyStoreActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
     }

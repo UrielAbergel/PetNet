@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.petnet.CostumersActivities.FoundDogActivity;
+import com.example.petnet.CostumersActivities.C_FoundDogActivity;
 import com.example.petnet.R;
-import com.example.petnet.CostumersActivities.SignUpPage;
+import com.example.petnet.CostumersActivities.C_SignUpPageActivity;
 
 
-public class DogSize extends Fragment {
+public class F_DogSize extends Fragment {
 
 
     private final int TINY=1,SMALL=2,MEDIUM=3,BIG=4,HUGE=5;
@@ -122,10 +122,10 @@ public class DogSize extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if(context instanceof foundDog){
-            foundDogListener = (FoundDogActivity)context;
+            foundDogListener = (C_FoundDogActivity)context;
         }
         if(context instanceof dogSizeForSign){
-            dogSizeForSignListener = (SignUpPage)context;
+            dogSizeForSignListener = (C_SignUpPageActivity)context;
         }
 
     }

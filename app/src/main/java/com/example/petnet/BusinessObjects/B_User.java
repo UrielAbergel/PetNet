@@ -1,9 +1,6 @@
-package com.example.petnet.Bobjects;
+package com.example.petnet.BusinessObjects;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class B_user {
+public class B_User {
 
     private String Fname;
     private String Lname;
