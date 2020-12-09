@@ -1,5 +1,7 @@
 package com.example.petnet.Adapters;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -40,6 +42,12 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return new ViewHolder(view);
     }
 
+
+    /**
+     * this function will bind the view holder we got with the dog we found match
+     * @param holder the view holder
+     * @param position position in the list.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setData(items.get(position));
@@ -50,6 +58,11 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return items.size();
     }
 
+
+    /**
+     * each object from this class will represent by a card in the emulator.
+     * all the click buttons and info we need saved here.
+     */
     class  ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name, race, uniqe_signs, gender,owner_name;
@@ -68,11 +81,45 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             FAB_check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  getPhoneNumber(uid,itemView);
+                  isValidCall(itemView);
                 }
             });
         }
-        private void getPhoneNumber(String uid,final View viewHolder) {
+
+
+        /**
+         * check if the user wanna call to the dog owner that might match.
+         * @param viewHolder View to transfer to getPhone to start activity if needed.
+         */
+        private void isValidCall(final View viewHolder) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(viewHolder.getContext());
+            builder.setMessage("Call the owner?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    getPhoneNumber(viewHolder);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+        }
+
+
+        /**
+         * this application will get the phone number of the user from firebase,
+         * and make a dial activity.
+         * @param viewHolder  View to be able start activity from view holder.
+         */
+        private void getPhoneNumber(final View viewHolder) {
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             DatabaseReference myRef = db.getReference("users");
             myRef.child(uid).child("phone").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,6 +140,11 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             });
         }
 
+
+        /**
+         * set all the data .
+         * @param data represent a dog we found match to the description.
+         */
         void setData(ItemModel data) {
             Picasso.get()
                     .load(data.getImage())

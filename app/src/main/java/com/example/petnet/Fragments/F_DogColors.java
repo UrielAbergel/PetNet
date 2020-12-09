@@ -72,6 +72,11 @@ public class F_DogColors extends Fragment {
         cb_colors[PET_COLOR_DARK_GRAY] = v.findViewById(R.id.CB_pet_color_dark_gray);
         cb_colors[PET_COLOR_GINGER] = v.findViewById(R.id.CB_pet_color_ginger);
     }
+
+
+    /**
+     * set all the checkboxes onclick to setColor function.
+     */
     private void setColorsClicks() {
         // if color[i] == 1 the user choosed the color else didnt choose.
         cb_colors[PET_COLOR_BLACK].setOnClickListener(new View.OnClickListener() {
@@ -179,6 +184,11 @@ public class F_DogColors extends Fragment {
         }
     }
 
+
+    /**
+     * Check which activity use the fragment.
+     * @param context the activity that use.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

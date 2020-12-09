@@ -97,10 +97,12 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                     addr.add(homeCordintae.longitude);
                     if(listener !=null)
                     {
+                        Toast.makeText(getActivity(),"Got location",Toast.LENGTH_LONG).show();
                         listener.onInputMapSend(addr);
                         Log.d(TAG, "onClick: coordinate sent to listener");
                     }
                     else{
+                        Toast.makeText(getActivity(),"Got location",Toast.LENGTH_LONG).show();
                         listenerForFoundDog.onInputMapSend(addr);
                         Log.d(TAG, "onClick: coordinate sent to doundgof");
                     }

@@ -25,8 +25,8 @@ public class F_DogSize extends Fragment {
     private  final short loc_huge = 0, loc_big = 1, loc_medium = 2, loc_small = 3, loc_tiny = 4;
     private  final double size = 1.2, add_for_size = 0.2;
     private  final double size_huge = 0, size_big = 1, size_medium = 2, size_small = 3, size_tiny = 4;
-    foundDog foundDogListener= null;
-    dogSizeForSign dogSizeForSignListener=null;
+    private foundDog foundDogListener= null;
+    private dogSizeForSign dogSizeForSignListener=null;
     private Button B_dog_size_huge;
     private Button B_dog_size_big;
     private Button B_dog_size_medium;
@@ -35,6 +35,10 @@ public class F_DogSize extends Fragment {
     private ImageView IV_dog;
     private View v;
 
+
+    /**
+     * interfaces for found dog activity and signup activity for transfer data between fragment and activity
+     */
     public interface foundDog{
         public void getDogSize(int size);
     }
@@ -47,18 +51,27 @@ public class F_DogSize extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_dog_size, container, false);
+
+        InitializeVariables();
+        setButtonsClick();
+
+        return v;
+    }
+
+    private void InitializeVariables() {
         B_dog_size_huge = v.findViewById(R.id.B_huge);
         B_dog_size_big = v.findViewById(R.id.B_big);
         B_dog_size_medium = v.findViewById(R.id.B_medium);
         B_dog_size_small = v.findViewById(R.id.B_small);
         B_dog_size_tiny = v.findViewById(R.id.B_tiny);
         IV_dog = v.findViewById(R.id.dog_pic_for_size);
-
-        setButtonsClick();
-
-        return v;
     }
 
+    /**
+     * This function will set all the Buttons onclick function,
+     * each function will make the dog image smaller or larger to represent
+     * the dog size.
+     */
     private void setButtonsClick() {
         B_dog_size_huge.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +131,11 @@ public class F_DogSize extends Fragment {
 
     }
 
+    /**
+     * this function will determine which activity using the fragment.
+     * and initialize the connector variable to transfer data.
+     * @param context the activity that use .
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

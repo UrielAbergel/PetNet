@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.petnet.Adapters.StringsManipulators;
+import com.example.petnet.Algorithms.StringsManipulators;
 import com.example.petnet.Objects.User;
 import com.example.petnet.R;
 import com.google.android.gms.tasks.OnFailureListener;

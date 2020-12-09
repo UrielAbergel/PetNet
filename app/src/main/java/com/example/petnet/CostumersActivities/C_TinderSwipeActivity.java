@@ -1,10 +1,13 @@
 package com.example.petnet.CostumersActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -92,7 +95,8 @@ public class C_TinderSwipeActivity extends AppCompatActivity  {
 
                 if(manager.getTopPosition() == adapter.getItemCount())
                 {
-                    paginate();
+                    //paginate();
+                    isTheDog();
                 }
             }
 
@@ -135,6 +139,37 @@ public class C_TinderSwipeActivity extends AppCompatActivity  {
     }
 
 
+    /**
+     * function that will see if the user want to lokk on the dog again.
+     * if yes refresh the cards and show again from the start,
+     * move to main activity otherwise.
+     */
+    private void isTheDog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Owner was not found,Look again on the dogs?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                paginate();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(),C_UserMainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /**
+     * function to start all the dogs card again.
+     */
     private void paginate(){
         List<ItemModel> old = adapter.getItems();
         //addList();
@@ -145,7 +180,11 @@ public class C_TinderSwipeActivity extends AppCompatActivity  {
         hasil.dispatchUpdatesTo(adapter);
     }
 
-    //after this function done items need to be initialize to dogs we found.
+
+    /**
+     * sort the hash map we got 
+     */
+
     private void addList() {
         userCandidateList = SortHashMap.sortByValue(userCandidateList);
         mapToItemModel();

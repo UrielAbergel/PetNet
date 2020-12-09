@@ -26,7 +26,7 @@ public class DataBase {
     private static final String TAG = "DataBase";
     private static final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static FirebaseDatabase FBdatabase = FirebaseDatabase.getInstance();
-    public static DatabaseReference reference = FBdatabase.getReference("dogs");
+
     public static final String USERS_ROOT="users",DOGS_ROOT="dogs",STORES_ROOT="Stores",BUSERS_ROOT="Busers";
 
 
