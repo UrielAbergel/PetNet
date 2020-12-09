@@ -60,20 +60,20 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     private LatLng homeCordintae;
 
     //widgets
-
     private SearchView mSerach;
     private ImageView mGps;
     private AlertDialog dialog;
     private FloatingActionButton sendCoordinates;
 
+
     public interface MapListener{
         void onInputMapSend(List<Double> coordiantes);
     }
 
+
     public interface MapLisinterForFoundDog{
         void onInputMapSend(List<Double> coordiantes);
     }
-
 
 
     @Nullable
@@ -106,11 +106,11 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                         listenerForFoundDog.onInputMapSend(addr);
                         Log.d(TAG, "onClick: coordinate sent to doundgof");
                     }
-                      
+
                 }
                 else{
                     Log.d(TAG, "onClick: Failed to send Coordinates");
-                     Toast.makeText(getContext(),"Failed to get location,Try again.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Failed to get location,Try again.",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -141,16 +141,18 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         return v;
     }
 
+
     @Override
     public void onAttach(@NonNull Context context) {
         Log.d(TAG, "onAttach: Attching parent activity of the fragment.");
         super.onAttach(context);
         if(context instanceof MapListener)
-                listener = (C_SignUpPageActivity)context;
+            listener = (C_SignUpPageActivity)context;
 
         else if(context instanceof  MapLisinterForFoundDog)
             listenerForFoundDog = (C_FoundDogActivity)context;
     }
+
 
     /**
      * in this function we will get the Latlng of the user and save it into out database.
@@ -182,15 +184,9 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                 mMap.addMarker(new MarkerOptions().position(curr));
                 homeCordintae = curr;
             }
-
-
-
-
         }
-
-
-
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -198,9 +194,6 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
         if(mLocationPermissionGraunted) getDeviceLocation();
-
-
-
     }
 
 
@@ -236,7 +229,6 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         }catch (SecurityException e){
 
         }
-
     }
 
 
@@ -244,6 +236,7 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         Log.d(TAG, "moveCamera: Moving camera zoom");
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,zoom));
     }
+
 
     private void initMap(){
         Log.d(TAG, "initMap: Initialize map");
@@ -266,53 +259,6 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
             ActivityCompat.requestPermissions(getActivity(),permissions,LOCATION_PERMISSION_REQUESR_CODE);
         }
     }
-
-//    public void isAtHome(){
-//        Log.d(TAG, "isAtHome: Check if user is at home to take coordinates");
-//        dialog = new AlertDialog.Builder(getContext())
-//                .setTitle("Verify address")
-//                .setMessage("Are you at home?")
-//                .setPositiveButton("Yes",null )
-//                .setNegativeButton("No",null)
-//                .show();
-//
-//        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-//        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-//
-//        positiveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // At this point if the user choosed yes we have the address save in homeCordinate variable, need to send it back to SignUpPage.
-//                //check homeCordinat not null. if null do nothing close the dialog.
-//
-//                Log.d(TAG, "onClick: From Dialog , the Cordinate is:" + homeCordintae);
-//                dialog.dismiss();
-//
-//                if(homeCordintae!= null){
-//                    List<Double> addr = new ArrayList<>();
-//                    addr.add(homeCordintae.latitude);
-//                    addr.add(homeCordintae.longitude);
-//                    listener.onInputMapSend(addr);
-//
-//                }
-//
-//            }
-//        });
-//
-//        negativeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //do nothing only close the alert diialog.
-//                Log.d(TAG, "onClick: Close dialog and get address from user.");
-//                dialog.dismiss();
-//
-//            }
-//        });
-
-
-//    }
-
-
 
 
     @Override
@@ -337,8 +283,6 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
                 }
         }
     }
-
-
 
 }
 
