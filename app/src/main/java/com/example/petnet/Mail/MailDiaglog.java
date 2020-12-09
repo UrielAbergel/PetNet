@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Mail;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.petnet.R;
 
 public class MailDiaglog {
 

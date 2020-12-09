@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Mail;
 
 import android.app.ProgressDialog;
 import android.content.Context;

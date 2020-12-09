@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.petnet.BusinessActivities.B_main_activity;
-import com.example.petnet.MailDiaglog;
+import com.example.petnet.Mail.MailDiaglog;
 import com.example.petnet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
