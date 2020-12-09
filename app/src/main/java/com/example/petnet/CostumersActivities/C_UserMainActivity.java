@@ -51,10 +51,6 @@ public class C_UserMainActivity extends AppCompatActivity {
         setUserView();
     }
 
-
-
-
-
     private void start_all_listiner(){
         store_dog_sitter = (LinearLayout)findViewById(R.id.u_dog_sitter);
         store_dog_trainer = (LinearLayout)findViewById(R.id.u_dog_trainer);
@@ -128,7 +124,7 @@ public class C_UserMainActivity extends AppCompatActivity {
     private void go_to_dog_trainer_activity() {
         Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
-        intent.putExtra("type_number" ,1 );
+        intent.putExtra("type_number" ,1);
         startActivity(intent);
 
     }
