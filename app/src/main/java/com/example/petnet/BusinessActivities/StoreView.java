@@ -70,7 +70,6 @@ public class StoreView extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d(TAG, "onDataChange: Start take data from firebase");
                 Long users_number = snapshot.getChildrenCount();
-
                 store_array.clear();
 
                 for (DataSnapshot user : snapshot.getChildren()) {
