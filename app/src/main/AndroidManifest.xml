@@ -23,11 +23,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".BusinessActivities.Store_vet"></activity>
-        <activity android:name=".BusinessActivities.Store_dog_pet_shop" />
-        <activity android:name=".BusinessActivities.Store_dog_walker" />
-        <activity android:name=".BusinessActivities.Store_dog_trainer" />
-        <activity android:name=".BusinessActivities.Store_dog_sitter" />
+        <activity android:name=".BusinessActivities.StoreView" />
         <activity android:name=".BusinessActivities.B_my_store" />
         <activity
             android:name=".CostumersActivities.UserMainActivity"

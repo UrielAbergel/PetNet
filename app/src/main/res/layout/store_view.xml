@@ -11,13 +11,12 @@
     android:layout_height="match_parent"
     >
 
-    <TextView
-        android:id="@+id/my_store_text"
+    <EditText
+        android:id="@+id/store_view_text"
         android:layout_width="429dp"
         android:layout_height="32dp"
         android:layout_marginTop="4dp"
         android:gravity="center_horizontal"
-        android:text="Dog Sitter Store`s"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -29,7 +28,7 @@
         android:id="@+id/store_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/my_store_text"
+        android:layout_below="@id/store_view_text"
         android:layout_centerHorizontal="true"
         android:src="@drawable/store"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +39,7 @@
         app:layout_constraintVertical_bias="0.042" />
 
     <ListView
-        android:id="@+id/list_view_dog_sitter"
+        android:id="@+id/list_view_store"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/store_image"

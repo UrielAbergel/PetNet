@@ -92,35 +92,40 @@ public class B_main_activity extends AppCompatActivity {
     }
 
     private void go_to_my_pet_vet_activity() {
-        Intent intent = new Intent(this, Store_vet.class);
+        Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
+        intent.putExtra("type_number" ,4 );
         startActivity(intent);
     }
 
     private void go_to_my_pet_shop_activity() {
-        Intent intent = new Intent(this, Store_dog_pet_shop.class);
+        Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
+        intent.putExtra("type_number" ,3 );
         startActivity(intent);
     }
 
     private void go_to_dog_walker_activity() {
-        Intent intent = new Intent(this, Store_dog_walker.class);
+        Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
+        intent.putExtra("type_number" ,2 );
         startActivity(intent);
 
 
     }
 
     private void go_to_dog_trainer_activity() {
-        Intent intent = new Intent(this, Store_dog_trainer.class);
+        Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
+        intent.putExtra("type_number" ,1 );
         startActivity(intent);
 
     }
 
     private void go_to_dog_sitter_activity() {
-        Intent intent = new Intent(this, Store_dog_sitter.class);
+        Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
+        intent.putExtra("type_number" ,0 );
         startActivity(intent);
     }
 
