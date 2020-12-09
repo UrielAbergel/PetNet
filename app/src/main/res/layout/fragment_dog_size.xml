@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.DogSize">
+
+
+    <LinearLayout
+
+        android:id="@+id/linear_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/B_huge"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:text="@string/huge"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/B_big"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:text="@string/big"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/B_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/medium"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/B_small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/small"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/B_tiny"
+            android:layout_width="89dp"
+            android:layout_height="match_parent"
+            android:text="@string/tiny"
+            android:textAllCaps="false"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="65dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/person_for_size"
+            android:layout_width="90dp"
+            android:layout_height="190dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/person_for_size"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="299dp" />
+
+        <ImageView
+            android:id="@+id/dog_pic_for_size"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:rotationX="2"
+            android:rotationY="-181"
+            android:src="@drawable/dog_sizes"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="299dp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

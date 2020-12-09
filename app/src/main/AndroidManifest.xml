@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.petnet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
+        <activity android:name=".TinderSwipe"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
         <activity android:name=".Store_vet"></activity>
         <activity android:name=".Store_dog_pet_shop" />
         <activity android:name=".Store_dog_walker" />
@@ -20,9 +31,12 @@
         <activity android:name=".B_my_store" />
         <activity
             android:name=".UserMainActivity"
-            android:parentActivityName=".UserMainActivity" />
+            android:parentActivityName=".Log_in_activity" />
         <activity android:name=".B_main_activity" />
         <activity android:name=".B_sign_up_page" />
+
+        <activity android:name=".FoundDogActivity" />
+
         <activity
             android:name=".SignUpPage"
             android:label=""
