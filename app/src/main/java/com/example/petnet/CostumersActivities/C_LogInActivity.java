@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +18,6 @@ import com.example.petnet.BusinessActivities.B_MainActivity;
 import com.example.petnet.Mail.MailDiaglog;
 import com.example.petnet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,14 +26,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 
 public class C_LogInActivity extends AppCompatActivity {
 
     private static final String TAG = "Log_in_activity";
-    private Button getResult;
     private EditText User_Name_input;
     private EditText Password_input;
     private TextView Sign_up_input;
@@ -128,6 +121,7 @@ public class C_LogInActivity extends AppCompatActivity {
         login_button = (Button) findViewById(R.id.B_login);
     }
 
+
     /**
      * after user logged in successful we take the uid and check if he user or buser,
      * @param uid represent the user in our database.
@@ -144,9 +138,7 @@ public class C_LogInActivity extends AppCompatActivity {
                 else{
                     go_user_main_activity_page();
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -154,15 +146,18 @@ public class C_LogInActivity extends AppCompatActivity {
         });
     }
 
+
     public void go_sign_up_page(){
         Intent intent = new Intent(this, C_SignUpPageActivity.class);
         startActivity(intent);
     }
 
+
     public void go_to_mail_send_screen(){
         MailDiaglog alert = new MailDiaglog();
         alert.showDialog(this, "Error de conexión al servidor");
     }
+
 
     private void go_bus_main_activity_page() {
         Intent intent = new Intent(this, B_MainActivity.class);

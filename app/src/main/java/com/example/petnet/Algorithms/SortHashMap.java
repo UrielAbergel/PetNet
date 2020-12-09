@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class SortHashMap {
 
+    /**
+     * this function sort hash map by value in decrease order
+     * @param hm hash map
+     * @return sorted hash map
+     */
     public static HashMap<String, Double> sortByValue(HashMap<String, Double> hm)
     {
         // Create a list from elements of HashMap

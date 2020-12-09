@@ -36,8 +36,6 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final String TAG = "FoundDogActivity";
-    private final String distance_type = "K";
-    private final double minimum_distance = 3;
     private CheckBox pet_gender_male;
     private CheckBox pet_gender_female;
     private CheckBox pet_gender_not_sure;
@@ -49,9 +47,6 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
     private Fragment G_map;
     private AutoCompleteTextView pet_race;
 
-    FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
-    List<Double> coordinators;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +55,7 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
 
         InitializeVariables();
 
-        if (isServicesOK())
+        if (isServicesOK()) // check if google servers connections are ok
         {
            getSupportFragmentManager().beginTransaction().replace(R.id.found_dog_frame_layout, G_map).commit();
         }
@@ -109,7 +104,9 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
         });
     }
 
-
+    /**
+     * Initialize all local variables
+     */
     private void InitializeVariables() {
         dogToFind = new Dog();
         G_map = new F_GoogleMapAPI();
@@ -162,7 +159,10 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
         });
     }
 
-
+    /**
+     *
+     * @param coordiantes represent location of the map who found the dog
+     */
     @Override
     public void onInputMapSend(List<Double> coordiantes) {
         dogToFind.setAddress(coordiantes);
@@ -170,6 +170,10 @@ public class C_FoundDogActivity extends AppCompatActivity implements F_GoogleMap
     }
 
 
+    /**
+     * check that google services are ok
+     * @return
+     */
     private boolean isServicesOK() {
         Log.d(TAG, "isServicesOK: Checking google services version");
 
