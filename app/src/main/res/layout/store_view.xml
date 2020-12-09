@@ -11,18 +11,16 @@
     android:layout_height="match_parent"
     >
 
-    <EditText
+    <TextView
         android:id="@+id/store_view_text"
         android:layout_width="429dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
     <ImageView
         android:id="@+id/store_image"

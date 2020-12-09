@@ -32,7 +32,7 @@ public class StoreView extends AppCompatActivity {
     private ArrayList<B_store> store_array = new ArrayList<>();
     private DatabaseReference myRef;
     private ListView mListView;
-    private EditText headText;
+    private TextView headText;
     private int typeOfStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class StoreView extends AppCompatActivity {
         myRef = FirebaseDatabase.getInstance().getReference().child("Stores");
         Log.d(TAG, "onDataChange: start");
         mListView = (ListView) findViewById(R.id.list_view_store);
-        headText = (EditText)  findViewById(R.id.store_view_text) ;
+        headText = (TextView)  findViewById(R.id.store_view_text) ;
         Bundle type = getIntent().getExtras();
         typeOfStore = type.getInt("type_number");
         headText.setText(get_head_text(typeOfStore));
@@ -57,7 +57,7 @@ public class StoreView extends AppCompatActivity {
             case 1 : return "Dog Trainer Store`s";
             case 2 : return "Dog Walker`s";
             case 3 : return "Pet Shops Store`s";
-            case 4 : return "Veterinarian Walker`S";
+            case 4 : return "Veterinarian";
         }
         return "";
     }
