@@ -6,9 +6,27 @@ import android.widget.ImageView;
 public class ItemModel {
 
     private Uri image;
-    private String dog_name, gender, race, uniqe_signs;
+    private String dog_name, gender, race, uniqe_signs,owner_name;
+    String uid;
 
     public ItemModel() {
+    }
+
+
+    public String getOwner_name() {
+        return owner_name;
+    }
+
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public Uri getImage() {

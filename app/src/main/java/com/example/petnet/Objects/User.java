@@ -12,7 +12,7 @@ public class User {
     private String Password;
     private int Gender;
     private String Uid;
-
+    private String Phone;
 
 
 
@@ -23,7 +23,13 @@ public class User {
 
 
 
+    public String getPhone() {
+        return Phone;
+    }
 
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
     public String getFname() {
         return Fname;
     }

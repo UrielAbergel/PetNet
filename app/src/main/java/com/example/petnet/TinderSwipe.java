@@ -19,6 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -146,6 +151,7 @@ public class TinderSwipe extends AppCompatActivity  {
     private void mapToItemModel()
     {
         //for dog pics
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
         FirebaseStorage storage = FirebaseStorage.getInstance();
         final StorageReference storageRef = storage.getReference();
         for (Map.Entry<String,Double> current_dog: userCandidateList.entrySet()) {
@@ -175,10 +181,26 @@ public class TinderSwipe extends AppCompatActivity  {
                             toReturn.setGender("Female");
                         toReturn.setRace(tempDog.getPet_race());
                         toReturn.setUniqe_signs(tempDog.getUniqe_signs());
-                        items.add(toReturn);
+                        toReturn.setUid(key);
+
                     }
                 }
             });
+
+            myRef.child(key).child("fname").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    toReturn.setOwner_name((String)snapshot.getValue());
+                    items.add(toReturn);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
     }
 }

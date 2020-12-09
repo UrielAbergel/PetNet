@@ -57,7 +57,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private final int REQUEST_IMAGE_CAPTURE = 0;
     private final int REQUEST_IMAGE_FROM_GALLERY = 1;
 
-    private String races[] = {"Pitbull", "Golden-Retriver", "Pincher", "Malinoa", "a", "a", "a", "a", "a", "a"};
     private List<Integer> colors;
     private int check;
 
@@ -69,6 +68,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private EditText password;
     private EditText confirm_password;
     private EditText pet_name;
+    private EditText phone_number;
     private AutoCompleteTextView pet_race;
     private CheckBox gender_male;
     private CheckBox gender_female;
@@ -153,12 +153,12 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,gMap).commit();
         }
 
-        pet_race.setAdapter(new ArrayAdapter<>(SignUpPage.this, android.R.layout.simple_list_item_1, races));
+        pet_race.setAdapter(new ArrayAdapter<>(SignUpPage.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pet_races)));
         pet_race.setDropDownAnchor(R.id.ACTV_pet_race);
         pet_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pet_race.setText(races[position]);
+                pet_race.setText(getResources().getStringArray(R.array.pet_races)[position]);
             }
 
             @Override
@@ -260,6 +260,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         userToAdd.setLname(last_name.getText().toString());
         userToAdd.setPassword(password.getText().toString());
         userToAdd.setEmail(email.getText().toString());
+        userToAdd.setPhone(phone_number.getText().toString());
 
     }
 
@@ -445,6 +446,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         pet_name = findViewById(R.id.ET_pet_name);
         pet_race = findViewById(R.id.ACTV_pet_race);
         uniqe_signs = findViewById(R.id.ET_uniqe_signs);
+        phone_number = findViewById(R.id.ET_register_phone);
 
         //CheckBoxs
         pet_gender_male = findViewById(R.id.CB_pet_gender_male);
