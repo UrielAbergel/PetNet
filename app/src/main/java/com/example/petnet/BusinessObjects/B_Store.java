@@ -1,8 +1,6 @@
-package com.example.petnet.Bobjects;
+package com.example.petnet.BusinessObjects;
 
-import android.location.Address;
-
-public interface B_store {
+public interface B_Store {
 
     public String get_store_name();
 

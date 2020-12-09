@@ -1,4 +1,4 @@
-package com.example.petnet.Bobjects;
+package com.example.petnet.BusinessObjects;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class B_new_store_dialog {
+public class B_NewStoreDialog {
 
     String name,store_price,phone_num,address,store_des;
     private EditText get_store_name;
@@ -36,7 +36,7 @@ public class B_new_store_dialog {
     private ImageView send_button;
     private ImageView cancel_button;
     private boolean check = false;
-    private B_store store;
+    private B_Store store;
     private int type = -1;
     private Long store_count;
     private DatabaseReference myRef;
@@ -138,32 +138,32 @@ public class B_new_store_dialog {
                         break;
 
                     case 0:
-                        store = new B_dog_sitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
+                        store = new B_DogSitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
                         myRef.child("s" + store_count).setValue(store);
 
 
                         break;
 
                     case 1:
-                        store = new B_dog_trainer(name,phone_num,store_des,address,Integer.parseInt(store_price));
+                        store = new B_DogTrainer(name,phone_num,store_des,address,Integer.parseInt(store_price));
                         myRef.child("s" + store_count).setValue(store);
 
                         break;
 
                     case 2:
-                        store = new B_dog_walker(name,phone_num,store_des,address,Integer.parseInt(store_price));
+                        store = new B_DogWalker(name,phone_num,store_des,address,Integer.parseInt(store_price));
                         myRef.child("s" + store_count).setValue(store);
 
                         break;
 
                     case 3:
-                        store = new B_pet_shop(name,phone_num,store_des,address);
+                        store = new B_PetShop(name,phone_num,store_des,address);
                         myRef.child("s" + store_count).setValue(store);
 
                         break;
 
                     case 4:
-                        store = new B_veterinarian_store(name,phone_num,store_des,address);
+                        store = new B_VetStore(name,phone_num,store_des,address);
                         myRef.child("s" + store_count).setValue(store);
 
                         break;

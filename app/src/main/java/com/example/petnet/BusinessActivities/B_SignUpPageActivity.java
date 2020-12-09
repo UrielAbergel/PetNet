@@ -11,8 +11,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.petnet.Bobjects.B_user;
-import com.example.petnet.CostumersActivities.Log_in_activity;
+import com.example.petnet.BusinessObjects.B_User;
+import com.example.petnet.CostumersActivities.C_LogInActivity;
 import com.example.petnet.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class B_sign_up_page extends AppCompatActivity {
+public class B_SignUpPageActivity extends AppCompatActivity {
 
 
     Button sign_up_button;
@@ -35,7 +35,7 @@ public class B_sign_up_page extends AppCompatActivity {
     EditText confirm_password;
     CheckBox gender_male;
     CheckBox gender_female;
-    B_user userToAdd;
+    B_User userToAdd;
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
@@ -59,7 +59,7 @@ public class B_sign_up_page extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference().child("Busers");
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        userToAdd = new B_user();
+        userToAdd = new B_User();
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +90,7 @@ public class B_sign_up_page extends AppCompatActivity {
                         userToAdd.setPassword(password.getText().toString());
                         myRef.child(userToAdd.getUID()).setValue(userToAdd);
                         Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
-                        Intent log_in_page = new Intent(getApplicationContext(), Log_in_activity.class);
+                        Intent log_in_page = new Intent(getApplicationContext(), C_LogInActivity.class);
                         startActivity(log_in_page);
 
                     }

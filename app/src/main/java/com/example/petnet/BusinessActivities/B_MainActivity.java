@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import com.example.petnet.R;
 
-public class B_main_activity extends AppCompatActivity {
+public class B_MainActivity extends AppCompatActivity {
 
     LinearLayout my_store;
     LinearLayout store_dog_sitter;
@@ -92,19 +92,19 @@ public class B_main_activity extends AppCompatActivity {
     }
 
     private void go_to_my_pet_vet_activity() {
-        Intent intent = new Intent(this, Store_vet.class);
+        Intent intent = new Intent(this, StoreVetActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
     }
 
     private void go_to_my_pet_shop_activity() {
-        Intent intent = new Intent(this, Store_dog_pet_shop.class);
+        Intent intent = new Intent(this, StoreDogPetShopActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
     }
 
     private void go_to_dog_walker_activity() {
-        Intent intent = new Intent(this, Store_dog_walker.class);
+        Intent intent = new Intent(this, StoreDogWalkerActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
 
@@ -112,14 +112,14 @@ public class B_main_activity extends AppCompatActivity {
     }
 
     private void go_to_dog_trainer_activity() {
-        Intent intent = new Intent(this, Store_dog_trainer.class);
+        Intent intent = new Intent(this, StoreDogTrainerActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
 
     }
 
     private void go_to_dog_sitter_activity() {
-        Intent intent = new Intent(this, Store_dog_sitter.class);
+        Intent intent = new Intent(this, StoreDogSitterActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
     }
@@ -127,7 +127,7 @@ public class B_main_activity extends AppCompatActivity {
     private void go_to_my_store_activity() {
         Log.d("start my store", "onDataChange: start1");
 
-        Intent intent = new Intent(this, B_my_store.class);
+        Intent intent = new Intent(this, B_MyStoreActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
     }

@@ -4,13 +4,13 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.petnet.Bobjects.B_dog_sitter;
-import com.example.petnet.Bobjects.B_dog_trainer;
-import com.example.petnet.Bobjects.B_dog_walker;
-import com.example.petnet.Bobjects.B_pet_shop;
-import com.example.petnet.Bobjects.B_user;
-import com.example.petnet.Bobjects.B_store;
-import com.example.petnet.Bobjects.B_veterinarian_store;
+import com.example.petnet.BusinessObjects.B_DogSitter;
+import com.example.petnet.BusinessObjects.B_DogTrainer;
+import com.example.petnet.BusinessObjects.B_DogWalker;
+import com.example.petnet.BusinessObjects.B_PetShop;
+import com.example.petnet.BusinessObjects.B_User;
+import com.example.petnet.BusinessObjects.B_Store;
+import com.example.petnet.BusinessObjects.B_VetStore;
 import com.example.petnet.Objects.Dog;
 import com.example.petnet.Objects.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,7 +80,7 @@ public class DataBase {
         return true;
     }
 
-    public static boolean insertBusiness(B_store businessToAdd , String uid , int store_count){
+    public static boolean insertBusiness(B_Store businessToAdd , String uid , int store_count){
 
         /**
          *  Think on the database, if we want make root for each shop type for not travle on the whole shops 
@@ -95,31 +95,31 @@ public class DataBase {
         try{
             switch(type){
                 case 0:
-                    B_dog_sitter DStoAdd = (B_dog_sitter)businessToAdd;
+                    B_DogSitter DStoAdd = (B_DogSitter)businessToAdd;
                     myRef.setValue(DStoAdd);
                     Log.d(TAG, "insertBusiness: Dogsitter has been added to Database");
                     return true;
 
                 case 1:
-                    B_dog_trainer DTtoAdd = (B_dog_trainer)businessToAdd;
+                    B_DogTrainer DTtoAdd = (B_DogTrainer)businessToAdd;
                     myRef.setValue(DTtoAdd);
                     Log.d(TAG, "insertBusiness: Dogtrainer has been added to Database");
                     return true;
 
                 case 2:
-                    B_dog_walker DWtoAdd = (B_dog_walker)businessToAdd;
+                    B_DogWalker DWtoAdd = (B_DogWalker)businessToAdd;
                     myRef.setValue(DWtoAdd);
                     Log.d(TAG, "insertBusiness: Dogwalker has been added to Database");
                     return true;
 
                 case 3:
-                    B_pet_shop PStoAdd = (B_pet_shop) businessToAdd;
+                    B_PetShop PStoAdd = (B_PetShop) businessToAdd;
                     myRef.setValue(PStoAdd);
                     Log.d(TAG, "insertBusiness: Petshop has been added to Database");
                     return true;
 
                 case 4:
-                    B_veterinarian_store vetToAdd = (B_veterinarian_store) businessToAdd;
+                    B_VetStore vetToAdd = (B_VetStore) businessToAdd;
                     myRef.setValue(vetToAdd);
                     Log.d(TAG, "insertBusiness: Vet has been added to Database.");
                     return true;
@@ -134,7 +134,7 @@ public class DataBase {
         return true;
     }
 
-    public static boolean insertBuser(B_user userToAdd){
+    public static boolean insertBuser(B_User userToAdd){
         DatabaseReference myRef = FBdatabase.getReference(BUSERS_ROOT);
         try{
             myRef.child(userToAdd.getUID()).setValue(userToAdd);

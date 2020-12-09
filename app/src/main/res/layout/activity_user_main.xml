@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context=".CostumersActivities.UserMainActivity">
+    tools:context=".CostumersActivities.C_UserMainActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -42,8 +42,9 @@
             </TextView>
 
             <ImageView
+                android:id="@+id/IV_pet_image"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/bel"
+                android:src="@drawable/main_logo"
                 android:layout_width="82dp"
                 android:layout_height="82dp">
             </ImageView>

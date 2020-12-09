@@ -23,9 +23,9 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.petnet.CostumersActivities.FoundDogActivity;
+import com.example.petnet.CostumersActivities.C_FoundDogActivity;
 import com.example.petnet.R;
-import com.example.petnet.CostumersActivities.SignUpPage;
+import com.example.petnet.CostumersActivities.C_SignUpPageActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
+public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     private MapListener listener;
     private MapLisinterForFoundDog listenerForFoundDog;
     private static final String TAG = "mapfrag";
@@ -144,10 +144,10 @@ public class GoogleMapAPI extends Fragment implements OnMapReadyCallback {
         Log.d(TAG, "onAttach: Attching parent activity of the fragment.");
         super.onAttach(context);
         if(context instanceof MapListener)
-                listener = (SignUpPage)context;
+                listener = (C_SignUpPageActivity)context;
 
         else if(context instanceof  MapLisinterForFoundDog)
-            listenerForFoundDog = (FoundDogActivity)context;
+            listenerForFoundDog = (C_FoundDogActivity)context;
     }
 
     /**

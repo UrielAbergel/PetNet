@@ -13,14 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
-import com.example.petnet.CostumersActivities.FoundDogActivity;
+import com.example.petnet.CostumersActivities.C_FoundDogActivity;
 import com.example.petnet.R;
-import com.example.petnet.CostumersActivities.SignUpPage;
+import com.example.petnet.CostumersActivities.C_SignUpPageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogColors extends Fragment {
+public class F_DogColors extends Fragment {
     private CheckBox cb_colors[];
     private View v;
     private final int PET_COLOR_BLACK = 0;
@@ -183,10 +183,10 @@ public class DogColors extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if(context instanceof Signuplistener){
-            signuplistener = (SignUpPage) context;
+            signuplistener = (C_SignUpPageActivity) context;
         }
         else if(context instanceof FoundDoglistener){
-            foundDoglistener = (FoundDogActivity)context;
+            foundDoglistener = (C_FoundDogActivity)context;
         }
     }
 }

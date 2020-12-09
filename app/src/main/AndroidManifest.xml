@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
-        <activity android:name=".CostumersActivities.TinderSwipe"></activity>
+        <activity android:name=".CostumersActivities.C_TinderSwipeActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -23,26 +23,26 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".BusinessActivities.Store_vet"></activity>
-        <activity android:name=".BusinessActivities.Store_dog_pet_shop" />
-        <activity android:name=".BusinessActivities.Store_dog_walker" />
-        <activity android:name=".BusinessActivities.Store_dog_trainer" />
-        <activity android:name=".BusinessActivities.Store_dog_sitter" />
-        <activity android:name=".BusinessActivities.B_my_store" />
+        <activity android:name=".BusinessActivities.StoreVetActivity"></activity>
+        <activity android:name=".BusinessActivities.StoreDogPetShopActivity" />
+        <activity android:name=".BusinessActivities.StoreDogWalkerActivity" />
+        <activity android:name=".BusinessActivities.StoreDogTrainerActivity" />
+        <activity android:name=".BusinessActivities.StoreDogSitterActivity" />
+        <activity android:name=".BusinessActivities.B_MyStoreActivity" />
         <activity
-            android:name=".CostumersActivities.UserMainActivity"
-            android:parentActivityName=".CostumersActivities.Log_in_activity" />
-        <activity android:name=".BusinessActivities.B_main_activity" />
-        <activity android:name=".BusinessActivities.B_sign_up_page" />
+            android:name=".CostumersActivities.C_UserMainActivity"
+            android:parentActivityName=".CostumersActivities.C_LogInActivity" />
+        <activity android:name=".BusinessActivities.B_MainActivity" />
+        <activity android:name=".BusinessActivities.B_SignUpPageActivity" />
 
-        <activity android:name=".CostumersActivities.FoundDogActivity" />
+        <activity android:name=".CostumersActivities.C_FoundDogActivity" />
 
         <activity
-            android:name=".CostumersActivities.SignUpPage"
+            android:name=".CostumersActivities.C_SignUpPageActivity"
             android:label=""
-            android:parentActivityName=".CostumersActivities.Log_in_activity" />
+            android:parentActivityName=".CostumersActivities.C_LogInActivity" />
         <activity
-            android:name=".CostumersActivities.Log_in_activity"
+            android:name=".CostumersActivities.C_LogInActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,11 +6,11 @@ import com.example.petnet.Objects.ItemModel;
 
 import java.util.List;
 
-public class CardStackCallback extends DiffUtil.Callback {
+public class CardStackCallbackAdapter extends DiffUtil.Callback {
 
     private List<ItemModel> old, baru;
 
-    public CardStackCallback(List<ItemModel> old, List<ItemModel> baru) {
+    public CardStackCallbackAdapter(List<ItemModel> old, List<ItemModel> baru) {
         this.old = old;
         this.baru = baru;
     }

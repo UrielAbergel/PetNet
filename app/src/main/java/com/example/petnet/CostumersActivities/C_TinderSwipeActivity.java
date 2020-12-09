@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.petnet.Adapters.CardStackAdapter;
 import com.example.petnet.Algorithms.SortHashMap;
-import com.example.petnet.Adapters.CardStackCallback;
+import com.example.petnet.Adapters.CardStackCallbackAdapter;
 import com.example.petnet.Objects.Dog;
 import com.example.petnet.Objects.ItemModel;
 import com.example.petnet.R;
@@ -47,7 +47,7 @@ import java.util.Map;
 
 import static java.lang.Thread.sleep;
 
-public class TinderSwipe extends AppCompatActivity  {
+public class C_TinderSwipeActivity extends AppCompatActivity  {
 
 
     private FirebaseFirestore FbFs = FirebaseFirestore.getInstance();
@@ -139,7 +139,7 @@ public class TinderSwipe extends AppCompatActivity  {
         List<ItemModel> old = adapter.getItems();
         //addList();
         List<ItemModel> baru = new ArrayList<>(items);
-        CardStackCallback callback = new CardStackCallback(old,baru);
+        CardStackCallbackAdapter callback = new CardStackCallbackAdapter(old,baru);
         DiffUtil.DiffResult hasil = DiffUtil.calculateDiff(callback);
         adapter.setItems(baru);
         hasil.dispatchUpdatesTo(adapter);

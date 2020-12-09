@@ -1,6 +1,6 @@
-package com.example.petnet.Bobjects;
+package com.example.petnet.BusinessObjects;
 
-public class B_dog_sitter implements B_store {
+public class B_DogSitter implements B_Store {
 
     private String _store_name;
     private String _phone_number;
@@ -10,9 +10,9 @@ public class B_dog_sitter implements B_store {
     private String _address;
     private int _price;
 
-    public B_dog_sitter(){}
+    public B_DogSitter(){}
 
-    public B_dog_sitter(String name , String phone_number , String description , String address , int price){
+    public B_DogSitter(String name , String phone_number , String description , String address , int price){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;

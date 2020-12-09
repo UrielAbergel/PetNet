@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.petnet.Bobjects.B_store;
+import com.example.petnet.BusinessObjects.B_Store;
 import com.example.petnet.R;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 
 
 
-public class B_store_list_adapter extends ArrayAdapter<B_store> {
+public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
 
 
     private Context mContext;
@@ -37,7 +37,7 @@ public class B_store_list_adapter extends ArrayAdapter<B_store> {
 
 
 
-    public B_store_list_adapter(@NonNull Context context, int resource, @NonNull List<B_store> objects) {
+    public B_StoreListAdapter(@NonNull Context context, int resource, @NonNull List<B_Store> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

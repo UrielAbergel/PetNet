@@ -23,11 +23,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.petnet.BusinessActivities.B_sign_up_page;
-import com.example.petnet.Fragments.DogColors;
-import com.example.petnet.Fragments.DogSize;
+import com.example.petnet.BusinessActivities.B_SignUpPageActivity;
+import com.example.petnet.Fragments.F_DogColors;
+import com.example.petnet.Fragments.F_DogSize;
 import com.example.petnet.Firebase.DataBase;
-import com.example.petnet.Fragments.GoogleMapAPI;
+import com.example.petnet.Fragments.F_GoogleMapAPI;
 import com.example.petnet.Objects.Dog;
 import com.example.petnet.Objects.User;
 import com.example.petnet.R;
@@ -48,7 +48,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapListener, DogSize.dogSizeForSign, DogColors.Signuplistener {
+public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleMapAPI.MapListener, F_DogSize.dogSizeForSign, F_DogColors.Signuplistener {
 
 
     private static final String TAG = "SignUpPage";
@@ -83,7 +83,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private ImageButton take_photo_from_gallery;
     private ImageView pet_photo;
 
-
     //Object.
     private User userToAdd;
     private Dog dogToAdd;
@@ -95,55 +94,21 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
     private Fragment dogSize;
     private Fragment dogColors;
 
-
-
-
-
     private DatabaseReference myRef;
     private StorageReference mStorageRef;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-
-
-
-
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
-        gMap = new GoogleMapAPI();
-        dogSize = new DogSize();
-        dogColors = new DogColors();
-
-
-
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.hasChildren()) {
-//
-//                    Iterable<DataSnapshot> childer = snapshot.getChildren();
-//                    for (DataSnapshot snapshot1 : childer) {
-//
-//                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ORIAN");
-//                        User temp = snapshot1.getValue(User.class);
-//
-//                        System.out.println(temp + "FROM FIREBASE!!!!!!!!!!!!!!");
-//
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        gMap = new F_GoogleMapAPI();
+        dogSize = new F_DogSize();
+        dogColors = new F_DogColors();
 
         initializeVariables();
 
@@ -153,7 +118,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,gMap).commit();
         }
 
-        pet_race.setAdapter(new ArrayAdapter<>(SignUpPage.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pet_races)));
+        pet_race.setAdapter(new ArrayAdapter<>(C_SignUpPageActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pet_races)));
         pet_race.setDropDownAnchor(R.id.ACTV_pet_race);
         pet_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -178,8 +143,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             }
         });
 
-
-
         setGenderClick();
 
         setPetGenderClick();
@@ -192,20 +155,20 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
         setBusinessClick();
 
-
-
     }
+
 
     private void setBusinessClick() {
         business_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), B_sign_up_page.class);
+                Intent intent = new Intent(getApplicationContext(), B_SignUpPageActivity.class);
                 startActivity(intent);
 
             }
         });
     }
+
 
     private void setSignupClick() {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +189,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
                             if (check == 0) uploadImage(REQUEST_IMAGE_FROM_GALLERY, userToAdd.getUid());
                             else if (check == 1) uploadImage(REQUEST_IMAGE_CAPTURE, userToAdd.getUid());
-                            Intent intent = new Intent(getApplicationContext(), Log_in_activity.class);
+                            Intent intent = new Intent(getApplicationContext(), C_LogInActivity.class);
                             startActivity(intent);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -234,16 +197,11 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
                         public void onFailure(@NonNull Exception e) {
                             System.out.println("ICANTDOIT :" + e.toString());
                             Toast.makeText(getApplicationContext(), "Sign-up failed, Try again", Toast.LENGTH_LONG).show();
-
-
                         }
                     });
 
                 }
-                else return;
-
-            };
-
+            }
         });
     }
 
@@ -392,7 +350,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             }
         });
 
-
         gender_male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -402,8 +359,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             }
         });
     }
-
-
 
 
     /**
@@ -426,7 +381,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             colors.add(0);
         }
 
-
         //buttons
         sign_up_button = findViewById(R.id.B_signup);
         take_photo = findViewById(R.id.camera_photo);
@@ -434,7 +388,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         hide_pass = findViewById(R.id.IV_hide_pass);
         hide_confirm_pass = findViewById(R.id.IV_hide_confirm_pass);
         business_sign_up = findViewById(R.id.TV_Business_signup);
-
 
         //EditTexts
         first_name = findViewById(R.id.PT_register_first_name);
@@ -453,12 +406,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         pet_gender_female = findViewById(R.id.CB_pet_gender_female);
         gender_female = findViewById(R.id.CB_gender_female);
         gender_male = findViewById(R.id.CB_gender_male);
-
-
     }
-
-
-
 
     /**
      * function to change InputType.
@@ -474,9 +422,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
             case 128:
                 toChange.setInputType(129);
                 break;
-
         }
-
     }
 
     @Override
@@ -498,7 +444,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
                 pet_photo.setImageURI(Imageuri);
             }
         }
-
     }
 
     /**
@@ -510,7 +455,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         mStorageRef = mStorageRef.child(path);
 
         //image has been taken from camera.
-
         if (request == REQUEST_IMAGE_CAPTURE) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -530,7 +474,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         }
 
         //image has been taken from gallery.
-
         if (request == REQUEST_IMAGE_FROM_GALLERY) {
             mStorageRef.putFile(Imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -543,12 +486,9 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
                     Toast.makeText(getApplicationContext(), "Image uploade failed", Toast.LENGTH_LONG).show();
                 }
             });
-
-
         }
-
-
     }
+
 
     /**
      * check if have permission for googlemap.
@@ -572,7 +512,6 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         }
 
         return false;
-
     }
 
 
@@ -587,11 +526,13 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
 
     }
 
+
     @Override
     public void getDogSize(int size) {
         Log.d(TAG, "getDogSize: set Dogsize for signup");
         dogToAdd.setSize(size);
     }
+
 
     @Override
     public void setColor(int position, int value) {
