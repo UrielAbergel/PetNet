@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.BusinessActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.petnet.R;
 
 public class B_main_activity extends AppCompatActivity {
 

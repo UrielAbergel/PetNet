@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.CostumersActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +13,12 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petnet.Adapters.CardStackAdapter;
 import com.example.petnet.Algorithms.SortHashMap;
+import com.example.petnet.Adapters.CardStackCallback;
 import com.example.petnet.Objects.Dog;
+import com.example.petnet.Objects.ItemModel;
+import com.example.petnet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

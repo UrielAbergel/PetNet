@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.petnet.Bobjects.B_store;
+import com.example.petnet.R;
 
 import java.util.List;
 

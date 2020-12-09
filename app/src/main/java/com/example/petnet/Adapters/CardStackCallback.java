@@ -1,6 +1,8 @@
-package com.example.petnet;
+package com.example.petnet.Adapters;
 
 import androidx.recyclerview.widget.DiffUtil;
+
+import com.example.petnet.Objects.ItemModel;
 
 import java.util.List;
 

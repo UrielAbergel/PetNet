@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Objects;
 
 import android.net.Uri;
 import android.widget.ImageView;

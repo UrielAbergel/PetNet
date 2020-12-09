@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.BusinessActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.petnet.Bobjects.B_user;
+import com.example.petnet.CostumersActivities.Log_in_activity;
+import com.example.petnet.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -87,7 +90,7 @@ public class B_sign_up_page extends AppCompatActivity {
                         userToAdd.setPassword(password.getText().toString());
                         myRef.child(userToAdd.getUID()).setValue(userToAdd);
                         Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
-                        Intent log_in_page = new Intent(getApplicationContext(),Log_in_activity.class);
+                        Intent log_in_page = new Intent(getApplicationContext(), Log_in_activity.class);
                         startActivity(log_in_page);
 
                     }

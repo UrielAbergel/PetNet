@@ -1,19 +1,18 @@
-package com.example.petnet;
+package com.example.petnet.Bobjects;
 
-public class B_dog_trainer implements B_store {
+public class B_dog_sitter implements B_store {
 
     private String _store_name;
     private String _phone_number;
     private String _description;
-    private final int _store_type = 1;
+    private final int _store_type = 0;
     private double _store_rate;
     private String _address;
     private int _price;
 
-    public B_dog_trainer(){}
+    public B_dog_sitter(){}
 
-
-    public B_dog_trainer(String name , String phone_number , String description , String address , int price){
+    public B_dog_sitter(String name , String phone_number , String description , String address , int price){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
@@ -55,7 +54,6 @@ public class B_dog_trainer implements B_store {
         return this._price;
     }
 
-
     public void setName(String name) {
         this._store_name = name;
     }
@@ -82,7 +80,7 @@ public class B_dog_trainer implements B_store {
 
     @Override
     public String toString() {
-        return "Bdog_trainer{" +
+        return "Bdog_sitter{" +
                 "_name='" + _store_name + '\'' +
                 ", _phone_number='" + _phone_number + '\'' +
                 ", _description='" + _description + '\'' +

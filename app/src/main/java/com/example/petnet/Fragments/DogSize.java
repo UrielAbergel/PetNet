@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.petnet.FoundDogActivity;
+import com.example.petnet.CostumersActivities.FoundDogActivity;
 import com.example.petnet.R;
-import com.example.petnet.SignUpPage;
+import com.example.petnet.CostumersActivities.SignUpPage;
 
 
 public class DogSize extends Fragment {

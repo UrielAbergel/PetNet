@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.BusinessActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.example.petnet.Adapters.B_store_list_adapter;
+import com.example.petnet.Bobjects.B_dog_trainer;
+import com.example.petnet.Bobjects.B_store;
+import com.example.petnet.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.CostumersActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petnet.BusinessActivities.B_main_activity;
+import com.example.petnet.MailDiaglog;
+import com.example.petnet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -169,7 +171,7 @@ public class Log_in_activity extends AppCompatActivity {
         alert.showDialog(this, "Error de conexión al servidor");
     }
     private void go_bus_main_activity_page() {
-        Intent intent = new Intent(this, Bmain_activity.class);
+        Intent intent = new Intent(this, B_main_activity.class);
         startActivity(intent);
     }
     public void go_user_main_activity_page(){

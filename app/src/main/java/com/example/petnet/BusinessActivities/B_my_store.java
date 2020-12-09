@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.BusinessActivities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +11,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.petnet.Adapters.B_store_list_adapter;
+import com.example.petnet.Bobjects.B_new_store_dialog;
+import com.example.petnet.Bobjects.B_pet_shop;
+import com.example.petnet.Bobjects.B_store;
+import com.example.petnet.Bobjects.B_veterinarian_store;
+import com.example.petnet.Bobjects.B_dog_sitter;
+import com.example.petnet.Bobjects.B_dog_trainer;
+import com.example.petnet.Bobjects.B_dog_walker;
+import com.example.petnet.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;

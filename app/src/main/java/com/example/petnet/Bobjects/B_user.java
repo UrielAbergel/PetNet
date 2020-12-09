@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Bobjects;
 
 import java.util.ArrayList;
 import java.util.List;

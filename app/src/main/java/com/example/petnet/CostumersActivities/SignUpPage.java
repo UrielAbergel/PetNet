@@ -1,7 +1,6 @@
-package com.example.petnet;
+package com.example.petnet.CostumersActivities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -9,7 +8,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -25,12 +23,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.petnet.BusinessActivities.B_sign_up_page;
 import com.example.petnet.Fragments.DogColors;
 import com.example.petnet.Fragments.DogSize;
 import com.example.petnet.Firebase.DataBase;
 import com.example.petnet.Fragments.GoogleMapAPI;
 import com.example.petnet.Objects.Dog;
 import com.example.petnet.Objects.User;
+import com.example.petnet.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -200,7 +200,7 @@ public class SignUpPage extends AppCompatActivity implements GoogleMapAPI.MapLis
         business_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BSignUpPage.class);
+                Intent intent = new Intent(getApplicationContext(), B_sign_up_page.class);
                 startActivity(intent);
 
             }

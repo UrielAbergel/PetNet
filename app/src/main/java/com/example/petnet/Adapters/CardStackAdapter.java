@@ -1,4 +1,4 @@
-package com.example.petnet;
+package com.example.petnet.Adapters;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.petnet.Objects.ItemModel;
+import com.example.petnet.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
-import com.example.petnet.FoundDogActivity;
+import com.example.petnet.CostumersActivities.FoundDogActivity;
 import com.example.petnet.R;
-import com.example.petnet.SignUpPage;
+import com.example.petnet.CostumersActivities.SignUpPage;
 
 import java.util.ArrayList;
 import java.util.List;
