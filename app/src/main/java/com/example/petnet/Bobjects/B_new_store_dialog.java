@@ -140,8 +140,6 @@ public class B_new_store_dialog {
                     case 0:
                         store = new B_dog_sitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
                         myRef.child("s" + store_count).setValue(store);
-
-
                         break;
 
                     case 1:

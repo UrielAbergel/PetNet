@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class B_my_store extends AppCompatActivity {
 
@@ -110,6 +111,7 @@ public class B_my_store extends AppCompatActivity {
                 Log.d(TAG, "onDataChange: Start take data from firebase");
                 store_count = snapshot.getChildrenCount();
                 store_array.clear();
+                Log.d(TAG, "onDataChange: Store count=" + store_count);
 
                 for (int i = 0; i < store_count; i++) {
                     Log.d(TAG, "onDataChange: read all stores");
@@ -130,6 +132,7 @@ public class B_my_store extends AppCompatActivity {
 
                         case 3:
                             store_array.add(snapshot.child("s" + i).getValue(B_pet_shop.class));
+                            break;
 
                         case 4:
                             store_array.add(snapshot.child("s" + i).getValue(B_veterinarian_store.class));
@@ -140,6 +143,7 @@ public class B_my_store extends AppCompatActivity {
                     Log.d(TAG, "onDataChange: got data from firebase " + store_array.get(i));
                 }
                 B_store_list_adapter adapter = new B_store_list_adapter(this_con, R.layout.b_store_view, store_array);
+                Log.d(TAG, "onDataChange: store_array" + store_array);
                 mListView.setAdapter(adapter);
 
 

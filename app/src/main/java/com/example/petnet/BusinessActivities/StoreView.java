@@ -79,12 +79,27 @@ public class StoreView extends AppCompatActivity {
                         Log.d(TAG, "onDataChange: type  "  + store.child("_store_type").getValue().toString());
                         int type = Integer.parseInt(store.child("_store_type").getValue().toString());
                         if(type == typeOfStore) {
+                            Log.d(TAG, "onDataChange: add store");
                             switch (typeOfStore) {
-                                case 0 : store_array.add(store.getValue(B_dog_sitter.class));
-                                case 1 : store_array.add(store.getValue(B_dog_trainer.class));
-                                case 2 : store_array.add(store.getValue(B_dog_walker.class));
-                                case 3 : store_array.add(store.getValue(B_pet_shop.class));
-                                case 4 : store_array.add(store.getValue(B_veterinarian_store.class));
+                                case 0 :
+                                    store_array.add(store.getValue(B_dog_sitter.class));
+                                    break;
+
+                                case 1 :
+                                    store_array.add(store.getValue(B_dog_trainer.class));
+                                    break;
+
+                                case 2 :
+                                    store_array.add(store.getValue(B_dog_walker.class));
+                                    break;
+
+                                case 3 :
+                                    store_array.add(store.getValue(B_pet_shop.class));
+                                    break;
+
+                                case 4 :
+                                    store_array.add(store.getValue(B_veterinarian_store.class));
+                                    break;
                             }
                         }
 
@@ -92,7 +107,6 @@ public class StoreView extends AppCompatActivity {
                 }
                 B_store_list_adapter adapter = new B_store_list_adapter(this_con, R.layout.b_store_view, store_array);
                 mListView.setAdapter(adapter);
-
             }
 
             @Override
