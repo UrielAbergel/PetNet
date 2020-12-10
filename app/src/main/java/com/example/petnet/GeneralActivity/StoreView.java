@@ -43,14 +43,13 @@ public class StoreView extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.list_view_store);
         headText = (TextView)  findViewById(R.id.store_view_text) ;
         Bundle type = getIntent().getExtras();
-        typeOfStore = type.getInt("type_number");
+        typeOfStore = (int)type.get("type_number");
         headText.setText(get_head_text(typeOfStore));
         Context this_con = this;
         add_all_stores_to_array(this_con);
     }
 
     private String get_head_text(int type) {
-        String result = "" ;
         switch (type) {
             case 0 : return "Dog Sitter Store`s";
             case 1 : return "Dog Trainer Store`s";

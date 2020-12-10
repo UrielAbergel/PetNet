@@ -1,17 +1,12 @@
 package com.example.petnet.Algorithms;
 
 import android.util.Log;
-import android.util.Pair;
-
 import com.example.petnet.Objects.Dog;
-import com.example.petnet.Objects.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.HashMap;
-import java.util.List;
 
 public class FindDogOwner {
 
@@ -20,9 +15,13 @@ public class FindDogOwner {
     private static final double minimum_distance = 5;
     private static final double correct_race = 1, not_sure_race = 0.5, correct_size = 1, almost_correct_size = 0.5;
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static int num_of_correct_colors;
     private static double color_value;
 
+    /**
+     * @param task to get all dogs from the DB
+     * @param dogToFind the dog description that the founder provided
+     * @return map contains String that represent the used ID and double that represent the probability for the right owner
+     */
     public static HashMap<String,Double> find_dog_possible_owners(Task<QuerySnapshot> task, Dog dogToFind) {
 
         HashMap<String,Double> possibles_owners_HM = new HashMap<String,Double>();
@@ -30,9 +29,8 @@ public class FindDogOwner {
         if (task.isSuccessful()) {
 
             double candidate_dog_x, candidate_dog_y, dog_to_find_x, dog_to_find_y;
-            double percent_color, percent_race, percent_high, percent_gender, final_sum_of_owner_probability = 0;
+            double final_sum_of_owner_probability = 0;
             int num_of_colors;
-            Pair<String,Double> user_probability_pair;
 
             for (QueryDocumentSnapshot dogDocument : task.getResult()) {
                 String UID = dogDocument.getId();

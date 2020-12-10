@@ -60,7 +60,7 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
     private List<Integer> colors;
     private int check;
 
-  //Widgets.
+   //Widgets.
     private Button sign_up_button;
     private EditText first_name;
     private EditText last_name;
@@ -117,7 +117,7 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
         if (isServicesOK()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,gMap).commit();
         }
-
+        // set adapters
         pet_race.setAdapter(new ArrayAdapter<>(C_SignUpPageActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pet_races)));
         pet_race.setDropDownAnchor(R.id.ACTV_pet_race);
         pet_race.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -169,7 +169,10 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
         });
     }
 
-
+    /**
+     * check if all inserted values are valid, if yes - sign it up
+     *                                         if no  - send error massage
+     */
     private void setSignupClick() {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +208,9 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
         });
     }
 
+    /**
+     * fill dog parameters
+     */
     private void fillDog() {
         dogToAdd.setPet_name(pet_name.getText().toString());
         dogToAdd.setColors(colors);
@@ -213,6 +219,9 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
     }
 
+    /**
+     * fill user parameters
+     */
     private void fillUser() {
         userToAdd.setFname(first_name.getText().toString());
         userToAdd.setLname(last_name.getText().toString());
@@ -222,6 +231,10 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
     }
 
+    /**
+     * check if all sign up details are right
+     * @return validation status
+     */
     private boolean validateSignUp() {
         if(first_name.getText().toString().equals("")){
             first_name.setError("Please fill First name");

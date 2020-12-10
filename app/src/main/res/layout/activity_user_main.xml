@@ -107,27 +107,28 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
+                    android:id="@+id/u_dog_sitter"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/dog_sitter"
                         android:layout_width="80dp"
-                        android:layout_height="80dp">
+                        android:layout_height="80dp"
+                        android:src="@drawable/dog_sitter">
 
                     </ImageView>
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
                         android:text="@string/dog_sitter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:textColor="#000000"
+                        android:textSize="18sp">
 
                     </TextView>
 
@@ -146,25 +147,26 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
+                    android:id="@+id/u_dog_walker"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/dog_walker"
                         android:layout_width="80dp"
-                        android:layout_height="80dp"/>
+                        android:layout_height="80dp"
+                        android:src="@drawable/dog_walker" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
                         android:text="@string/dog_walker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -182,27 +184,28 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
+                    android:id="@+id/u_dog_trainer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/dog_trainer"
                         android:layout_width="80dp"
-                        android:layout_height="80dp">
+                        android:layout_height="80dp"
+                        android:src="@drawable/dog_trainer">
 
                     </ImageView>
 
                     <TextView
-                        android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:text="@string/dog_trainer"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/dog_trainer"
+                        android:textColor="#000000"
+                        android:textSize="18sp">
 
                     </TextView>
 
@@ -221,25 +224,26 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
+                    android:id="@+id/u_vet_store"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/dog_vet"
                         android:layout_width="80dp"
-                        android:layout_height="80dp"/>
+                        android:layout_height="80dp"
+                        android:src="@drawable/dog_vet" />
 
                     <TextView
-                        android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:text="@string/veterinarian"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/veterinarian"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -257,27 +261,28 @@
                 >
 
                 <LinearLayout
-                    android:background="@drawable/text_input"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
+                    android:id="@+id/u_pet_shop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_input"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/pet_shop"
                         android:layout_width="80dp"
-                        android:layout_height="80dp">
+                        android:layout_height="80dp"
+                        android:src="@drawable/pet_shop">
 
                     </ImageView>
 
                     <TextView
-                        android:layout_marginTop="12dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:text="@string/pet_shops"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/pet_shops"
+                        android:textColor="#000000"
+                        android:textSize="18sp">
 
                     </TextView>
 
