@@ -186,6 +186,7 @@ public class DataBase {
 
 
     /**
+     * has been tested work good.
      * This function delete a chosen store.
      * like insertbusiness the chosen store gonna delete from 3 diffrent trees.
      * @param type the type of the shop e.g. vetStore,DogTrainer..
@@ -388,8 +389,13 @@ public class DataBase {
     }
 
 
-
-
+    /**
+     * this function hasnot been tested.
+     * this function delete a business user from out system.
+     * 1) delete all the shop that this user own.
+     * 2) delete the user from authentication.
+     * @return true if user has been deleted false otherwise.
+     */
     public static boolean deleteBUser(){
         FirebaseUser userToDelete = mAuth.getCurrentUser();
         String uid = userToDelete.getUid();
