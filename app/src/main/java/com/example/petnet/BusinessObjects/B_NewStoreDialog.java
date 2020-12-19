@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.petnet.Firebase.DataBase;
 import com.example.petnet.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -139,30 +140,33 @@ public class B_NewStoreDialog {
 
                     case 0:
                         store = new B_DogSitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s" + store_count).setValue(store);
+
+                    //   DataBase.insertBusiness(store,currentFirebaseUser.getUid());
+                           DataBase.deleteBusiness(0,currentFirebaseUser.getUid(),"-MOvnCZEOmg2C50LaJXX");
+                        // myRef.child("s" + store_count).setValue(store);
                         break;
 
                     case 1:
                         store = new B_DogTrainer(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s" + store_count).setValue(store);
+                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
 
                         break;
 
                     case 2:
                         store = new B_DogWalker(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        myRef.child("s" + store_count).setValue(store);
+                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
 
                         break;
 
                     case 3:
                         store = new B_PetShop(name,phone_num,store_des,address);
-                        myRef.child("s" + store_count).setValue(store);
+                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
 
                         break;
 
                     case 4:
                         store = new B_VetStore(name,phone_num,store_des,address);
-                        myRef.child("s" + store_count).setValue(store);
+                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
 
                         break;
 
