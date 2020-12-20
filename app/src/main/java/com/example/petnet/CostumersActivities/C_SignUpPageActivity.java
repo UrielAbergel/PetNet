@@ -77,7 +77,6 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
     private EditText uniqe_signs;
     private ImageButton hide_pass;
     private ImageButton hide_confirm_pass;
-    private androidx.appcompat.widget.Toolbar toolbar;
     private TextView business_sign_up;
     private ImageButton take_photo;
     private ImageButton take_photo_from_gallery;
@@ -112,8 +111,7 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
         initializeVariables();
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (isServicesOK()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,gMap).commit();
         }
@@ -383,7 +381,6 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
         getSupportFragmentManager().beginTransaction().replace(R.id.dog_color,dogColors).commit();
 
-        toolbar = findViewById(R.id.toolbar);
         userToAdd = new User();
         dogToAdd = new Dog();
 

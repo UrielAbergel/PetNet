@@ -1,133 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    tools:ignore="VectorDrawableCompat">
 
-    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bgHeader"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:elevation="1dp" />
+
 
     <ImageView
         android:id="@+id/main_logo"
-        android:layout_width="227dp"
-        android:layout_height="164dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:contentDescription="@string/logo_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="110dp"
         app:layout_constraintVertical_bias="0.079"
         app:srcCompat="@drawable/main_logo"
         tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="-7dp" />
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/bgHeader"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-80dp"
+        android:layout_marginRight="-100dp"
+        android:src="@drawable/circletransparant" />
 
-    <EditText
-        android:id="@+id/TI_username"
-        android:layout_width="227dp"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:inputType="textPersonName|text"
-        android:paddingLeft="10dp"
-        android:hint="@string/TI_username_txt"
+    <ImageView
+        android:id="@+id/circle2"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-100dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/circletransparant" />
 
-        app:layout_constraintBottom_toTopOf="@+id/TI_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/circle3"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="-80dp"
+        android:layout_marginBottom="-30dp"
+        android:src="@drawable/circle" />
 
-        app:layout_constraintTop_toBottomOf="@+id/main_logo"
-        app:layout_constraintVertical_bias="0.421" />
+    <ImageView
+        android:id="@+id/circle4"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:layout_toLeftOf="@+id/circle3"
+        android:src="@drawable/circletransparant" />
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bgHeader">
+
+        <RelativeLayout
+            android:id="@+id/daniel"
+            android:layout_marginTop="180dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:id="@+id/LoginBuilder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Username"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/TI_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:drawableLeft="@drawable/lock_pass"
+                        android:hint="User@gmail.com"
+                        android:inputType="textEmailAddress" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Password"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/TI_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:drawableLeft="@drawable/lock_passe"
+                        android:hint="*****"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv"
+                android:layout_alignLeft="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginRight="35dp"
+                android:elevation="10dp">
+
+                <Button
+                    android:id="@+id/B_login"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_ui"
+                    android:onClick="Login"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="-20dp"
+                android:elevation="10dp">
 
 
-    <EditText
-        android:id="@+id/TI_password"
-        android:layout_width="233dp"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:hint="@string/TI_password_txt"
-        android:password="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_logo"
-        app:layout_constraintVertical_bias="0.234" />
+                <ImageButton
+                    android:id="@+id/TV_signup"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_ui"
+                    android:onClick="onRegisterClick"
+                    android:src="@drawable/ic_add" />
+            </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/FAB_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/FAB_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="320dp"
+                android:layout_marginTop="330dp"
+                android:clickable="true"
+                app:backgroundTint="@color/colorBlueT"
+                app:srcCompat="@drawable/emal_log" />
 
-    <TextView
-        android:id="@+id/TV_signup_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TV_signup_hint_txt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TV_signup"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TI_password"
-        app:layout_constraintVertical_bias="0.609" />
-
-    <TextView
-        android:id="@+id/TV_signup"
-        android:layout_width="77dp"
-        android:layout_height="0dp"
-        android:text="@string/TV_signup_txt"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/TV_signup_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.706"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TV_signup_hint"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <CheckBox
-        android:id="@+id/CB_remember_me"
-        android:layout_width="136dp"
-        android:layout_height="38dp"
-        android:text="Remember me?"
-        android:textColorHighlight="#170404"
-        android:buttonTint="@color/black"
-        android:textColorLink="#0E0000"
-        android:textCursorDrawable="@android:drawable/checkbox_on_background"
-        app:layout_constraintBottom_toTopOf="@+id/TV_signup_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TI_password"
-        app:layout_constraintVertical_bias="0.132" />
-
-    <Button
-        android:id="@+id/B_login"
-        android:layout_width="148dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="122dp"
-        android:background="@drawable/custom_button"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/TV_signup_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TI_password" />
+        </RelativeLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

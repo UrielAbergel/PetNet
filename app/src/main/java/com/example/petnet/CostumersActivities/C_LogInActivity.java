@@ -32,14 +32,13 @@ public class C_LogInActivity extends AppCompatActivity {
     private static final String TAG = "Log_in_activity";
     private EditText User_Name_input;
     private EditText Password_input;
-    private TextView Sign_up_input;
+    private ImageView Sign_up_input;
     private ImageView FAB_mail_input;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Button login_button;
     private FirebaseDatabase myDB = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
     private int rememberMe =0;
-    private CheckBox CB_rememebr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,14 +95,7 @@ public class C_LogInActivity extends AppCompatActivity {
                 }
             });
 
-            CB_rememebr.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(rememberMe%2 == 0) rememberMe++;
-                    else rememberMe--;
-                    Log.d(TAG, "onClick: remeberme :" + rememberMe);
-                }
-            });
+
         }
     }
 
@@ -112,11 +104,11 @@ public class C_LogInActivity extends AppCompatActivity {
      * Initialize all variables.
      */
     private void InitializeVariables() {
-        CB_rememebr = findViewById(R.id.CB_remember_me);
+
         // get input from the user
         User_Name_input = (EditText) findViewById(R.id.TI_username);
         Password_input = (EditText) findViewById(R.id.TI_password);
-        Sign_up_input =  (TextView)  findViewById(R.id.TV_signup);
+        Sign_up_input =  (ImageView)  findViewById(R.id.TV_signup);
         FAB_mail_input = (ImageView) findViewById(R.id.FAB_mail);
         login_button = (Button) findViewById(R.id.B_login);
     }
