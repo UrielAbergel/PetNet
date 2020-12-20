@@ -8,7 +8,6 @@
     tools:context=".CostumersActivities.C_SignUpPageActivity">
 
 
-
     <ImageView
         android:id="@+id/circle1"
         android:layout_width="84dp"
@@ -17,12 +16,11 @@
         android:src="@drawable/circletransparant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
-
 
     <ImageView
         android:id="@+id/circle6"
@@ -32,7 +30,7 @@
         android:src="@drawable/circletransparant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -41,6 +39,7 @@
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="159dp"
+        style="@style/Casual"
         android:layout_height="57dp"
         android:layout_centerHorizontal="true"
         android:elevation="10dp"
@@ -59,7 +58,7 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="424dp"
+        android:layout_width="410dp"
         android:layout_height="580dp"
         app:layout_constraintBottom_toBottomOf="@id/tvSignUp"
         android:layout_marginTop="80dp"
@@ -78,13 +77,14 @@
             <EditText
                 android:id="@+id/PT_register_first_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
+
                 android:hint="@string/first_name"
                 android:inputType="textPersonName" />
 
@@ -249,6 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                style="@style/Casual"
                 android:layout_marginLeft="130dp"
                 android:layout_marginTop="40dp"
                 android:elevation="10dp"
@@ -444,6 +445,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/TV_Business_signup_hint_txt"
+        style="@style/Casual"
+
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -460,6 +463,8 @@
         android:text="@string/TV_Business_signup_txt"
         android:textSize="15dp"
         android:textStyle="bold"
+        style="@style/Casual"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"

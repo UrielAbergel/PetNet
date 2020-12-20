@@ -73,7 +73,6 @@ public class StoreView extends AppCompatActivity {
                 for (DataSnapshot user : snapshot.getChildren()) {
                     for (DataSnapshot store : user.getChildren()) {
 
-                        Log.d(TAG, "onDataChange: type  "  + store.child("_store_type").getValue().toString());
                         int type = Integer.parseInt(store.child("_store_type").getValue().toString());
                         if(type == typeOfStore) {
                             Log.d(TAG, "onDataChange: add store");

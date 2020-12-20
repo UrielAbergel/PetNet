@@ -6,15 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".CostumersActivities.C_FoundDogActivity">
 
+    <ImageView
+        android:id="@+id/circle8"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_below="@+id/bgHeader"
+        android:src="@drawable/circletransparant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/circle9"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_below="@+id/bgHeader"
+        android:src="@drawable/circletransparant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="13dp"
         android:text="@string/found_a_dog"
-        android:background="@drawable/gradient_background"
-        android:textColor="@color/black"
-        android:textSize="70sp"
+        android:textColor="#25659C"
+        style="@style/Casual"
+        android:layout_marginLeft="60dp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,7 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="120dp"
-        android:background="@drawable/gradient_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -47,8 +76,10 @@
             <TextView
                 android:id="@+id/TV_dog_size_Q"
                 android:layout_width="match_parent"
+                android:textColor="#25659C"
+                android:layout_marginLeft="80dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borders"
+                style="@style/Casual"
                 android:text="@string/what_is_the_dog_size"
                 android:textSize="20sp" />
 
@@ -71,7 +102,9 @@
                     android:id="@+id/TV_pet_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/borders"
+                    android:textColor="#25659C"
+                    android:layout_marginLeft="60dp"
+                    style="@style/Casual"
                     android:text="@string/what_is_the_dog_colors"
                     android:textSize="20sp" />
 
@@ -89,15 +122,19 @@
                 android:completionThreshold="1"
                 android:dropDownHeight="100dp"
                 android:hint="Dog race"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="50dp"
                 android:maxLines="1" />
 
             <TextView
                 android:id="@+id/TV_pet_gender"
                 android:layout_width="401dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borders"
+                android:textColor="#25659C"
+                android:layout_marginLeft="60dp"
+                style="@style/Casual"
                 android:text="@string/what_is_the_pet_gender"
-                android:textSize="17dp" />
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,9 +175,11 @@
             <TextView
                 android:layout_width="401dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/borders"
+                android:textColor="#25659C"
+                android:layout_marginLeft="60dp"
+                style="@style/Casual"
                 android:text="@string/what_is_the_dog_location"
-                android:textSize="17dp" />
+                android:textSize="20dp" />
 
             <FrameLayout
                 android:id="@+id/found_dog_frame_layout"
@@ -149,9 +188,12 @@
 
             <Button
                 android:id="@+id/B_search_owner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_marginLeft="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/custom_button"
                 android:textAllCaps="false"
+
                 android:text="Search for owner!">
 
             </Button>

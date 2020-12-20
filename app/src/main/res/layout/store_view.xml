@@ -18,6 +18,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
+        style="@style/Casual"
         android:textSize="20dp"
         android:textStyle="bold"
          />
