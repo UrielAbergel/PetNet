@@ -10,6 +10,8 @@ public class B_User {
     private int store_count = 0 ;
     private String UID;
 
+    public B_User(){}
+
     public int getStore_count() {
         return store_count;
     }
