@@ -169,7 +169,7 @@ public class B_MainActivity extends AppCompatActivity {
     private void go_to_dog_trainer_activity() {
         Intent intent = new Intent(this, StoreView.class);
         Log.d("start my store", "onDataChange: start");
-        intent.putExtra("type_number" ,1);
+        intent.putExtra("type_number", 1);
         startActivity(intent);
 
     }
