@@ -35,6 +35,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,21 +63,19 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
    //Widgets.
     private Button sign_up_button;
-    private EditText first_name;
-    private EditText last_name;
-    private EditText email;
-    private EditText password;
-    private EditText confirm_password;
-    private EditText pet_name;
-    private EditText phone_number;
+    private com.google.android.material.textfield.TextInputLayout first_name;
+    private com.google.android.material.textfield.TextInputLayout last_name;
+    private com.google.android.material.textfield.TextInputLayout email;
+    private com.google.android.material.textfield.TextInputLayout password;
+    private com.google.android.material.textfield.TextInputLayout confirm_password;
+    private com.google.android.material.textfield.TextInputLayout pet_name;
+    private com.google.android.material.textfield.TextInputLayout phone_number;
     private AutoCompleteTextView pet_race;
     private CheckBox gender_male;
     private CheckBox gender_female;
     private CheckBox pet_gender_male;
     private CheckBox pet_gender_female;
-    private EditText uniqe_signs;
-    private ImageButton hide_pass;
-    private ImageButton hide_confirm_pass;
+    private com.google.android.material.textfield.TextInputLayout uniqe_signs;
     private TextView business_sign_up;
     private ImageButton take_photo;
     private ImageButton take_photo_from_gallery;
@@ -147,7 +146,6 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
 
         setPhotosClick();
 
-        setHidePassClick();
 
         setSignupClick();
 
@@ -178,8 +176,8 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
                 if(validateSignUp()){
                     fillUser();
                     fillDog();
-                    String mail = email.getText().toString();
-                    String pass = password.getText().toString();
+                    String mail = email.getEditText().getText().toString();
+                    String pass = password.getEditText().getText().toString();
                     mAuth.createUserWithEmailAndPassword(mail, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
@@ -210,10 +208,10 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
      * fill dog parameters
      */
     private void fillDog() {
-        dogToAdd.setPet_name(pet_name.getText().toString());
+        dogToAdd.setPet_name(pet_name.getEditText().getText().toString());
         dogToAdd.setColors(colors);
         dogToAdd.setPet_race(pet_race.getText().toString());
-        dogToAdd.setUniqe_signs(uniqe_signs.getText().toString());
+        dogToAdd.setUniqe_signs(uniqe_signs.getEditText().getText().toString());
 
     }
 
@@ -221,11 +219,11 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
      * fill user parameters
      */
     private void fillUser() {
-        userToAdd.setFname(first_name.getText().toString());
-        userToAdd.setLname(last_name.getText().toString());
-        userToAdd.setPassword(password.getText().toString());
-        userToAdd.setEmail(email.getText().toString());
-        userToAdd.setPhone(phone_number.getText().toString());
+        userToAdd.setFname(first_name.getEditText().getText().toString());
+        userToAdd.setLname(last_name.getEditText().getText().toString());
+        userToAdd.setPassword(password.getEditText().getText().toString());
+        userToAdd.setEmail(email.getEditText().getText().toString());
+        userToAdd.setPhone(phone_number.getEditText().getText().toString());
 
     }
 
@@ -234,12 +232,12 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
      * @return validation status
      */
     private boolean validateSignUp() {
-        if(first_name.getText().toString().equals("")){
+        if(first_name.getEditText().getText().toString().equals("")){
             first_name.setError("Please fill First name");
             first_name.requestFocus();
             return false;
         }
-        if(last_name.getText().toString().equals("")){
+        if(last_name.getEditText().getText().toString().equals("")){
             last_name.setError("Please fill Last name");
             last_name.requestFocus();
             return false;
@@ -248,18 +246,18 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
             Toast.makeText(this,"Please choose Gender.",Toast.LENGTH_LONG).show();
             return false;
         }
-        if(email.getText().toString().equals("")){
+        if(email.getEditText().getText().toString().equals("")){
             email.setError("Wrong email format.");
             email.requestFocus();
             return false;
         }
-        if(!password.getText().toString().equals(confirm_password.getText().toString())){
+        if(!password.getEditText().getText().toString().equals(confirm_password.getEditText().getText().toString())){
             password.setError("Passwords must match");
             password.requestFocus();
             return false;
         }
 
-        if(pet_name.getText().toString().equals("")){
+        if(pet_name.getEditText().getText().toString().equals("")){
             pet_name.setError("Please fill Pet name");
             pet_name.requestFocus();
             return false;
@@ -282,22 +280,7 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
     /**
      * set click listener for change input type of passwords edit texts.
      */
-    private void setHidePassClick() {
-        hide_confirm_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                togglePass(confirm_password, confirm_password.getInputType());
-            }
-        });
 
-
-        hide_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                togglePass(password, password.getInputType());
-            }
-        });
-    }
 
     /**
      * set Click listeners for photo icons.
@@ -395,8 +378,7 @@ public class C_SignUpPageActivity extends AppCompatActivity implements F_GoogleM
         sign_up_button = findViewById(R.id.B_signup);
         take_photo = findViewById(R.id.camera_photo);
         take_photo_from_gallery = findViewById(R.id.gallery_photo);
-        hide_pass = findViewById(R.id.IV_hide_pass);
-        hide_confirm_pass = findViewById(R.id.IV_hide_confirm_pass);
+
         business_sign_up = findViewById(R.id.TV_Business_signup);
 
         //EditTexts

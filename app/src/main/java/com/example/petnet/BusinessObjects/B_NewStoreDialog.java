@@ -27,11 +27,11 @@ import com.google.firebase.storage.StorageReference;
 public class B_NewStoreDialog {
 
     String name,store_price,phone_num,address,store_des;
-    private EditText get_store_name;
-    private EditText get_store_price;
-    private EditText get_store_phone_number;
-    private EditText get_store_address;
-    private EditText get_store_des;
+    private com.google.android.material.textfield.TextInputLayout get_store_name;
+    private com.google.android.material.textfield.TextInputLayout get_store_price;
+    private com.google.android.material.textfield.TextInputLayout get_store_phone_number;
+    private com.google.android.material.textfield.TextInputLayout get_store_address;
+    private com.google.android.material.textfield.TextInputLayout get_store_des;
     private CheckBox[] get_type;
     private ImageView send_button;
     private ImageView cancel_button;
@@ -124,11 +124,11 @@ public class B_NewStoreDialog {
             @Override
             public void onClick(View v) {
                 check = true;
-                name = get_store_name.getText().toString();
-                phone_num = get_store_phone_number.getText().toString();
-                address = get_store_address.getText().toString();
-                store_des = get_store_des.getText().toString();
-                store_price = get_store_price.getText().toString();
+                name = get_store_name.getEditText().getText().toString();
+                phone_num = get_store_phone_number.getEditText().getText().toString();
+                address = get_store_address.getEditText().getText().toString();
+                store_des = get_store_des.getEditText().getText().toString();
+                store_price = get_store_price.getEditText().getText().toString();
 
 
                 switch (type)

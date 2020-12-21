@@ -107,35 +107,46 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.17" />
 
-            <EditText
-                android:id="@+id/BS_register_first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:hint="@string/first_name"
-                android:inputType="textPersonName" />
+            <com.google.android.material.textfield.TextInputLayout
 
-            <EditText
-                android:id="@+id/BS_register_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
+                android:id="@+id/BS_register_first_name"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/first_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="360dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/BS_register_last_name"
+                android:layout_marginLeft="20dp"
                 android:hint="@string/last_name"
-                android:inputType="textPersonName" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="360dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -174,79 +185,62 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/BS_register_email"
+
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
+                android:id="@+id/BS_register_email"
+                android:layout_marginLeft="20dp"
                 android:hint="@string/e_mail"
-                android:inputType="textPersonName"
-                android:text="" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="360dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:id="@+id/BS_register_password"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <EditText
-                    android:id="@+id/BS_register_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:ems="10"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:text="" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="360dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPassword"/>
 
-                <ImageButton
-                    android:id="@+id/IV_hide_pass"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-60dp"
-                    android:layout_marginLeft="-60dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_remove_red_eye_24" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
 
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:id="@+id/BS_register_confirm_password"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/confirm_password"
+                app:passwordToggleEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <EditText
-                    android:id="@+id/BS_register_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:ems="10"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="360dp"
+                    android:layout_height="50dp"
+                    android:inputType="textPassword"/>
 
-                <ImageButton
-                    android:id="@+id/IV_hide_confirm_pass"
-                    android:layout_width="76dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-60dp"
-                    android:layout_marginLeft="-60dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_remove_red_eye_24" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            </LinearLayout>
+
+
 
 
             <ImageView

@@ -13,9 +13,9 @@ import com.example.petnet.R;
 
 public class MailDiaglog {
 
-    private EditText get_text_msg;
-    private EditText get_text_mail;
-    private EditText get_subject;
+    private com.google.android.material.textfield.TextInputLayout get_text_msg;
+    private com.google.android.material.textfield.TextInputLayout get_text_mail;
+    private com.google.android.material.textfield.TextInputLayout get_subject;
     private String text_subject;
     private String text_msg;
     private String text_email;
@@ -42,9 +42,9 @@ public class MailDiaglog {
                 OnClickListener() {
             @Override
             public void onClick(View v) {
-                text_email = get_text_mail.getText().toString();
-                text_msg = "Email: " + text_email + "\n\n" + get_text_msg.getText().toString();
-                text_subject = get_subject.getText().toString();
+                text_email = get_text_mail.getEditText().getText().toString();
+                text_msg = "Email: " + text_email + "\n\n" + get_text_msg.getEditText().getText().toString();
+                text_subject = get_subject.getEditText().getText().toString();
                 JavaMailAPI sendAPI = new JavaMailAPI(dialog.getContext(),"petnetcontact@gmail.com",text_subject,text_msg);
                 sendAPI.execute();
                 dialog.dismiss();

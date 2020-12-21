@@ -28,11 +28,11 @@ public class B_SignUpPageActivity extends AppCompatActivity {
 
 
     Button sign_up_button;
-    EditText first_name;
-    EditText last_name;
-    EditText email;
-    EditText password;
-    EditText confirm_password;
+    com.google.android.material.textfield.TextInputLayout first_name;
+    com.google.android.material.textfield.TextInputLayout last_name;
+    com.google.android.material.textfield.TextInputLayout email;
+    com.google.android.material.textfield.TextInputLayout password;
+    com.google.android.material.textfield.TextInputLayout confirm_password;
     CheckBox gender_male;
     CheckBox gender_female;
     B_User userToAdd;
@@ -64,8 +64,8 @@ public class B_SignUpPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                System.out.println(password.getText().toString() + " , confirm:" + password.getText().toString());
-                if(!password.getText().toString().equals(confirm_password.getText().toString())) {
+                System.out.println(password.getEditText().getText().toString() + " , confirm:" + password.getEditText().getText().toString());
+                if(!password.getEditText().getText().toString().equals(confirm_password.getEditText().getText().toString())) {
 
                     Toast.makeText(getApplicationContext(), "Password does not equals.", Toast.LENGTH_LONG).show();
                     password.setError("Passwords dont match");
@@ -73,8 +73,8 @@ public class B_SignUpPageActivity extends AppCompatActivity {
                     return;
                 }
 
-                String mail = email.getText().toString();
-                String pass = password.getText().toString();
+                String mail = email.getEditText().getText().toString();
+                String pass = password.getEditText().getText().toString();
                 System.out.println("this mail is " + mail + "  pass " + pass);
                 userToAdd.setEmail(mail);
 
@@ -85,9 +85,9 @@ public class B_SignUpPageActivity extends AppCompatActivity {
 
                         FirebaseUser user = mAuth.getCurrentUser();
                         userToAdd.setUID(user.getUid());
-                        userToAdd.setFname(first_name.getText().toString());
-                        userToAdd.setLname(last_name.getText().toString());
-                        userToAdd.setPassword(password.getText().toString());
+                        userToAdd.setFname(first_name.getEditText().getText().toString());
+                        userToAdd.setLname(last_name.getEditText().getText().toString());
+                        userToAdd.setPassword(password.getEditText().getText().toString());
                         myRef.child(userToAdd.getUID()).setValue(userToAdd);
                         Toast.makeText(getApplicationContext(),user.getUid(),Toast.LENGTH_LONG).show();
                         Intent log_in_page = new Intent(getApplicationContext(), C_LogInActivity.class);

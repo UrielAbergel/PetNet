@@ -1,5 +1,6 @@
 package com.example.petnet.BusinessActivities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,31 +8,90 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.petnet.BusinessObjects.B_DogTrainer;
 import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class B_MainActivity extends AppCompatActivity {
 
+    TextView headline;
     LinearLayout my_store;
+    DatabaseReference myRef;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     LinearLayout store_dog_sitter;
     LinearLayout store_dog_trainer;
     LinearLayout store_dog_walker;
     LinearLayout store_dog_vet;
     LinearLayout store_dog_pet_shop;
+    FirebaseDatabase myDB = FirebaseDatabase.getInstance();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.b_main_activity);
+
         start_all_listiner();
+        setUserView();
+
 
     }
 
 
+
+
+
+
+
+
+
+    //==============================================================
+
+    private void setUserView() {
+        String uid = mAuth.getCurrentUser().getUid();
+        Log.d("ChangeHeadLine","im here !! ");
+
+        myRef = myDB.getReference("Busers").child(uid);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Log.d("ChangeHeadLine","im here ");
+                    updateUI(ds);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    public void updateUI(DataSnapshot ds){
+        String key = ds.getKey();
+        switch (key){
+            case "fname":
+                headline.setText("Wellcome " + ds.getValue().toString());
+                break;
+
+        }
+    }
+
+
     private void start_all_listiner(){
+        headline = (TextView)findViewById(R.id.textbashboard);
         my_store = (LinearLayout)findViewById(R.id.my_store);
         store_dog_sitter = (LinearLayout)findViewById(R.id.dog_sitter_but);
         store_dog_trainer = (LinearLayout)findViewById(R.id.store_dog_trainer);

@@ -145,8 +145,6 @@ public class C_UserMainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds :snapshot.getChildren()){
                     updateUI(ds);
-
-
                 }
 
             }

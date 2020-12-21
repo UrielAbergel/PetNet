@@ -25,6 +25,7 @@
             android:id="@+id/TV_pet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Casual"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:text="@string/anonymous"
@@ -43,6 +44,8 @@
     <TextView
         android:id="@+id/TV_uniqe_signs"
         android:textStyle="italic|bold"
+        style="@style/Casual"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -52,6 +55,8 @@
     <TextView
         android:id="@+id/TV_uniqe_signs_info"
         android:layout_width="wrap_content"
+        style="@style/Casual"
+
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -67,6 +72,8 @@
         <TextView
             android:id="@+id/TV_race"
             android:layout_width="wrap_content"
+            style="@style/Casual"
+
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
@@ -80,6 +87,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:text="@string/unknown"
+            style="@style/Casual"
+
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -96,6 +105,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:text="@string/gender"
+            style="@style/Casual"
+
             android:textSize="20dp" />
         <TextView
             android:id="@+id/TV_gender_info"
@@ -103,6 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
+            style="@style/Casual"
+
             android:text="@string/unknown"
             android:textSize="20dp" />
     </LinearLayout>
@@ -127,6 +140,8 @@
             android:textStyle="bold|italic"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            style="@style/Casual"
+
             android:textSize="20dp"/>
 
         <TextView
@@ -134,18 +149,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/unknown"
+            style="@style/Casual"
+
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        <ImageView
             android:id="@+id/FAB_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3CF327"
+            android:layout_width="50dp"
             android:layout_marginLeft="66dp"
-            android:src="@drawable/ic_baseline_call_24"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/phone_call"
             />
+
     </LinearLayout>
 
     </LinearLayout>

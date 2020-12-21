@@ -8,22 +8,22 @@
                 android:topLeftRadius="8dip" />
 
             <gradient
-                android:startColor="#E5E6E6"
-                android:endColor="#001042"
+                android:startColor="#7474EF"
+                android:endColor="#0B33B1"
                 android:angle="270" />
         </shape>
 
 
     </item>
-    <item android:top="160dp" >
+    <item android:top="70dp" >
         <shape android:shape="rectangle" >
             <corners
                 android:bottomLeftRadius="8dip"
                 android:bottomRightRadius="8dip" />
 
             <gradient
-                android:startColor="#FFFFFF"
-                android:endColor="#ffffff"
+                android:startColor="#CFCFCF"
+                android:endColor="#FFFFFF"
                 android:angle="270" />
             <size android:height="30dp" />
 
