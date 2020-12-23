@@ -38,7 +38,7 @@ public class StoreView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_view);
         Log.d(TAG, "onDataChange: start1");
-        myRef = FirebaseDatabase.getInstance().getReference().child("Stores");
+        myRef = FirebaseDatabase.getInstance().getReference();
         Log.d(TAG, "onDataChange: start");
         mListView = (ListView) findViewById(R.id.list_view_store);
         headText = (TextView)  findViewById(R.id.store_view_text) ;
@@ -61,20 +61,27 @@ public class StoreView extends AppCompatActivity {
     }
 
 
+    private String get_db_text(int type) {
+        switch (type) {
+            case 0 : return "Dog_Sitters";
+            case 1 : return "Dog_Trainers";
+            case 2 : return "Dog_Walker";
+            case 3 : return "Pet_Store";
+            case 4 : return "Vet_Store";
+        }
+        return "";
+    }
+
     private void add_all_stores_to_array(Context this_con) {
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d(TAG, "onDataChange: Start take data from firebase");
-                Long users_number = snapshot.getChildrenCount();
                 store_array.clear();
 
-                for (DataSnapshot user : snapshot.getChildren()) {
-                    for (DataSnapshot store : user.getChildren()) {
-
-                        int type = Integer.parseInt(store.child("_store_type").getValue().toString());
-                        if(type == typeOfStore) {
+                for (DataSnapshot sortStore : snapshot.child("Store_Categories").child(get_db_text(typeOfStore)).getChildren()) {
+                    DataSnapshot store = snapshot.child("Stores").child(sortStore.getValue().toString());
                             Log.d(TAG, "onDataChange: add store");
                             switch (typeOfStore) {
                                 case 0 :
@@ -97,9 +104,9 @@ public class StoreView extends AppCompatActivity {
                                     store_array.add(store.getValue(B_VetStore.class));
                                     break;
                             }
-                        }
 
-                    }
+
+
                 }
                 B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_store_view, store_array);
                 mListView.setAdapter(adapter);

@@ -49,7 +49,7 @@ public class B_MyStoreActivity extends AppCompatActivity {
         Log.d(TAG, "onDataChange: start");
         mListView = (ListView) findViewById(R.id.list_view);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        myRef = FirebaseDatabase.getInstance().getReference().child("Stores").child(currentFirebaseUser.getUid());
+        myRef = FirebaseDatabase.getInstance().getReference();
         Log.d(TAG, "onDataChange: load page");
         Context this_con = this;
         new_store_button = (ImageView) findViewById(R.id.new_store_butt);
@@ -105,38 +105,36 @@ public class B_MyStoreActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d(TAG, "onDataChange: Start take data from firebase");
-                store_count = snapshot.getChildrenCount();
                 store_array.clear();
                 Log.d(TAG, "onDataChange: Store count=" + store_count);
-
-                for (int i = 0; i < store_count; i++) {
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                for (DataSnapshot user_store : snapshot.child("Busers").child(uid).child("stores").getChildren()) {
                     Log.d(TAG, "onDataChange: read all stores");
-                    int type = Integer.parseInt(snapshot.child("s" + i).child("_store_type").getValue().toString());
+                    int type = Integer.parseInt(snapshot.child("Stores").child(user_store.getValue().toString()).child("_store_type").getValue().toString());
                     switch (type)
                     {
                         case 0:
-                            store_array.add(snapshot.child("s" + i).getValue(B_DogSitter.class));
+                            store_array.add(snapshot.child("Stores").child(user_store.getValue().toString()).getValue(B_DogSitter.class));
                             break;
 
                         case 1:
-                            store_array.add(snapshot.child("s" + i).getValue(B_DogTrainer.class));
+                            store_array.add(snapshot.child("Stores").child(user_store.getValue().toString()).getValue(B_DogTrainer.class));
                             break;
 
                         case 2:
-                            store_array.add(snapshot.child("s" + i).getValue(B_DogWalker.class));
+                            store_array.add(snapshot.child("Stores").child(user_store.getValue().toString()).getValue(B_DogWalker.class));
                             break;
 
                         case 3:
-                            store_array.add(snapshot.child("s" + i).getValue(B_PetShop.class));
+                            store_array.add(snapshot.child("Stores").child(user_store.getValue().toString()).getValue(B_PetShop.class));
                             break;
 
                         case 4:
-                            store_array.add(snapshot.child("s" + i).getValue(B_VetStore.class));
+                            store_array.add(snapshot.child("Stores").child(user_store.getValue().toString()).getValue(B_VetStore.class));
                             break;
 
                     }
-                    Log.d(TAG, "onDataChange: got data from firebase " + store_array.get(i).get_store_name());
-                    Log.d(TAG, "onDataChange: got data from firebase " + store_array.get(i));
+
                 }
                 B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_store_view, store_array);
                 Log.d(TAG, "onDataChange: store_array" + store_array);

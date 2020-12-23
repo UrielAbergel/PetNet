@@ -141,8 +141,8 @@ public class B_NewStoreDialog {
                     case 0:
                         store = new B_DogSitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
 
-                    //   DataBase.insertBusiness(store,currentFirebaseUser.getUid());
-                           DataBase.deleteBusiness(0,currentFirebaseUser.getUid(),"-MOvnCZEOmg2C50LaJXX");
+                       DataBase.insertBusiness(store,currentFirebaseUser.getUid());
+//                           DataBase.deleteBusiness(0,currentFirebaseUser.getUid(),"-MOvnCZEOmg2C50LaJXX");
                         // myRef.child("s" + store_count).setValue(store);
                         break;
 
