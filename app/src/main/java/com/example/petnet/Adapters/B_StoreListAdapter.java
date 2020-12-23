@@ -6,12 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.petnet.BusinessObjects.B_Store;
+import com.example.petnet.Firebase.DataBase;
 import com.example.petnet.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -32,6 +35,8 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         TextView store_adress;
         TextView store_description;
         TextView store_phone;
+        ImageView delete_store;
+        ImageView edit_store;
 
     }
 
@@ -52,6 +57,8 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         int type = getItem(position).get_store_type();
         String address = getItem(position).get_address();
         String description = getItem(position).get_description();
+        String uid = getItem(position).get_uid();
+
 
         ViewHolder holder;
 
@@ -64,6 +71,8 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         holder.store_phone = (TextView) convertView.findViewById(R.id.l_phone);
         holder.store_description = (TextView) convertView.findViewById(R.id.l_descre);
         holder.store_type = (TextView) convertView.findViewById(R.id.l_type);
+        holder.delete_store = (ImageView) convertView.findViewById(R.id.delete_store);
+//        holder.edit_store = (ImageView) convertView.findViewById(R.id.edit_store);
 
         Log.d("listview", "onDataChange: im here ");
 
@@ -73,6 +82,19 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         holder.store_description.setText(description);
         holder.store_type.setText(return_type_as_string(type));
 
+        try {
+            holder.delete_store.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    DataBase.deleteBusiness(type, FirebaseAuth.getInstance().getCurrentUser().getUid(), uid);
+
+
+                }
+            });
+        } catch (Exception e) {
+
+        }
         return convertView;
         }
 

@@ -109,6 +109,7 @@ public class DataBase {
         DatabaseReference ownerRef = FBdatabase.getReference(BUSERS_ROOT).child(uid);
         DatabaseReference nodeRef = FBdatabase.getReference();
         String storeKey = storeRef.push().getKey();
+        toAdd.set_uid(storeKey);
         try{
             switch (type) {
                 case 0:
@@ -195,6 +196,8 @@ public class DataBase {
      * @return true if the shop has been deleted false otherwise.
      */
     public static boolean deleteBusiness(int type, String uid , String storeKey){
+
+        System.out.println("!!!!!!!!!!!!!hhhhh!!!!!!!!!!!!!!!!" + storeKey);
 
         DatabaseReference storeRef = FBdatabase.getReference(STORES_ROOT).child(storeKey);
         DatabaseReference ownerRef = FBdatabase.getReference(BUSERS_ROOT).child(uid);

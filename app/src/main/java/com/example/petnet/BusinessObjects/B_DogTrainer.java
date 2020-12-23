@@ -9,11 +9,12 @@ public class B_DogTrainer implements B_Store {
     private double _store_rate;
     private String _address;
     private int _price;
+    private String uid;
 
     public B_DogTrainer(){}
 
 
-    public B_DogTrainer(String name , String phone_number , String description , String address , int price){
+    public B_DogTrainer(String name , String phone_number , String description , String address , int price ){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
@@ -50,6 +51,13 @@ public class B_DogTrainer implements B_Store {
     public String get_description() {
         return this._description;
     }
+
+    @Override
+    public String get_uid() {
+        return this.uid;
+    }
+    public void set_uid(String uid){ this.uid = uid;}
+
 
     public int get_price(){
         return this._price;

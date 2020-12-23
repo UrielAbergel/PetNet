@@ -8,14 +8,16 @@ public class B_VetStore implements B_Store {
     private final int _store_type = 4;
     private double _store_rate;
     private String _address;
+    private String uid;
 
     public B_VetStore(){}
 
-    public B_VetStore(String name , String phone_number , String description , String address){
+    public B_VetStore(String name , String phone_number , String description , String address ){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
         this._address = address;
+
     }
 
     @Override
@@ -47,6 +49,13 @@ public class B_VetStore implements B_Store {
     public String get_description() {
         return this._description;
     }
+
+    @Override
+    public String get_uid() {
+        return this.uid;
+    }
+
+    public void set_uid(String uid){ this.uid = uid;}
 
 
     public void setName(String name) {

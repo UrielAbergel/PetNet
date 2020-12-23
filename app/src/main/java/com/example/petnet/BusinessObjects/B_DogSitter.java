@@ -9,10 +9,11 @@ public class B_DogSitter implements B_Store {
     private double _store_rate;
     private String _address;
     private int _price;
+    private String UID;
 
     public B_DogSitter(){}
 
-    public B_DogSitter(String name , String phone_number , String description , String address , int price){
+    public B_DogSitter(String name , String phone_number , String description , String address , int price ){
         this._store_name = name;
         this._phone_number = phone_number;
         this._description = description;
@@ -49,6 +50,14 @@ public class B_DogSitter implements B_Store {
     public String get_description() {
         return this._description;
     }
+
+    @Override
+    public String get_uid() {
+        return this.UID;
+    }
+
+    public void set_uid(String uid){ this.UID = uid;}
+
 
     public int get_price(){
         return this._price;

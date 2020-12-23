@@ -9,6 +9,7 @@ public class B_DogWalker implements B_Store {
     private double _store_rate;
     private String _address;
     private int _price;
+    private String uid;
 
     public B_DogWalker(){}
 
@@ -51,6 +52,14 @@ public class B_DogWalker implements B_Store {
     public String get_description() {
         return this._description;
     }
+
+    @Override
+    public String get_uid() {
+        return this.uid;
+    }
+
+    public void set_uid(String uid){ this.uid = uid;}
+
 
     public int get_price(){
         return this._price;

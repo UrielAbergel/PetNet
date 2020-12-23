@@ -14,6 +14,13 @@ public interface B_Store {
 
     public String get_description();
 
+    public String get_uid();
+
+    public void set_uid(String uid);
+
+
+
+
 
 
 
