@@ -29,6 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DataBase {
 
     private static final String TAG = "DataBase";
@@ -473,6 +476,28 @@ public class DataBase {
 
             }
         });
+
+    }
+
+
+    //-------------------------------------------------update Data-----------------------------------------------------------//
+
+
+    public static boolean updateStore(String storeKey,String storeName,String storeDescription,String storeAddress,String phoneNum,int type){
+        Log.d(TAG, "updateStore: storeKey:" + storeKey);
+        Log.d(TAG, "updateStore: all data change" + phoneNum);
+        DatabaseReference myRef = FBdatabase.getReference(STORES_ROOT).child(storeKey);
+        HashMap<String,Object> updatechilds = new HashMap<>();
+        updatechilds.put("_store_name",storeName);
+        updatechilds.put("_description", storeDescription);
+        updatechilds.put("_address",storeAddress);
+        updatechilds.put("_phone_number",phoneNum);
+        updatechilds.put("_store_type",type);
+
+
+        myRef.updateChildren(updatechilds);
+        return true;
+
 
     }
 }

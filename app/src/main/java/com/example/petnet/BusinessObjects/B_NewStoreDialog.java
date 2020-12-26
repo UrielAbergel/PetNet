@@ -2,6 +2,7 @@ package com.example.petnet.BusinessObjects;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
@@ -36,15 +37,40 @@ public class B_NewStoreDialog {
     private CheckBox[] get_type;
     private ImageView send_button;
     private ImageView cancel_button;
-    private boolean check = false;
+    private boolean toUpdate = false;
     private B_Store store;
     private int type = -1;
-    private Long store_count;
-    private DatabaseReference myRef;
-    private StorageReference mStorageRef;
+
+    String storeName,phoneNum,storeAddress,storeDescription,storeKey;
+
+    public B_NewStoreDialog(){
+        storeName = phoneNum= storeAddress= storeDescription = "";
+    }
+
+
+    public B_NewStoreDialog(int type, String storeName, String phoneNum , String storeAddress , String storeDescription,boolean toUpdate,String storeKey ){
+        this.type = type;
+        this.storeName = storeName;
+        this.storeAddress = storeAddress;
+        this.storeDescription = storeDescription;
+        this.phoneNum = phoneNum;
+        this.toUpdate = toUpdate;
+        this.storeKey = storeKey;
+
+    }
 
 
 
+
+
+    public void setData(){
+        if(type != -1)  get_type[type].setChecked(true);
+        get_store_name.getEditText().setText(storeName);
+        get_store_phone_number.getEditText().setText(phoneNum);
+        get_store_address.getEditText().setText(storeAddress);
+        get_store_des.getEditText().setText(storeDescription);
+
+    }
 
     public void showDialog(Activity activity) {
         final Dialog dialog = new Dialog(activity);
@@ -66,29 +92,18 @@ public class B_NewStoreDialog {
         get_type[2] = dialog.findViewById(R.id.type_walker);
         get_type[3] = dialog.findViewById(R.id.type_shop);
         get_type[4] = dialog.findViewById(R.id.type_vet);
+        setData();
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        myRef = FirebaseDatabase.getInstance().getReference().child("Stores").child(currentFirebaseUser.getUid());
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        store_count = snapshot.getChildrenCount();
-
-                    }
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
 
         get_type[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCheck(0);
                 type = 0 ;
             }
         });
@@ -96,6 +111,7 @@ public class B_NewStoreDialog {
         get_type[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCheck(1);
                 type = 1 ;
             }
         });
@@ -103,6 +119,7 @@ public class B_NewStoreDialog {
         get_type[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCheck(2);
                 type = 2 ;
             }
         });
@@ -110,6 +127,7 @@ public class B_NewStoreDialog {
         get_type[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCheck(3);
                 type = 3 ;
             }
         });
@@ -117,60 +135,61 @@ public class B_NewStoreDialog {
         get_type[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCheck(4);
                 type = 4 ;
             }
         });
 
+
+
+
         send_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                check = true;
                 name = get_store_name.getEditText().getText().toString();
                 phone_num = get_store_phone_number.getEditText().getText().toString();
                 address = get_store_address.getEditText().getText().toString();
                 store_des = get_store_des.getEditText().getText().toString();
                 store_price = get_store_price.getEditText().getText().toString();
 
+                if(!toUpdate) {
+                    switch (type) {
+                        case -1:
+                            Toast.makeText(dialog.getContext(), "Please choose 1 shop type", Toast.LENGTH_LONG).show();
+                            break;
 
-                switch (type)
-                {
-                    case -1:
-                        Toast.makeText(dialog.getContext(), "Please choose 1 shop type", Toast.LENGTH_LONG).show();
-                        break;
+                        case 0:
+                            store = new B_DogSitter(name, phone_num, store_des, address, Integer.parseInt(store_price));
+                            DataBase.insertBusiness(store, currentFirebaseUser.getUid());
+                            break;
 
-                    case 0:
-                        store = new B_DogSitter(name,phone_num,store_des,address,Integer.parseInt(store_price));
+                        case 1:
+                            store = new B_DogTrainer(name, phone_num, store_des, address, Integer.parseInt(store_price));
+                            DataBase.insertBusiness(store, currentFirebaseUser.getUid());
+                            break;
 
-                       DataBase.insertBusiness(store,currentFirebaseUser.getUid());
-//                           DataBase.deleteBusiness(0,currentFirebaseUser.getUid(),"-MOvnCZEOmg2C50LaJXX");
-                        // myRef.child("s" + store_count).setValue(store);
-                        break;
+                        case 2:
+                            store = new B_DogWalker(name, phone_num, store_des, address, Integer.parseInt(store_price));
+                            DataBase.insertBusiness(store, currentFirebaseUser.getUid());
+                            break;
 
-                    case 1:
-                        store = new B_DogTrainer(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
+                        case 3:
+                            store = new B_PetShop(name, phone_num, store_des, address);
+                            DataBase.insertBusiness(store, currentFirebaseUser.getUid());
+                            break;
 
-                        break;
+                        case 4:
+                            store = new B_VetStore(name, phone_num, store_des, address);
+                            DataBase.insertBusiness(store, currentFirebaseUser.getUid());
+                            break;
 
-                    case 2:
-                        store = new B_DogWalker(name,phone_num,store_des,address,Integer.parseInt(store_price));
-                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
-
-                        break;
-
-                    case 3:
-                        store = new B_PetShop(name,phone_num,store_des,address);
-                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
-
-                        break;
-
-                    case 4:
-                        store = new B_VetStore(name,phone_num,store_des,address);
-                        DataBase.insertBusiness(store,currentFirebaseUser.getUid());
-
-                        break;
-
+                    }
                 }
+                else{
+                    DataBase.updateStore(storeKey,storeName,storeDescription,storeAddress,phoneNum,type);
+                }
+
+
                 dialog.dismiss();
             }
         });
@@ -185,5 +204,14 @@ public class B_NewStoreDialog {
         dialog.show();
 
 
+    }
+
+    private void clearCheck(int pos){
+        for(int i = 0 ; i< get_type.length; i ++ ){
+            if(i!= pos) {
+                if(get_type[i].isChecked())get_type[i].setChecked(false);
+            }
+
+        }
     }
 }
