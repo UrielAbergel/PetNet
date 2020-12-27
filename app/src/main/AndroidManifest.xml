@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.petnet">
+    package="com.example.src">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
-        <activity android:name=".CostumersActivities.C_TinderSwipeActivity"></activity>
+        <activity android:name="com.example.src.CostumersActivities.C_TinderSwipeActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -23,22 +23,22 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
-        <activity android:name=".GeneralActivity.StoreView" />
-        <activity android:name=".BusinessActivities.B_MyStoreActivity" />
+        <activity android:name="com.example.src.GeneralActivity.StoreView" />
+        <activity android:name="com.example.src.BusinessActivities.B_MyStoreActivity" />
         <activity
-            android:name=".CostumersActivities.C_UserMainActivity"
-            android:parentActivityName=".CostumersActivities.C_LogInActivity" />
-        <activity android:name=".BusinessActivities.B_MainActivity" />
-        <activity android:name=".BusinessActivities.B_SignUpPageActivity" />
+            android:name="com.example.src.CostumersActivities.C_UserMainActivity"
+            android:parentActivityName="com.example.src.CostumersActivities.C_LogInActivity" />
+        <activity android:name="com.example.src.BusinessActivities.B_MainActivity" />
+        <activity android:name="com.example.src.BusinessActivities.B_SignUpPageActivity" />
 
-        <activity android:name=".CostumersActivities.C_FoundDogActivity" />
+        <activity android:name="com.example.src.CostumersActivities.C_FoundDogActivity" />
 
         <activity
-            android:name=".CostumersActivities.C_SignUpPageActivity"
+            android:name="com.example.src.CostumersActivities.C_SignUpPageActivity"
             android:label=""
-            android:parentActivityName=".CostumersActivities.C_LogInActivity" />
+            android:parentActivityName="com.example.src.CostumersActivities.C_LogInActivity" />
         <activity
-            android:name=".CostumersActivities.C_LogInActivity"
+            android:name="com.example.src.CostumersActivities.C_LogInActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
