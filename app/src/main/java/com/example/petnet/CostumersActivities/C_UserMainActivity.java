@@ -1,17 +1,26 @@
 package com.example.petnet.CostumersActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
+
 
 import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class C_UserMainActivity extends AppCompatActivity {
+public class C_UserMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "UserMainActivity";
     LinearLayout LL_found_a_dogl;
@@ -32,6 +41,9 @@ public class C_UserMainActivity extends AppCompatActivity {
     LinearLayout store_dog_walker;
     LinearLayout store_dog_vet;
     LinearLayout store_dog_pet_shop;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,19 @@ public class C_UserMainActivity extends AppCompatActivity {
         store_dog_walker = (LinearLayout)findViewById(R.id.u_dog_walker);
         store_dog_pet_shop = (LinearLayout)findViewById(R.id.u_pet_shop);
         store_dog_vet = (LinearLayout)findViewById(R.id.u_vet_store);
+        drawerLayout = (DrawerLayout)findViewById(R.id.draw_layout);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.tool_bar);
+
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open , R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+
 
         store_dog_sitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,5 +196,17 @@ public class C_UserMainActivity extends AppCompatActivity {
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        drawerLayout.closeDrawer(GravityCompat.START);
+        else super.onBackPressed();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return true;
     }
 }

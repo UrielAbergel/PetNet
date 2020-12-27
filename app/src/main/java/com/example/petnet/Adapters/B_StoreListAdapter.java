@@ -1,6 +1,8 @@
 package com.example.petnet.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +83,15 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         holder.store_adress.setText(address);
         holder.store_description.setText(description);
         holder.store_type.setText(return_type_as_string(type));
+
+        View finalConvertView = convertView;
+        holder.store_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+                finalConvertView.getContext().startActivity(intent);
+            }
+        });
 
         try {
             holder.delete_store.setOnClickListener(new View.OnClickListener() {

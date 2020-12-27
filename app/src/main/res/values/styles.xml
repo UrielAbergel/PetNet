@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
 
@@ -66,6 +67,14 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">28sp</item>
         <item name="android:text">Casual</item>
+    </style>
+
+    <style name="CasualY">
+        <item name="android:fontFamily">casual</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:text">Casual</item>
+        <item name="android:textColor">#FFFF33</item>
     </style>
 
     <style name="Cursive">
