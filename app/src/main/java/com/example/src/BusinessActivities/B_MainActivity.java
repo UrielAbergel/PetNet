@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.src.Algorithms.StringsManipulators;
 import com.example.src.CostumersActivities.C_LogInActivity;
+import com.example.src.Firebase.DataBase;
 import com.example.src.GeneralActivity.StoreView;
 import com.example.src.R;
 import com.google.android.material.navigation.NavigationView;
@@ -241,6 +242,12 @@ public class B_MainActivity extends AppCompatActivity implements NavigationView.
             case R.id.b_nav_home:
                 break;
             case R.id.b_nav_edit_profile:
+
+            case R.id.b_nav_delete_profile:
+                Intent log = new Intent(this, C_LogInActivity.class);
+                DataBase.deleteBUser();
+                startActivity(log);
+
 
             case R.id.b_nav_log_out:
                 Intent log_out = new Intent(this, C_LogInActivity.class);

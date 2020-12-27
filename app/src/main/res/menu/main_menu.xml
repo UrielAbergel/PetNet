@@ -29,6 +29,12 @@
                         android:title="Edit Pet"
                         android:icon="@drawable/dog_sizes"
                         />
+
+                    <item
+                        android:id="@+id/nav_delete_profile"
+                        android:title="Delete Profile"
+                        android:icon="@drawable/delete"
+                        />
                 </group>
             </menu>
 

@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import com.example.src.Algorithms.StringsManipulators;
+import com.example.src.Firebase.DataBase;
 import com.example.src.GeneralActivity.StoreView;
 import com.example.src.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -264,6 +265,13 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_edit_dog:
 
             case R.id.nav_edit_profile:
+
+            case R.id.nav_delete_profile:
+                Intent log = new Intent(this, C_LogInActivity.class);
+                DataBase.deleteUser();
+                startActivity(log);
+
+
 
             case R.id.nav_log_out:
                 Intent log_out = new Intent(this, C_LogInActivity.class);

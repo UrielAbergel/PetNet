@@ -23,6 +23,11 @@
                     android:icon="@drawable/edit"
                     />
 
+                <item
+                    android:id="@+id/b_nav_delete_profile"
+                    android:title="Delete Profile"
+                    android:icon="@drawable/delete"
+                    />
             </group>
         </menu>
 

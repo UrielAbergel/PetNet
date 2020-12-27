@@ -187,6 +187,8 @@
                 android:layout_height="500dp" />
 
             <Button
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:id="@+id/B_search_owner"
                 android:layout_width="200dp"
                 android:layout_marginLeft="100dp"
