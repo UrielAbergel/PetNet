@@ -33,6 +33,7 @@ public class C_LogInActivity extends AppCompatActivity {
     private EditText User_Name_input;
     private EditText Password_input;
     private ImageView Sign_up_input;
+    private TextView reset_pass;
     private ImageView FAB_mail_input;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Button login_button;
@@ -106,11 +107,20 @@ public class C_LogInActivity extends AppCompatActivity {
     private void InitializeVariables() {
 
         // get input from the user
+
         User_Name_input = (EditText) findViewById(R.id.TI_username);
         Password_input = (EditText) findViewById(R.id.TI_password);
         Sign_up_input =  (ImageView)  findViewById(R.id.TV_signup);
         FAB_mail_input = (ImageView) findViewById(R.id.FAB_mail);
         login_button = (Button) findViewById(R.id.B_login);
+        reset_pass = (TextView) findViewById(R.id.reset_buttun);
+
+        reset_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 

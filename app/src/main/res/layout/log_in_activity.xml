@@ -154,6 +154,8 @@
                     android:text="Login"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
+
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -185,10 +187,41 @@
                 app:backgroundTint="@color/colorBlueT"
                 app:srcCompat="@drawable/emal_log" />
 
+
+
+
+
         </RelativeLayout>
 
 
 
     </ScrollView>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="470dp"
+        android:layout_marginLeft="90dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/colorPurple"
+        android:textSize="14sp"
+         />
+
+    <TextView
+        android:id="@+id/reset_buttun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="470dp"
+        android:layout_marginLeft="210dp"
+        android:text="Reset Password"
+        android:textStyle="bold"
+        android:textColor="@color/colorPurple"
+        android:textSize="14sp"
+        />
 
 </RelativeLayout>

@@ -9,25 +9,6 @@
     >
 
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Mail_getText"
-        android:layout_marginLeft="20dp"
-        android:hint="Enter Your Messege"
-        android:layout_below="@+id/Mail_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="290dp"
-            android:layout_height="150dp"
-            android:singleLine="false"
-            android:gravity="top|start"
-            android:imeOptions="actionDone"
-            android:inputType="textMultiLine"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -38,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/enter_email"
         android:layout_marginLeft="20dp"
-        android:hint="Subject"
+        android:hint="Email"
         android:layout_below="@+id/ContactUS"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -49,23 +30,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Mail_email"
-        android:layout_marginLeft="20dp"
-        android:hint="Email"
-        android:layout_below="@+id/enter_email"
-
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="290dp"
-            android:layout_height="50dp"
-            android:inputType="textPersonName"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -76,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
-        android:layout_below="@id/Mail_getText"
+        android:layout_below="@id/enter_email"
         android:gravity="center_horizontal"
         >
 
@@ -107,6 +71,6 @@
         android:gravity="center_horizontal"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
-        android:text="Contact Us!" />
+        android:text="Reset Passsword" />
 
 </RelativeLayout>

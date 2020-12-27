@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.petnet.R;
@@ -32,7 +31,7 @@ public class MailDiaglog {
 
 
         get_text_msg = dialog.findViewById(R.id.Mail_getText);
-        get_subject = dialog.findViewById(R.id.Mail_subject);
+        get_subject = dialog.findViewById(R.id.enter_email);
         get_text_mail = dialog.findViewById(R.id.Mail_email);
         send_button = dialog.findViewById(R.id.Mail_send);
         cancel_button = dialog.findViewById(R.id.Mail_cancel);

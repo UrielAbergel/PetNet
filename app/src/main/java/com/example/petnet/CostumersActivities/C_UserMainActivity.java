@@ -244,6 +244,24 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.nav_home:
+                break;
+            case R.id.nav_info:
+
+            case R.id.nav_edit_profile:
+
+            case R.id.nav_log_out:
+                Intent log_out = new Intent(this, C_LogInActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(log_out);
+                break;
+        }
+
+
+
         return true;
     }
 }
