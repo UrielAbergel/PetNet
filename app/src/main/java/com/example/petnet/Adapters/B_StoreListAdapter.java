@@ -1,8 +1,10 @@
 package com.example.petnet.Adapters;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.petnet.BusinessActivities.B_MyStoreActivity;
+import com.example.petnet.BusinessObjects.B_NewStoreDialog;
 import com.example.petnet.BusinessObjects.B_Store;
 import com.example.petnet.Firebase.DataBase;
 import com.example.petnet.R;
@@ -27,6 +31,7 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
 
 
     private Context mContext;
+    private Activity activity;
     private int mResource;
     private int lastPosition = -1;
 
@@ -42,10 +47,15 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
 
     }
 
-
-
     public B_StoreListAdapter(@NonNull Context context, int resource, @NonNull List<B_Store> objects) {
         super(context, resource, objects);
+        mContext = context;
+        mResource = resource;
+    }
+
+    public B_StoreListAdapter(@NonNull Context context, int resource, @NonNull List<B_Store> objects,Activity activity) {
+        super(context, resource, objects);
+        this.activity = activity;
         mContext = context;
         mResource = resource;
     }
@@ -74,7 +84,7 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         holder.store_description = (TextView) convertView.findViewById(R.id.l_descre);
         holder.store_type = (TextView) convertView.findViewById(R.id.l_type);
         holder.delete_store = (ImageView) convertView.findViewById(R.id.delete_store);
-//        holder.edit_store = (ImageView) convertView.findViewById(R.id.edit_store);
+        holder.edit_store = (ImageView) convertView.findViewById(R.id.edit_store);
 
         Log.d("listview", "onDataChange: im here ");
 
@@ -84,28 +94,44 @@ public class B_StoreListAdapter extends ArrayAdapter<B_Store> {
         holder.store_description.setText(description);
         holder.store_type.setText(return_type_as_string(type));
 
-        View finalConvertView = convertView;
-        holder.store_phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
-                finalConvertView.getContext().startActivity(intent);
-            }
-        });
-
         try {
             holder.delete_store.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Delete Store?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DataBase.deleteBusiness(type, FirebaseAuth.getInstance().getCurrentUser().getUid(), uid);
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
-                    DataBase.deleteBusiness(type, FirebaseAuth.getInstance().getCurrentUser().getUid(), uid);
-
-
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
         } catch (Exception e) {
 
         }
+
+        try{
+            holder.edit_store.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    B_NewStoreDialog dialog = new B_NewStoreDialog(type,name,phone,address,description,true,uid);
+                    dialog.showDialog(activity);
+
+                }
+            });
+        }catch (Exception e ){}
         return convertView;
         }
 

@@ -10,7 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
-        android:layout_marginLeft="340dp">
+        android:orientation="horizontal"
+        android:layout_marginLeft="280dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/edit_store"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/edit"/>
 
         <ImageView
             android:layout_width="35dp"

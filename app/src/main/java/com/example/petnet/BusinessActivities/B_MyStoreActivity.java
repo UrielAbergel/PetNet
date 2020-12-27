@@ -136,7 +136,7 @@ public class B_MyStoreActivity extends AppCompatActivity {
                     }
 
                 }
-                B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_mystore_storeview, store_array);
+                B_StoreListAdapter adapter = new B_StoreListAdapter(this_con, R.layout.b_mystore_storeview, store_array,B_MyStoreActivity.this);
                 Log.d(TAG, "onDataChange: store_array" + store_array);
                 mListView.setAdapter(adapter);
             }

@@ -66,7 +66,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     class  ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name, race, uniqe_signs, gender,owner_name;
-        FloatingActionButton FAB_check,FAB_cancel;
+        ImageView FAB_check;
         String uid;
         private static final String TAG = "ViewHolder";
         ViewHolder(@NonNull View itemView) {
@@ -76,7 +76,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             race = itemView.findViewById(R.id.TV_race_info);
             uniqe_signs = itemView.findViewById(R.id.TV_uniqe_signs_info);
             gender = itemView.findViewById(R.id.TV_gender_info);
-            FAB_check = itemView.findViewById(R.id.FAB_check);
+            FAB_check = itemView.findViewById(R.id.IV_check);
             owner_name = itemView.findViewById(R.id.TV_owner_name);
             FAB_check.setOnClickListener(new View.OnClickListener() {
                 @Override

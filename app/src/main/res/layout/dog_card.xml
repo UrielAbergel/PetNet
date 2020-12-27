@@ -157,7 +157,7 @@
 
 
         <ImageView
-            android:id="@+id/FAB_check"
+            android:id="@+id/IV_check"
             android:layout_width="50dp"
             android:layout_marginLeft="66dp"
             android:layout_height="wrap_content"
