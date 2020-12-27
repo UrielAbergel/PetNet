@@ -8,18 +8,25 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 
+import com.example.petnet.Algorithms.StringsManipulators;
 import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +34,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class C_UserMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +46,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
     DatabaseReference myRef;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     TextView dashbord;
+    ImageView petImage;
     LinearLayout store_dog_sitter;
     LinearLayout store_dog_trainer;
     LinearLayout store_dog_walker;
@@ -64,6 +75,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
     }
 
     private void start_all_listiner(){
+        petImage = findViewById(R.id.IV_pet_image);
         store_dog_sitter = (LinearLayout)findViewById(R.id.u_dog_sitter);
         store_dog_trainer = (LinearLayout)findViewById(R.id.u_dog_trainer);
         store_dog_walker = (LinearLayout)findViewById(R.id.u_dog_walker);
@@ -165,6 +177,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
     private void setUserView() {
         String uid = mAuth.getCurrentUser().getUid();
         myRef = myDB.getReference("users").child(uid);
+        updatePic();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -182,6 +195,30 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
 
     }
 
+    private void updatePic() {
+        String path = "pics/" + mAuth.getCurrentUser().getUid();
+        StorageReference sRef = FirebaseStorage.getInstance().getReference(path);
+        sRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()){
+                    Uri imageUri = task.getResult();
+                    Picasso.get()
+                            .load(imageUri)
+                            .fit()
+                            .centerCrop()
+                            .into(petImage);
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Failed to load image",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+    }
+
     public void go_find_a_dog_page(){
         Intent intent = new Intent(this, C_FoundDogActivity.class);
         startActivity(intent);
@@ -192,7 +229,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
         String key = ds.getKey();
         switch (key){
             case "fname":
-                dashbord.setText("Wellcome " + ds.getValue().toString());
+                dashbord.setText("Wellcome " + StringsManipulators.SetFirstCharToUpperCase(ds.getValue().toString()));
                 break;
 
         }

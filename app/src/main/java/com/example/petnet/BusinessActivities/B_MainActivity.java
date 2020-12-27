@@ -4,34 +4,44 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.petnet.Algorithms.StringsManipulators;
 import com.example.petnet.BusinessObjects.B_DogTrainer;
 import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class B_MainActivity extends AppCompatActivity {
 
-    TextView headline;
-    LinearLayout my_store;
-    DatabaseReference myRef;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    LinearLayout store_dog_sitter;
-    LinearLayout store_dog_trainer;
-    LinearLayout store_dog_walker;
-    LinearLayout store_dog_vet;
-    LinearLayout store_dog_pet_shop;
-    FirebaseDatabase myDB = FirebaseDatabase.getInstance();
+    private TextView headline;
+    private LinearLayout my_store;
+    private DatabaseReference myRef;
+    private ImageView petImage;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private LinearLayout store_dog_sitter;
+    private LinearLayout store_dog_trainer;
+    private LinearLayout store_dog_walker;
+    private  LinearLayout store_dog_vet;
+    private LinearLayout store_dog_pet_shop;
+    private FirebaseDatabase myDB = FirebaseDatabase.getInstance();
 
 
 
@@ -59,7 +69,6 @@ public class B_MainActivity extends AppCompatActivity {
     private void setUserView() {
         String uid = mAuth.getCurrentUser().getUid();
         Log.d("ChangeHeadLine","im here !! ");
-
         myRef = myDB.getReference("Busers").child(uid);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,11 +88,12 @@ public class B_MainActivity extends AppCompatActivity {
     }
 
 
+
     public void updateUI(DataSnapshot ds){
         String key = ds.getKey();
         switch (key){
             case "fname":
-                headline.setText("Wellcome " + ds.getValue().toString());
+                headline.setText("Wellcome " + StringsManipulators.SetFirstCharToUpperCase(ds.getValue().toString()));
                 break;
 
         }
@@ -91,6 +101,7 @@ public class B_MainActivity extends AppCompatActivity {
 
 
     private void start_all_listiner(){
+        petImage = findViewById(R.id.IV_B_pet_image);
         headline = (TextView)findViewById(R.id.textbashboard);
         my_store = (LinearLayout)findViewById(R.id.my_store);
         store_dog_sitter = (LinearLayout)findViewById(R.id.dog_sitter_but);

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
@@ -27,7 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class B_NewStoreDialog {
-
+    private static final String TAG = "B_NewStoreDialog";
     String name,store_price,phone_num,address,store_des;
     private com.google.android.material.textfield.TextInputLayout get_store_name;
     private com.google.android.material.textfield.TextInputLayout get_store_price;
@@ -139,6 +140,8 @@ public class B_NewStoreDialog {
                 type = 4 ;
             }
         });
+        
+        
 
 
 
@@ -147,6 +150,7 @@ public class B_NewStoreDialog {
             @Override
             public void onClick(View v) {
                 name = get_store_name.getEditText().getText().toString();
+                Log.d(TAG, "onClick: name:" + name);
                 phone_num = get_store_phone_number.getEditText().getText().toString();
                 address = get_store_address.getEditText().getText().toString();
                 store_des = get_store_des.getEditText().getText().toString();
@@ -186,7 +190,7 @@ public class B_NewStoreDialog {
                     }
                 }
                 else{
-                    DataBase.updateStore(storeKey,storeName,storeDescription,storeAddress,phoneNum,type);
+                    DataBase.updateStore(storeKey,name,store_des,address,phone_num,type);
                 }
 
 

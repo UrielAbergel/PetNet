@@ -35,7 +35,7 @@
             </TextView>
 
             <ImageView
-                android:id="@+id/IV_pet_image"
+                android:id="@+id/IV_B_pet_image"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/main_logo"
                 android:layout_width="82dp"
