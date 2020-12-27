@@ -45,7 +45,7 @@
         >
 
         <ImageView
-            android:id="@+id/Mail_cancel"
+            android:id="@+id/cancel_mail"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_below="@id/Mail_getText"
@@ -53,7 +53,7 @@
             app:srcCompat="@drawable/cancel" />
 
         <ImageView
-            android:id="@+id/Mail_send"
+            android:id="@+id/send_email"
             android:layout_width="40dp"
             android:layout_height="30dp"
             app:srcCompat="@drawable/mailicon" />

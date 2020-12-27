@@ -118,9 +118,16 @@ public class C_LogInActivity extends AppCompatActivity {
         reset_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reset_pass_func();
 
             }
         });
+
+    }
+
+    private void reset_pass_func() {
+        C_ResetPassword reset = new C_ResetPassword();
+        reset.showDialog(this, "Error de conexión al servidor");
     }
 
 

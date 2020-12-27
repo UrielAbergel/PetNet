@@ -1,12 +1,17 @@
 package com.example.petnet.BusinessActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,10 +20,12 @@ import android.widget.Toast;
 
 import com.example.petnet.Algorithms.StringsManipulators;
 import com.example.petnet.BusinessObjects.B_DogTrainer;
+import com.example.petnet.CostumersActivities.C_LogInActivity;
 import com.example.petnet.GeneralActivity.StoreView;
 import com.example.petnet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class B_MainActivity extends AppCompatActivity {
+public class B_MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView headline;
     private LinearLayout my_store;
@@ -42,6 +49,9 @@ public class B_MainActivity extends AppCompatActivity {
     private  LinearLayout store_dog_vet;
     private LinearLayout store_dog_pet_shop;
     private FirebaseDatabase myDB = FirebaseDatabase.getInstance();
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
 
 
 
@@ -109,6 +119,18 @@ public class B_MainActivity extends AppCompatActivity {
         store_dog_walker = (LinearLayout)findViewById(R.id.store_dog_walker);
         store_dog_pet_shop = (LinearLayout)findViewById(R.id.store_pet_shop);
         store_dog_vet = (LinearLayout)findViewById(R.id.store_vet);
+        drawerLayout = (DrawerLayout)findViewById(R.id.b_draw_layout);
+        navigationView = (NavigationView)findViewById(R.id.b_nav_view);
+        toolbar = findViewById(R.id.b_tool_bar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open , R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
 
         store_dog_sitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,5 +220,33 @@ public class B_MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, B_MyStoreActivity.class);
         Log.d("start my store", "onDataChange: start");
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else super.onBackPressed();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.b_nav_home:
+                break;
+            case R.id.b_nav_edit_profile:
+
+            case R.id.b_nav_log_out:
+                Intent log_out = new Intent(this, C_LogInActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(log_out);
+                break;
+        }
+
+
+
+        return true;
     }
 }

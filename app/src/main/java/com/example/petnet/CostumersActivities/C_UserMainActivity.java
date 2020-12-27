@@ -86,6 +86,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
         toolbar = findViewById(R.id.tool_bar);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open , R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -249,7 +250,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
 
             case R.id.nav_home:
                 break;
-            case R.id.nav_info:
+            case R.id.nav_edit_dog:
 
             case R.id.nav_edit_profile:
 
