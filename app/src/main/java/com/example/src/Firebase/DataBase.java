@@ -1,9 +1,12 @@
 package com.example.src.Firebase;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.src.BusinessActivities.B_UpdateProfile;
 import com.example.src.BusinessObjects.B_DogSitter;
 import com.example.src.BusinessObjects.B_DogTrainer;
 import com.example.src.BusinessObjects.B_DogWalker;
@@ -508,5 +511,69 @@ public class DataBase {
         myRef.updateChildren(updatechilds);
         return true;
 
+    }
+
+    public static boolean updateUser(String Fname,String Lname,String email, String password ,int gender , String phone){
+        String uid = mAuth.getCurrentUser().getUid();
+        DatabaseReference myRef = FBdatabase.getReference(USERS_ROOT).child(uid);
+        HashMap<String,Object> updatechilds = new HashMap<>();
+        updatechilds.put("email",email);
+        updatechilds.put("fname",Fname);
+        updatechilds.put("gender",gender);
+        updatechilds.put("lname",Lname);
+        updatechilds.put("phone",phone);
+        updatechilds.put("password",password);
+        myRef.updateChildren(updatechilds);
+        return true;
+
+    }
+
+
+
+
+
+
+
+    //-------------------------------------------Update Auth details---------------------------------------------------
+
+
+    public static boolean updateEmailAndPassword(Context Con, String oldPass, String newPass , String oldMail, String newMail){
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user!=null){
+
+            //check if the user changed email.
+            if(!oldMail.equals(newMail)){
+                user.updateEmail(newMail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(Con,"Profile has been updated",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(Con,"Failed to update email", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+            //check if the user changed password.
+            if(!oldPass.equals(newPass)){
+                user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(Con, "Profile has been updated", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(Con, "Failed to update password", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        }
+        else{
+            return false;
+        }
+        return true;
     }
 }

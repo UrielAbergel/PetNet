@@ -277,4 +277,5 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="update">Update</string>
+    <string name="update_profile">Update Profile</string>
 </resources>

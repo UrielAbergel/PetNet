@@ -21,8 +21,10 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import com.example.src.Algorithms.StringsManipulators;
+import com.example.src.BusinessActivities.B_UpdateProfile;
 import com.example.src.Firebase.DataBase;
 import com.example.src.GeneralActivity.StoreView;
+import com.example.src.Objects.User;
 import com.example.src.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,6 +56,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    User toUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +195,7 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                toUpdate = snapshot.getValue(User.class);
                 for (DataSnapshot ds :snapshot.getChildren()){
                     updateUI(ds);
                 }
@@ -263,13 +267,27 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_home:
                 break;
             case R.id.nav_edit_dog:
+                break;
 
             case R.id.nav_edit_profile:
+                System.out.println("edit profile");
+                Intent i = new Intent(this, C_UpdateProfile.class);
+                i.putExtra("fname",toUpdate.getFname());
+                i.putExtra("lname",toUpdate.getLname());
+                i.putExtra("email", toUpdate.getEmail());
+                i.putExtra("password", toUpdate.getPassword());
+                i.putExtra("gender",toUpdate.getGender());
+                i.putExtra("phone",toUpdate.getPhone());
+
+                startActivity(i);
+                break;
 
             case R.id.nav_delete_profile:
+                System.out.println("delete profile");
                 Intent log = new Intent(this, C_LogInActivity.class);
                 DataBase.deleteUser();
                 startActivity(log);
+                break;
 
 
 

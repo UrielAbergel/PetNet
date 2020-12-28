@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.example.src.BusinessObjects.B_User;
 import com.example.src.Firebase.DataBase;
 import com.example.src.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,10 +48,11 @@ public class B_UpdateProfile extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!password.getEditText().getText().equals(confirmPassword.getEditText().getText())){
+                if(!password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())){
                     password.getEditText().setError("Password must equals.");
                     return;
                 }
+                updateAuthService();
                 DataBase.updateBuser(Fname.getEditText().getText().toString()
                         ,Lname.getEditText().getText().toString()
                         ,email.getEditText().getText().toString()
@@ -71,6 +76,16 @@ public class B_UpdateProfile extends AppCompatActivity {
                 if(genders[0].isChecked()) genders[0].setChecked(false);
             }
         });
+    }
+
+    private void updateAuthService() {
+
+        DataBase.updateEmailAndPassword(this,toUpdate.getPassword(),
+                password.getEditText().getText().toString(),
+                toUpdate.getEmail(),
+                email.getEditText().getText().toString()
+                );
+
     }
 
     private int getGender() {
