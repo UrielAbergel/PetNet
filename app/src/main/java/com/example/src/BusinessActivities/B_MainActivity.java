@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.src.Algorithms.StringsManipulators;
+import com.example.src.BusinessObjects.B_User;
 import com.example.src.CostumersActivities.C_LogInActivity;
 import com.example.src.Firebase.DataBase;
 import com.example.src.GeneralActivity.StoreView;
@@ -45,6 +46,7 @@ public class B_MainActivity extends AppCompatActivity implements NavigationView.
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private B_User toUpdate;
 
 
 
@@ -80,6 +82,7 @@ public class B_MainActivity extends AppCompatActivity implements NavigationView.
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                toUpdate = snapshot.getValue(B_User.class);
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Log.d("ChangeHeadLine","im here ");
                     updateUI(ds);
@@ -241,12 +244,23 @@ public class B_MainActivity extends AppCompatActivity implements NavigationView.
 
             case R.id.b_nav_home:
                 break;
+
             case R.id.b_nav_edit_profile:
+                Intent i = new Intent(this, B_UpdateProfile.class);
+                i.putExtra("fname",toUpdate.getFname());
+                i.putExtra("lname",toUpdate.getLname());
+                i.putExtra("email", toUpdate.getEmail());
+                i.putExtra("password", toUpdate.getPassword());
+                i.putExtra("gender",toUpdate.getGender());
+                startActivity(i);
+
+                break;
 
             case R.id.b_nav_delete_profile:
                 Intent log = new Intent(this, C_LogInActivity.class);
                 DataBase.deleteBUser();
                 startActivity(log);
+                break;
 
 
             case R.id.b_nav_log_out:

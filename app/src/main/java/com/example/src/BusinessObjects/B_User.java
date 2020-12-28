@@ -67,4 +67,17 @@ public class B_User {
     public void setGender(int gender) {
         Gender = gender;
     }
+
+    @Override
+    public String toString() {
+        return "B_User{" +
+                "Fname='" + Fname + '\'' +
+                ", Lname='" + Lname + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Password='" + Password + '\'' +
+                ", Gender=" + Gender +
+                ", store_count=" + store_count +
+                ", UID='" + UID + '\'' +
+                '}';
+    }
 }

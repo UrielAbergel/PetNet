@@ -496,4 +496,17 @@ public class DataBase {
 
 
     }
+    public static boolean updateBuser(String Fname, String Lname ,String email, String password , int gender){
+        String uid = mAuth.getCurrentUser().getUid();
+        DatabaseReference myRef = FBdatabase.getReference(BUSERS_ROOT).child(uid);
+        HashMap<String,Object> updatechilds = new HashMap<>();
+        updatechilds.put("email",email);
+        updatechilds.put("gender",gender);
+        updatechilds.put("password", password);
+        updatechilds.put("fname",Fname);
+        updatechilds.put("lname",Lname);
+        myRef.updateChildren(updatechilds);
+        return true;
+
+    }
 }
