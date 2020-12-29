@@ -405,6 +405,7 @@ public class DataBase {
         FirebaseUser userToDelete = mAuth.getCurrentUser();
         String uid = userToDelete.getUid();
 
+
         DatabaseReference userRef = FBdatabase.getReference(BUSERS_ROOT).child(uid);
 
 
