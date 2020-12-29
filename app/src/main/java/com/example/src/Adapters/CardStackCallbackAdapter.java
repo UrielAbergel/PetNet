@@ -27,7 +27,7 @@ public class CardStackCallbackAdapter extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return old.get(oldItemPosition).getImage().equals(baru.get(newItemPosition));
+        return old.get(oldItemPosition).getImage().equals(baru.get(newItemPosition).getImage());
     }
 
     @Override
