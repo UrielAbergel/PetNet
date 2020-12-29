@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Petnet">
-        <activity android:name=".CostumersActivities.C_UpdateProfile"></activity>
+        <activity android:name=".CostumersActivities.C_UpdateDog"></activity>
+        <activity android:name=".CostumersActivities.C_UpdateProfile" />
         <activity android:name=".BusinessActivities.B_UpdateProfile" />
         <activity android:name=".CostumersActivities.C_TinderSwipeActivity" />
 

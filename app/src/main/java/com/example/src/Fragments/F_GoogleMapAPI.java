@@ -285,7 +285,3 @@ public class F_GoogleMapAPI extends Fragment implements OnMapReadyCallback {
     }
 
 }
-
-
-
-

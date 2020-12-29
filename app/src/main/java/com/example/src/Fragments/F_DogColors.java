@@ -166,12 +166,12 @@ public class F_DogColors extends Fragment {
      */
     public void setColor(int position){
         if (colors.get(position) == 0) {
-           if(signuplistener!= null){
-               signuplistener.setColor(position,1);
-           }
-           else{
-               foundDoglistener.setColor(position,1);
-           }
+            if(signuplistener!= null){
+                signuplistener.setColor(position,1);
+            }
+            else{
+                foundDoglistener.setColor(position,1);
+            }
         }
         else{
             if(signuplistener!= null){

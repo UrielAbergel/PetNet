@@ -267,19 +267,21 @@ public class C_UserMainActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_home:
                 break;
             case R.id.nav_edit_dog:
+                Intent edit_dog = new Intent(this, C_UpdateDog.class);
+                startActivity(edit_dog);
                 break;
 
             case R.id.nav_edit_profile:
                 System.out.println("edit profile");
-                Intent i = new Intent(this, C_UpdateProfile.class);
-                i.putExtra("fname",toUpdate.getFname());
-                i.putExtra("lname",toUpdate.getLname());
-                i.putExtra("email", toUpdate.getEmail());
-                i.putExtra("password", toUpdate.getPassword());
-                i.putExtra("gender",toUpdate.getGender());
-                i.putExtra("phone",toUpdate.getPhone());
+                Intent edit_profile = new Intent(this, C_UpdateProfile.class);
+                edit_profile.putExtra("fname",toUpdate.getFname());
+                edit_profile.putExtra("lname",toUpdate.getLname());
+                edit_profile.putExtra("email", toUpdate.getEmail());
+                edit_profile.putExtra("password", toUpdate.getPassword());
+                edit_profile.putExtra("gender",toUpdate.getGender());
+                edit_profile.putExtra("phone",toUpdate.getPhone());
 
-                startActivity(i);
+                startActivity(edit_profile);
                 break;
 
             case R.id.nav_delete_profile:
